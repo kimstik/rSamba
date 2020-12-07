@@ -87,7 +87,8 @@ static void check_start_application(void)
 	 * Stay in SAM-BA if *(APP_START+0x4) == 0xFFFFFFFF
 	 * Application erased condition
 	 */
-	if (app_start_address == 0xFFFFFFFF) {
+//	if (app_start_address == 0xFFFFFFFF) {
+	if (app_start_address>>18) {	//bit safer: value in range 256k
 		/* Stay in Bootloader */
 		return;
 	}

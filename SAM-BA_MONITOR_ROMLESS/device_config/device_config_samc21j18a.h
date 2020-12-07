@@ -40,7 +40,7 @@
 	#define COMPILER_PRAGMA(arg)        _Pragma(#arg)
 	#define COMPILER_ALIGNED(a)			COMPILER_PRAGMA(data_alignment = a)
 	#define COMPILER_WORD_ALIGNED       COMPILER_PRAGMA(data_alignment = 4)
-#elif defined (  __GNUC__  ) /* GCC CS3 2009q3-68 */
+#elif defined (  __GNUC__  ) || defined(__clang__) /* GCC CS3 2009q3-68 */
 	#include "sam.h"
 	#define COMPILER_ALIGNED(a)			__attribute__((__aligned__(a)))
 	#define COMPILER_WORD_ALIGNED       __attribute__((__aligned__(4)))
@@ -56,6 +56,7 @@
 
 #define PINMUX_UNUSED						0xFFFFFFFF
 #define BOOT_USART_MODULE					SERCOM4
+#define BOOT_USART_MODULE_IDX				4
 #define BOOT_USART_MUX_SETTINGS				(SERCOM_USART_CTRLA_RXPO(3) | SERCOM_USART_CTRLA_TXPO(1))
 #define BOOT_USART_PAD0						PINMUX_UNUSED
 #define BOOT_USART_PAD1						PINMUX_UNUSED
@@ -97,6 +98,7 @@ static inline void clock_configuration_for_usb(void)
 
 static inline void clock_configuration_for_boot_usart(void)
 {
+	#if !defined(BOOT_USART_MODULE_IDX)
 	uint8_t inst = 0;
 	Sercom *sercom_instances[SERCOM_INST_NUM] = SERCOM_INSTS;
 
@@ -106,6 +108,9 @@ static inline void clock_configuration_for_boot_usart(void)
 			break;
 		}
 	}
+	#else
+	uint8_t inst = BOOT_USART_MODULE_IDX;
+	#endif
 
 	enable_sercom_digital_interface_clock(inst);
 

@@ -29,8 +29,15 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "cdc_enumerate.h"
 #include "device_config.h"
 
+
+#if (SAM_BA_INTERFACE == SAM_BA_UART_ONLY)
+#define HND(x)	uart_if.x
+#else
+#define HND(x)	ptr_monitor_if->x
+#endif
+
 static void print_new_line(void);
-const char RomBOOT_Version[] = SAM_BA_VERSION;
+const char RomBOOT_Version[sizeof(SAM_BA_VERSION)-1] = SAM_BA_VERSION;
 
 /* Provides one common interface to handle both USART and USB-CDC */
 typedef struct
@@ -72,13 +79,14 @@ const t_monitor_if usbcdc_if =
 t_monitor_if * ptr_monitor_if;
 
 /* b_terminal_mode mode (ascii) or hex mode */
-volatile bool b_terminal_mode = false;
+//volatile bool b_terminal_mode = false;
+static const bool b_terminal_mode = false;
 volatile uint32_t sp;
 
 
 static void print_new_line(void)
 {
-	ptr_monitor_if->putdata("\n\r", 2);
+	HND(putdata)("\n\r", 2);
 }
 
 void init_sam_ba_monitor_interface(void)
@@ -86,11 +94,11 @@ void init_sam_ba_monitor_interface(void)
 	#if SAM_BA_UART_INTERFACE_ENABLED
 		usart_open();
 	#endif
-	
+
 	#if SAM_BA_USB_INTERFACE_ENABLED
 		clock_configuration_for_usb();
 		usb_init();
-	#endif	
+	#endif
 }
 
 void process_sam_ba_monitor(void)
@@ -102,7 +110,10 @@ void process_sam_ba_monitor(void)
 		}
 	#endif
 
-	#if SAM_BA_UART_INTERFACE_ENABLED
+	#if (SAM_BA_INTERFACE == SAM_BA_UART_ONLY)
+		sam_ba_monitor_run();
+		for(;;);
+	#elif SAM_BA_UART_INTERFACE_ENABLED
 		if(uart_if.is_rx_ready() && (SHARP_CHARACTER == uart_if.get_c())) {
 			ptr_monitor_if = (t_monitor_if*) &uart_if;
 			sam_ba_monitor_run();
@@ -150,20 +161,19 @@ void sam_ba_putdata_term(uint8_t* data, uint32_t length)
 		buf[1] = 'x';
 		buf[length * 2 + 2] = '\n';
 		buf[length * 2 + 3] = '\r';
-		ptr_monitor_if->putdata(buf, length * 2 + 4);
+		HND(putdata)(buf, length * 2 + 4);
 	}
 	else
-		ptr_monitor_if->putdata(data, length);
+		HND(putdata)(data, length);
 	return;
 }
 
+__attribute__((__noreturn__))
 void call_applet(uint32_t address)
 {
 	uint32_t app_start_address;
 
 	cpu_irq_disable();
-
-	sp = __get_MSP();
 
 	/* Rebase the Stack Pointer */
 	__set_MSP(*(uint32_t *) address);
@@ -175,7 +185,8 @@ void call_applet(uint32_t address)
 	app_start_address = *(uint32_t *)(address + 4);
 
 	/* Jump to application Reset Handler in the application */
-	asm("bx %0"::"r"(app_start_address));
+	__asm("bx %0"::"r"(app_start_address));
+	__builtin_unreachable();
 }
 
 /**
@@ -184,17 +195,16 @@ void call_applet(uint32_t address)
 void sam_ba_monitor_run(void)
 {
 	uint32_t length;
-	uint32_t j, u8tmp, current_number, command;
+	uint32_t j, command, current_number, u8tmp;
 	uint8_t *ptr_data, *ptr, data[SIZEBUFMAX];
 
-	ptr_data = 0;
-	command = 'z';
 	j=0;
-	
+	command = 0;
+
 	// Start waiting some cmd
 	while (1)
 	{
-		length = ptr_monitor_if->getdata(data, SIZEBUFMAX);
+		length = HND(getdata)(data, SIZEBUFMAX);
 		ptr = data;
 		for (uint32_t i = 0; i < length; i++)
 		{
@@ -202,7 +212,7 @@ void sam_ba_monitor_run(void)
 			{
 				if (*ptr == '#')
 				{
-					if (b_terminal_mode)
+/*					if (b_terminal_mode)
 					{
 						print_new_line();
 					}
@@ -230,27 +240,31 @@ void sam_ba_monitor_run(void)
 						ptr--;
 						//Do we expect more data ?
 						if(j<current_number)
-							ptr_monitor_if->getdata_xmd(ptr_data, current_number-j);
-						
-						__asm("nop");
+							HND(getdata_xmd)(ptr_data, current_number-j);
+
+//						__asm("nop");
 					}
+*/
+/*
 					else if (command == 'R')
 					{
-						ptr_monitor_if->putdata_xmd(ptr_data, current_number);
+						HND(putdata_xmd)(ptr_data, current_number);
 					}
 					else if (command == 'O')
 					{
 						*ptr_data = (char) current_number;
 					}
-					else if (command == 'H')
+					else
+					if (command == 'H')
 					{
 						*((uint16_t *) ptr_data) = (uint16_t) current_number;
 					}
-					else if (command == 'W')
+					else
+*/					if (command == 'W')
 					{
 						*((int *) ptr_data) = current_number;
 					}
-					else if (command == 'o')
+/*					else if (command == 'o')
 					{
 						sam_ba_putdata_term(ptr_data, 1);
 					}
@@ -259,47 +273,47 @@ void sam_ba_monitor_run(void)
 						current_number = *((uint16_t *) ptr_data);
 						sam_ba_putdata_term((uint8_t*) &current_number, 2);
 					}
-					else if (command == 'w')
+*/					else if (command == 'w')
 					{
 						current_number = *((uint32_t *) ptr_data);
 						sam_ba_putdata_term((uint8_t*) &current_number, 4);
 					}
+
 					else if (command == 'G')
 					{
 						call_applet(current_number);
-						//ptr_monitor_if->put_c(0x6);
-						/* Rebase the Stack Pointer */
-						__set_MSP(sp);
-						cpu_irq_enable();
+						__builtin_unreachable();
 					}
-					else if (command == 'T')
+/*					else if (command == 'T')
 					{
 						b_terminal_mode = 1;
 						print_new_line();
 					}
 					else if (command == 'N')
 					{
-						if (b_terminal_mode == 0)
-						{
-							print_new_line();
-						}
-						b_terminal_mode = 0;
+						//if (b_terminal_mode == 0)
+						//{
+						HND(putdata)((uint8_t *) RomBOOT_Version+2, 2);
+						//	print_new_line();
+						//}
+						//b_terminal_mode = 0;
 					}
-					else if (command == 'V')
+*/					else if (command == 'V')
 					{
-						ptr_monitor_if->putdata((uint8_t *) RomBOOT_Version, strlen(RomBOOT_Version));
+						HND(putdata)((uint8_t *) RomBOOT_Version, sizeof(RomBOOT_Version));	//strlen(RomBOOT_Version));
 					}
 
-					command = 'z';
+					command = 0;
 					current_number = 0;
 
 					if (b_terminal_mode)
 					{
-						ptr_monitor_if->putdata(">", 1);
+						HND(putdata)(">", 1);
 					}
 				}
 				else
 				{
+/*
 					if (('0' <= *ptr) && (*ptr <= '9'))
 					{
 						current_number = (current_number << 4) | (*ptr - '0');
@@ -321,6 +335,22 @@ void sam_ba_monitor_run(void)
 					{
 						command = *ptr;
 						current_number = 0;
+					}
+*/
+					if (*ptr == ',')
+					{
+						ptr_data = (uint8_t *) current_number;
+						current_number = 0;
+					}
+					else
+					{
+						int val =  htoi(*ptr);
+						if (val < 0) {
+							command = *ptr;
+							current_number = 0;
+						}else{
+							current_number = (current_number << 4) | val;
+						}
 					}
 				}
 				ptr++;

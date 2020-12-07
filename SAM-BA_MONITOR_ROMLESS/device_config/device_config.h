@@ -57,6 +57,9 @@
 	#include "device_config_samc21j18a.h"
 	#define SAM_BA_INTERFACE	SAM_BA_UART_ONLY
 	#define APP_START_ADDRESS	DEFAULT_APP_START_ADDRESS
+#elif defined (__SAMC21E18A__)
+	#include "device_config_samc21e18a.h"
+	#define SAM_BA_INTERFACE	SAM_BA_UART_ONLY
 #elif defined (__SAMDA1J16A__)
 	#include "device_config_samda1j16a.h"
 	#define SAM_BA_INTERFACE	SAM_BA_BOTH_INTERFACES
@@ -73,7 +76,8 @@
 	#error Unknown part number... Define part number and create device_config_xx.h
 #endif
 
-#define SAM_BA_VERSION						"v2.18"__DATE__" "__TIME__"\n\r"
+//#define SAM_BA_VERSION						"v2.18"__DATE__" "__TIME__"\n\r"
+#define SAM_BA_VERSION						"uB\n\r"
 
 #ifndef SAM_BA_INTERFACE
 	#define SAM_BA_INTERFACE	SAM_BA_UART_ONLY
