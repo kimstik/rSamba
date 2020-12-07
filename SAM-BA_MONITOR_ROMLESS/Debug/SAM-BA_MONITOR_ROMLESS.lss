@@ -1,0 +1,3485 @@
+
+SAM-BA_MONITOR_ROMLESS.elf:     file format elf32-littlearm
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00001370  00000000  00000000  00010000  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .relocate     0000004c  20000000  00001370  00020000  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          000001c0  2000004c  000013bc  0002004c  2**2
+                  ALLOC
+  3 .stack        00000284  2000020c  0000157c  0002004c  2**0
+                  ALLOC
+  4 .ARM.attributes 00000028  00000000  00000000  0002004c  2**0
+                  CONTENTS, READONLY
+  5 .comment      00000059  00000000  00000000  00020074  2**0
+                  CONTENTS, READONLY
+  6 .debug_info   0001202a  00000000  00000000  000200cd  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00001680  00000000  00000000  000320f7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_loc    0000206d  00000000  00000000  00033777  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_aranges 00000220  00000000  00000000  000357e4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_ranges 00000210  00000000  00000000  00035a04  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_macro  00016dca  00000000  00000000  00035c14  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_line   00003e66  00000000  00000000  0004c9de  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_str    00089062  00000000  00000000  00050844  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 14 .debug_frame  00000530  00000000  00000000  000d98a8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <exception_table>:
+       0:	90 04 00 20 0d 01 00 00 09 01 00 00 09 01 00 00     ... ............
+	...
+      2c:	09 01 00 00 00 00 00 00 00 00 00 00 09 01 00 00     ................
+      3c:	09 01 00 00 09 01 00 00 09 01 00 00 09 01 00 00     ................
+      4c:	09 01 00 00 09 01 00 00 09 01 00 00 09 01 00 00     ................
+      5c:	09 01 00 00 09 01 00 00 09 01 00 00 09 01 00 00     ................
+      6c:	09 01 00 00 09 01 00 00 09 01 00 00 09 01 00 00     ................
+      7c:	09 01 00 00 09 01 00 00 09 01 00 00 09 01 00 00     ................
+      8c:	09 01 00 00 09 01 00 00 09 01 00 00 09 01 00 00     ................
+      9c:	09 01 00 00 09 01 00 00 09 01 00 00                 ............
+
+000000a8 <__do_global_dtors_aux>:
+      a8:	b510      	push	{r4, lr}
+      aa:	4c06      	ldr	r4, [pc, #24]	; (c4 <__do_global_dtors_aux+0x1c>)
+      ac:	7823      	ldrb	r3, [r4, #0]
+      ae:	2b00      	cmp	r3, #0
+      b0:	d107      	bne.n	c2 <__do_global_dtors_aux+0x1a>
+      b2:	4b05      	ldr	r3, [pc, #20]	; (c8 <__do_global_dtors_aux+0x20>)
+      b4:	2b00      	cmp	r3, #0
+      b6:	d002      	beq.n	be <__do_global_dtors_aux+0x16>
+      b8:	4804      	ldr	r0, [pc, #16]	; (cc <__do_global_dtors_aux+0x24>)
+      ba:	e000      	b.n	be <__do_global_dtors_aux+0x16>
+      bc:	bf00      	nop
+      be:	2301      	movs	r3, #1
+      c0:	7023      	strb	r3, [r4, #0]
+      c2:	bd10      	pop	{r4, pc}
+      c4:	2000004c 	.word	0x2000004c
+      c8:	00000000 	.word	0x00000000
+      cc:	00001370 	.word	0x00001370
+
+000000d0 <frame_dummy>:
+      d0:	4b08      	ldr	r3, [pc, #32]	; (f4 <frame_dummy+0x24>)
+      d2:	b510      	push	{r4, lr}
+      d4:	2b00      	cmp	r3, #0
+      d6:	d003      	beq.n	e0 <frame_dummy+0x10>
+      d8:	4907      	ldr	r1, [pc, #28]	; (f8 <frame_dummy+0x28>)
+      da:	4808      	ldr	r0, [pc, #32]	; (fc <frame_dummy+0x2c>)
+      dc:	e000      	b.n	e0 <frame_dummy+0x10>
+      de:	bf00      	nop
+      e0:	4807      	ldr	r0, [pc, #28]	; (100 <frame_dummy+0x30>)
+      e2:	6803      	ldr	r3, [r0, #0]
+      e4:	2b00      	cmp	r3, #0
+      e6:	d100      	bne.n	ea <frame_dummy+0x1a>
+      e8:	bd10      	pop	{r4, pc}
+      ea:	4b06      	ldr	r3, [pc, #24]	; (104 <frame_dummy+0x34>)
+      ec:	2b00      	cmp	r3, #0
+      ee:	d0fb      	beq.n	e8 <frame_dummy+0x18>
+      f0:	4798      	blx	r3
+      f2:	e7f9      	b.n	e8 <frame_dummy+0x18>
+      f4:	00000000 	.word	0x00000000
+      f8:	20000050 	.word	0x20000050
+      fc:	00001370 	.word	0x00001370
+     100:	00001370 	.word	0x00001370
+     104:	00000000 	.word	0x00000000
+
+00000108 <Dummy_Handler>:
+
+/**
+ * \brief Default interrupt handler for unused IRQs.
+ */
+void Dummy_Handler(void)
+{
+     108:	e7fe      	b.n	108 <Dummy_Handler>
+	...
+
+0000010c <Reset_Handler>:
+{
+     10c:	b510      	push	{r4, lr}
+        if (pSrc != pDest) {
+     10e:	4a10      	ldr	r2, [pc, #64]	; (150 <Reset_Handler+0x44>)
+     110:	4b10      	ldr	r3, [pc, #64]	; (154 <Reset_Handler+0x48>)
+     112:	429a      	cmp	r2, r3
+     114:	d009      	beq.n	12a <Reset_Handler+0x1e>
+     116:	4b0f      	ldr	r3, [pc, #60]	; (154 <Reset_Handler+0x48>)
+     118:	4a0d      	ldr	r2, [pc, #52]	; (150 <Reset_Handler+0x44>)
+     11a:	e003      	b.n	124 <Reset_Handler+0x18>
+                        *pDest++ = *pSrc++;
+     11c:	6811      	ldr	r1, [r2, #0]
+     11e:	6019      	str	r1, [r3, #0]
+     120:	3304      	adds	r3, #4
+     122:	3204      	adds	r2, #4
+                for (; pDest < &_erelocate;) {
+     124:	490c      	ldr	r1, [pc, #48]	; (158 <Reset_Handler+0x4c>)
+     126:	428b      	cmp	r3, r1
+     128:	d3f8      	bcc.n	11c <Reset_Handler+0x10>
+                        *pDest++ = *pSrc++;
+     12a:	4b0c      	ldr	r3, [pc, #48]	; (15c <Reset_Handler+0x50>)
+     12c:	e002      	b.n	134 <Reset_Handler+0x28>
+                *pDest++ = 0;
+     12e:	2200      	movs	r2, #0
+     130:	601a      	str	r2, [r3, #0]
+     132:	3304      	adds	r3, #4
+        for (pDest = &_szero; pDest < &_ezero;) {
+     134:	4a0a      	ldr	r2, [pc, #40]	; (160 <Reset_Handler+0x54>)
+     136:	4293      	cmp	r3, r2
+     138:	d3f9      	bcc.n	12e <Reset_Handler+0x22>
+        SCB->VTOR = ((uint32_t) pSrc & SCB_VTOR_TBLOFF_Msk);
+     13a:	4a0a      	ldr	r2, [pc, #40]	; (164 <Reset_Handler+0x58>)
+     13c:	21ff      	movs	r1, #255	; 0xff
+     13e:	4b0a      	ldr	r3, [pc, #40]	; (168 <Reset_Handler+0x5c>)
+     140:	438b      	bics	r3, r1
+     142:	6093      	str	r3, [r2, #8]
+        __libc_init_array();
+     144:	4b09      	ldr	r3, [pc, #36]	; (16c <Reset_Handler+0x60>)
+     146:	4798      	blx	r3
+        main();
+     148:	4b09      	ldr	r3, [pc, #36]	; (170 <Reset_Handler+0x64>)
+     14a:	4798      	blx	r3
+     14c:	e7fe      	b.n	14c <Reset_Handler+0x40>
+     14e:	46c0      	nop			; (mov r8, r8)
+     150:	00001370 	.word	0x00001370
+     154:	20000000 	.word	0x20000000
+     158:	2000004c 	.word	0x2000004c
+     15c:	2000004c 	.word	0x2000004c
+     160:	2000020c 	.word	0x2000020c
+     164:	e000ed00 	.word	0xe000ed00
+     168:	00000000 	.word	0x00000000
+     16c:	00001281 	.word	0x00001281
+     170:	00000a39 	.word	0x00000a39
+
+00000174 <USB_Read>:
+//*----------------------------------------------------------------------------
+//* \fn    USB_Read
+//* \brief Read available data from Endpoint OUT
+//*----------------------------------------------------------------------------
+uint32_t USB_Read(P_USB_CDC pCdc, char *pData, uint32_t length)
+{
+     174:	b530      	push	{r4, r5, lr}
+	Usb *pUsb = pCdc->pUsb;
+     176:	6804      	ldr	r4, [r0, #0]
+	uint32_t packetSize = 0;
+	uint8_t* p_cache_buffer;
+
+	if (!read_job) {
+     178:	4b1e      	ldr	r3, [pc, #120]	; (1f4 <USB_Read+0x80>)
+     17a:	781b      	ldrb	r3, [r3, #0]
+     17c:	2b00      	cmp	r3, #0
+     17e:	d114      	bne.n	1aa <USB_Read+0x36>
+		/* Set the buffer address for ep data */
+		usb_endpoint_table[USB_EP_OUT].DeviceDescBank[0].ADDR.reg = (uint32_t)&udd_ep_out_cache_buffer[USB_EP_OUT-1];
+     180:	4b1d      	ldr	r3, [pc, #116]	; (1f8 <USB_Read+0x84>)
+     182:	481e      	ldr	r0, [pc, #120]	; (1fc <USB_Read+0x88>)
+     184:	6418      	str	r0, [r3, #64]	; 0x40
+		/* Set the byte count as zero */
+		usb_endpoint_table[USB_EP_OUT].DeviceDescBank[0].PCKSIZE.bit.BYTE_COUNT = 0;
+     186:	6c58      	ldr	r0, [r3, #68]	; 0x44
+     188:	0b80      	lsrs	r0, r0, #14
+     18a:	0385      	lsls	r5, r0, #14
+     18c:	645d      	str	r5, [r3, #68]	; 0x44
+		/* Set the byte count as zero */
+		usb_endpoint_table[USB_EP_OUT].DeviceDescBank[0].PCKSIZE.bit.MULTI_PACKET_SIZE = 0;
+     18e:	6c5d      	ldr	r5, [r3, #68]	; 0x44
+     190:	481b      	ldr	r0, [pc, #108]	; (200 <USB_Read+0x8c>)
+     192:	4028      	ands	r0, r5
+     194:	6458      	str	r0, [r3, #68]	; 0x44
+		/* Start the reception by clearing the bank 0 ready bit */
+		pUsb->DEVICE.DeviceEndpoint[USB_EP_OUT].EPSTATUSCLR.bit.BK0RDY = true;
+     196:	20a2      	movs	r0, #162	; 0xa2
+     198:	0040      	lsls	r0, r0, #1
+     19a:	5c23      	ldrb	r3, [r4, r0]
+     19c:	2540      	movs	r5, #64	; 0x40
+     19e:	432b      	orrs	r3, r5
+     1a0:	5423      	strb	r3, [r4, r0]
+		/* set the user flag */
+		read_job = true;
+     1a2:	3844      	subs	r0, #68	; 0x44
+     1a4:	38ff      	subs	r0, #255	; 0xff
+     1a6:	4b13      	ldr	r3, [pc, #76]	; (1f4 <USB_Read+0x80>)
+     1a8:	7018      	strb	r0, [r3, #0]
+	}
+
+	/* Check for Transfer Complete 0 flag */
+	if ( pUsb->DEVICE.DeviceEndpoint[USB_EP_OUT].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRCPT0 ) {
+     1aa:	2348      	movs	r3, #72	; 0x48
+     1ac:	33ff      	adds	r3, #255	; 0xff
+     1ae:	5ce3      	ldrb	r3, [r4, r3]
+     1b0:	07db      	lsls	r3, r3, #31
+     1b2:	d51d      	bpl.n	1f0 <USB_Read+0x7c>
+		/* Set packet size */
+		packetSize = MIN(usb_endpoint_table[USB_EP_OUT].DeviceDescBank[0].PCKSIZE.bit.BYTE_COUNT, length);
+     1b4:	4b10      	ldr	r3, [pc, #64]	; (1f8 <USB_Read+0x84>)
+     1b6:	6c5b      	ldr	r3, [r3, #68]	; 0x44
+     1b8:	049b      	lsls	r3, r3, #18
+     1ba:	0c9b      	lsrs	r3, r3, #18
+     1bc:	4293      	cmp	r3, r2
+     1be:	d203      	bcs.n	1c8 <USB_Read+0x54>
+     1c0:	4b0d      	ldr	r3, [pc, #52]	; (1f8 <USB_Read+0x84>)
+     1c2:	6c5a      	ldr	r2, [r3, #68]	; 0x44
+     1c4:	0492      	lsls	r2, r2, #18
+     1c6:	0c92      	lsrs	r2, r2, #18
+		/* Copy read data to user buffer */
+		//memcpy(pData, udd_ep_out_cache_buffer[USB_EP_OUT-1], packetSize);
+		p_cache_buffer = udd_ep_out_cache_buffer[USB_EP_OUT-1];
+		for(uint32_t u32_index=0; u32_index < packetSize; u32_index++)
+     1c8:	2300      	movs	r3, #0
+     1ca:	e003      	b.n	1d4 <USB_Read+0x60>
+		{
+			pData[u32_index] = p_cache_buffer[u32_index];
+     1cc:	480b      	ldr	r0, [pc, #44]	; (1fc <USB_Read+0x88>)
+     1ce:	5cc0      	ldrb	r0, [r0, r3]
+     1d0:	54c8      	strb	r0, [r1, r3]
+		for(uint32_t u32_index=0; u32_index < packetSize; u32_index++)
+     1d2:	3301      	adds	r3, #1
+     1d4:	4293      	cmp	r3, r2
+     1d6:	d3f9      	bcc.n	1cc <USB_Read+0x58>
+		}
+		
+		/* Clear the Transfer Complete 0 flag */
+		pUsb->DEVICE.DeviceEndpoint[USB_EP_OUT].EPINTFLAG.reg |= USB_DEVICE_EPINTFLAG_TRCPT0;
+     1d8:	2148      	movs	r1, #72	; 0x48
+     1da:	31ff      	adds	r1, #255	; 0xff
+     1dc:	5c63      	ldrb	r3, [r4, r1]
+     1de:	2001      	movs	r0, #1
+     1e0:	4303      	orrs	r3, r0
+     1e2:	b2db      	uxtb	r3, r3
+     1e4:	5463      	strb	r3, [r4, r1]
+		/* Clear the user flag */
+		read_job = false;
+     1e6:	2100      	movs	r1, #0
+     1e8:	4b02      	ldr	r3, [pc, #8]	; (1f4 <USB_Read+0x80>)
+     1ea:	7019      	strb	r1, [r3, #0]
+		packetSize = MIN(usb_endpoint_table[USB_EP_OUT].DeviceDescBank[0].PCKSIZE.bit.BYTE_COUNT, length);
+     1ec:	0010      	movs	r0, r2
+	}
+
+	return packetSize;
+}
+     1ee:	bd30      	pop	{r4, r5, pc}
+	uint32_t packetSize = 0;
+     1f0:	2000      	movs	r0, #0
+	return packetSize;
+     1f2:	e7fc      	b.n	1ee <USB_Read+0x7a>
+     1f4:	20000068 	.word	0x20000068
+     1f8:	2000016c 	.word	0x2000016c
+     1fc:	200000ac 	.word	0x200000ac
+     200:	f0003fff 	.word	0xf0003fff
+
+00000204 <USB_Write>:
+
+}
+
+
+uint32_t USB_Write(P_USB_CDC pCdc, const char *pData, uint32_t length, uint8_t ep_num)
+{
+     204:	b5f0      	push	{r4, r5, r6, r7, lr}
+	Usb *pUsb = pCdc->pUsb;
+     206:	6805      	ldr	r5, [r0, #0]
+	uint32_t data_address;
+	uint8_t buf_index;
+	uint8_t* p_cache_buffer;
+
+	/* Set buffer index */
+	buf_index = (ep_num == 0) ? 0 : 1;
+     208:	0018      	movs	r0, r3
+     20a:	1e44      	subs	r4, r0, #1
+     20c:	41a0      	sbcs	r0, r4
+     20e:	b2c0      	uxtb	r0, r0
+
+	/* Check for requirement for multi-packet or auto zlp */
+	if (length >= (1 << (usb_endpoint_table[ep_num].DeviceDescBank[1].PCKSIZE.bit.SIZE + 3))) {
+     210:	001e      	movs	r6, r3
+     212:	015f      	lsls	r7, r3, #5
+     214:	4c22      	ldr	r4, [pc, #136]	; (2a0 <STACK_SIZE+0x20>)
+     216:	19e4      	adds	r4, r4, r7
+     218:	3410      	adds	r4, #16
+     21a:	6864      	ldr	r4, [r4, #4]
+     21c:	0064      	lsls	r4, r4, #1
+     21e:	0f64      	lsrs	r4, r4, #29
+     220:	3403      	adds	r4, #3
+     222:	2701      	movs	r7, #1
+     224:	40a7      	lsls	r7, r4
+     226:	4297      	cmp	r7, r2
+     228:	d82e      	bhi.n	288 <STACK_SIZE+0x8>
+		/* Update the EP data address */
+		data_address = (uint32_t) pData;
+     22a:	000f      	movs	r7, r1
+		/* Enable auto zlp */
+		usb_endpoint_table[ep_num].DeviceDescBank[1].PCKSIZE.bit.AUTO_ZLP = true;
+     22c:	0158      	lsls	r0, r3, #5
+     22e:	491c      	ldr	r1, [pc, #112]	; (2a0 <STACK_SIZE+0x20>)
+     230:	1809      	adds	r1, r1, r0
+     232:	694c      	ldr	r4, [r1, #20]
+     234:	2080      	movs	r0, #128	; 0x80
+     236:	0600      	lsls	r0, r0, #24
+     238:	4320      	orrs	r0, r4
+     23a:	6148      	str	r0, [r1, #20]
+		/* Update the EP data address */
+		data_address = (uint32_t) &udd_ep_in_cache_buffer[buf_index];
+	}
+
+	/* Set the buffer address for ep data */
+	usb_endpoint_table[ep_num].DeviceDescBank[1].ADDR.reg = data_address;
+     23c:	0158      	lsls	r0, r3, #5
+     23e:	4918      	ldr	r1, [pc, #96]	; (2a0 <STACK_SIZE+0x20>)
+     240:	1809      	adds	r1, r1, r0
+     242:	000c      	movs	r4, r1
+     244:	610f      	str	r7, [r1, #16]
+	/* Set the byte count as zero */
+	usb_endpoint_table[ep_num].DeviceDescBank[1].PCKSIZE.bit.BYTE_COUNT = length;
+     246:	6948      	ldr	r0, [r1, #20]
+     248:	0491      	lsls	r1, r2, #18
+     24a:	0c89      	lsrs	r1, r1, #18
+     24c:	0b80      	lsrs	r0, r0, #14
+     24e:	0380      	lsls	r0, r0, #14
+     250:	4301      	orrs	r1, r0
+     252:	6161      	str	r1, [r4, #20]
+	/* Set the multi packet size as zero for multi-packet transfers where length > ep size */
+	usb_endpoint_table[ep_num].DeviceDescBank[1].PCKSIZE.bit.MULTI_PACKET_SIZE = 0;
+     254:	6960      	ldr	r0, [r4, #20]
+     256:	4913      	ldr	r1, [pc, #76]	; (2a4 <STACK_SIZE+0x24>)
+     258:	4001      	ands	r1, r0
+     25a:	6161      	str	r1, [r4, #20]
+	/* Clear the transfer complete flag  */
+	pUsb->DEVICE.DeviceEndpoint[ep_num].EPINTFLAG.reg |= USB_DEVICE_EPINTFLAG_TRCPT1;
+     25c:	3308      	adds	r3, #8
+     25e:	015b      	lsls	r3, r3, #5
+     260:	18eb      	adds	r3, r5, r3
+     262:	79d9      	ldrb	r1, [r3, #7]
+     264:	2002      	movs	r0, #2
+     266:	4301      	orrs	r1, r0
+     268:	b2c9      	uxtb	r1, r1
+     26a:	71d9      	strb	r1, [r3, #7]
+	/* Set the bank as ready */
+	pUsb->DEVICE.DeviceEndpoint[ep_num].EPSTATUSSET.bit.BK1RDY = true;
+     26c:	7958      	ldrb	r0, [r3, #5]
+     26e:	2180      	movs	r1, #128	; 0x80
+     270:	4249      	negs	r1, r1
+     272:	4301      	orrs	r1, r0
+     274:	7159      	strb	r1, [r3, #5]
+	
+	/* Wait for transfer to complete */
+	while (!( pUsb->DEVICE.DeviceEndpoint[ep_num].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRCPT1 ));
+     276:	0033      	movs	r3, r6
+     278:	3308      	adds	r3, #8
+     27a:	015b      	lsls	r3, r3, #5
+     27c:	18eb      	adds	r3, r5, r3
+     27e:	79db      	ldrb	r3, [r3, #7]
+     280:	079b      	lsls	r3, r3, #30
+     282:	d5f8      	bpl.n	276 <USB_Write+0x72>
+	
+	return length;
+}
+     284:	0010      	movs	r0, r2
+     286:	bdf0      	pop	{r4, r5, r6, r7, pc}
+		p_cache_buffer = udd_ep_in_cache_buffer[buf_index];
+     288:	0180      	lsls	r0, r0, #6
+     28a:	4f07      	ldr	r7, [pc, #28]	; (2a8 <STACK_SIZE+0x28>)
+     28c:	19c7      	adds	r7, r0, r7
+		for(uint32_t u32_index=0; u32_index < length; u32_index++)
+     28e:	2400      	movs	r4, #0
+     290:	e002      	b.n	298 <STACK_SIZE+0x18>
+			p_cache_buffer[u32_index] = pData[u32_index];
+     292:	5d08      	ldrb	r0, [r1, r4]
+     294:	5538      	strb	r0, [r7, r4]
+		for(uint32_t u32_index=0; u32_index < length; u32_index++)
+     296:	3401      	adds	r4, #1
+     298:	4294      	cmp	r4, r2
+     29a:	d3fa      	bcc.n	292 <STACK_SIZE+0x12>
+     29c:	e7ce      	b.n	23c <USB_Write+0x38>
+     29e:	46c0      	nop			; (mov r8, r8)
+     2a0:	2000016c 	.word	0x2000016c
+     2a4:	f0003fff 	.word	0xf0003fff
+     2a8:	200000ec 	.word	0x200000ec
+
+000002ac <AT91F_USB_SendData>:
+//* \fn    AT91F_USB_SendData
+//* \brief Send Data through the control endpoint
+//*----------------------------------------------------------------------------
+
+static void AT91F_USB_SendData(P_USB_CDC pCdc, const char *pData, uint32_t length)
+{
+     2ac:	b510      	push	{r4, lr}
+	USB_Write(pCdc, pData, length, 0);
+     2ae:	2300      	movs	r3, #0
+     2b0:	4c01      	ldr	r4, [pc, #4]	; (2b8 <AT91F_USB_SendData+0xc>)
+     2b2:	47a0      	blx	r4
+}
+     2b4:	bd10      	pop	{r4, pc}
+     2b6:	46c0      	nop			; (mov r8, r8)
+     2b8:	00000205 	.word	0x00000205
+
+000002bc <AT91F_InitUSB>:
+{
+	MCLK->APBCMASK.reg |= (1u << (inst + MCLK_APBCMASK_SERCOM0_Pos));
+}
+static inline void enable_usb_digital_interface_clock(void)
+{
+	MCLK->APBBMASK.reg |= MCLK_APBBMASK_USB;
+     2bc:	4a32      	ldr	r2, [pc, #200]	; (388 <AT91F_InitUSB+0xcc>)
+     2be:	6993      	ldr	r3, [r2, #24]
+     2c0:	2101      	movs	r1, #1
+     2c2:	430b      	orrs	r3, r1
+     2c4:	6193      	str	r3, [r2, #24]
+
+	port = &(ports[gpio_pin/128]->Group[gpio_pin/32]);
+	pin_cfg = PORT_WRCONFIG_PMUXEN | (pin_mux_position << PORT_WRCONFIG_PMUX_Pos) | PORT_WRCONFIG_INEN;
+	pin_mask = 1L << ((gpio_pin) % 32);
+	
+	port->WRCONFIG.reg = ((pin_mask & 0xFFFF) << PORT_WRCONFIG_PINMASK_Pos) |
+     2c6:	4b31      	ldr	r3, [pc, #196]	; (38c <AT91F_InitUSB+0xd0>)
+     2c8:	4a31      	ldr	r2, [pc, #196]	; (390 <AT91F_InitUSB+0xd4>)
+     2ca:	629a      	str	r2, [r3, #40]	; 0x28
+	pin_cfg | PORT_WRCONFIG_WRPMUX | PORT_WRCONFIG_WRPINCFG;
+	port->WRCONFIG.reg = ((pin_mask >> 16) << PORT_WRCONFIG_PINMASK_Pos) |
+     2cc:	4931      	ldr	r1, [pc, #196]	; (394 <AT91F_InitUSB+0xd8>)
+     2ce:	6299      	str	r1, [r3, #40]	; 0x28
+	port->WRCONFIG.reg = ((pin_mask & 0xFFFF) << PORT_WRCONFIG_PINMASK_Pos) |
+     2d0:	629a      	str	r2, [r3, #40]	; 0x28
+	port->WRCONFIG.reg = ((pin_mask >> 16) << PORT_WRCONFIG_PINMASK_Pos) |
+     2d2:	4a31      	ldr	r2, [pc, #196]	; (398 <AT91F_InitUSB+0xdc>)
+     2d4:	629a      	str	r2, [r3, #40]	; 0x28
+	USB->DEVICE.CTRLA.bit.SWRST = 1;
+     2d6:	2282      	movs	r2, #130	; 0x82
+     2d8:	05d2      	lsls	r2, r2, #23
+     2da:	7813      	ldrb	r3, [r2, #0]
+     2dc:	2101      	movs	r1, #1
+     2de:	430b      	orrs	r3, r1
+     2e0:	7013      	strb	r3, [r2, #0]
+	while (USB->DEVICE.SYNCBUSY.bit.SWRST) {
+     2e2:	2382      	movs	r3, #130	; 0x82
+     2e4:	05db      	lsls	r3, r3, #23
+     2e6:	789b      	ldrb	r3, [r3, #2]
+     2e8:	07db      	lsls	r3, r3, #31
+     2ea:	d4fa      	bmi.n	2e2 <AT91F_InitUSB+0x26>
+static inline void load_usb_pin_pad_calibration_values(void)
+{
+	uint32_t pad_transn, pad_transp, pad_trim;
+	
+	/* Load Pad Calibration */
+	pad_transn =( *((uint32_t *)(NVMCTRL_OTP4) + (NVM_USB_PAD_TRANSN_POS / 32))
+     2ec:	4b2b      	ldr	r3, [pc, #172]	; (39c <AT91F_InitUSB+0xe0>)
+     2ee:	681a      	ldr	r2, [r3, #0]
+		>> (NVM_USB_PAD_TRANSN_POS % 32)) & ((1 << NVM_USB_PAD_TRANSN_SIZE) - 1);
+     2f0:	0b52      	lsrs	r2, r2, #13
+	pad_transn =( *((uint32_t *)(NVMCTRL_OTP4) + (NVM_USB_PAD_TRANSN_POS / 32))
+     2f2:	231f      	movs	r3, #31
+     2f4:	4013      	ands	r3, r2
+
+	if (pad_transn == 0x1F) {
+     2f6:	2b1f      	cmp	r3, #31
+     2f8:	d038      	beq.n	36c <AT91F_InitUSB+0xb0>
+		pad_transn = 5;
+	}
+
+	USB->DEVICE.PADCAL.bit.TRANSN = pad_transn;
+     2fa:	2182      	movs	r1, #130	; 0x82
+     2fc:	05c9      	lsls	r1, r1, #23
+     2fe:	8d0a      	ldrh	r2, [r1, #40]	; 0x28
+     300:	019b      	lsls	r3, r3, #6
+     302:	4827      	ldr	r0, [pc, #156]	; (3a0 <AT91F_InitUSB+0xe4>)
+     304:	4002      	ands	r2, r0
+     306:	4313      	orrs	r3, r2
+     308:	850b      	strh	r3, [r1, #40]	; 0x28
+
+	pad_transp =( *((uint32_t *)(NVMCTRL_OTP4) + (NVM_USB_PAD_TRANSP_POS / 32))
+     30a:	4b24      	ldr	r3, [pc, #144]	; (39c <AT91F_InitUSB+0xe0>)
+     30c:	681a      	ldr	r2, [r3, #0]
+		>> (NVM_USB_PAD_TRANSP_POS % 32)) & ((1 << NVM_USB_PAD_TRANSP_SIZE) - 1);
+     30e:	0c92      	lsrs	r2, r2, #18
+	pad_transp =( *((uint32_t *)(NVMCTRL_OTP4) + (NVM_USB_PAD_TRANSP_POS / 32))
+     310:	231f      	movs	r3, #31
+     312:	401a      	ands	r2, r3
+
+	if (pad_transp == 0x1F) {
+     314:	2a1f      	cmp	r2, #31
+     316:	d02b      	beq.n	370 <AT91F_InitUSB+0xb4>
+		pad_transp = 29;
+	}
+
+	USB->DEVICE.PADCAL.bit.TRANSP = pad_transp;
+     318:	2182      	movs	r1, #130	; 0x82
+     31a:	05c9      	lsls	r1, r1, #23
+     31c:	8d0b      	ldrh	r3, [r1, #40]	; 0x28
+     31e:	201f      	movs	r0, #31
+     320:	4383      	bics	r3, r0
+     322:	4313      	orrs	r3, r2
+     324:	850b      	strh	r3, [r1, #40]	; 0x28
+	
+	pad_trim =( *((uint32_t *)(NVMCTRL_OTP4) + (NVM_USB_PAD_TRIM_POS / 32))
+     326:	4b1d      	ldr	r3, [pc, #116]	; (39c <AT91F_InitUSB+0xe0>)
+     328:	681a      	ldr	r2, [r3, #0]
+		>> (NVM_USB_PAD_TRIM_POS % 32)) & ((1 << NVM_USB_PAD_TRIM_SIZE) - 1);
+     32a:	0dd2      	lsrs	r2, r2, #23
+	pad_trim =( *((uint32_t *)(NVMCTRL_OTP4) + (NVM_USB_PAD_TRIM_POS / 32))
+     32c:	2307      	movs	r3, #7
+     32e:	4013      	ands	r3, r2
+
+	if (pad_trim == 0x7) {
+     330:	2b07      	cmp	r3, #7
+     332:	d01f      	beq.n	374 <AT91F_InitUSB+0xb8>
+		pad_trim = 3;
+	}
+
+	USB->DEVICE.PADCAL.bit.TRIM = pad_trim;
+     334:	2282      	movs	r2, #130	; 0x82
+     336:	05d2      	lsls	r2, r2, #23
+     338:	8d11      	ldrh	r1, [r2, #40]	; 0x28
+     33a:	031b      	lsls	r3, r3, #12
+     33c:	4819      	ldr	r0, [pc, #100]	; (3a4 <AT91F_InitUSB+0xe8>)
+     33e:	4001      	ands	r1, r0
+     340:	430b      	orrs	r3, r1
+     342:	8513      	strh	r3, [r2, #40]	; 0x28
+	USB->DEVICE.CTRLA.bit.MODE = 0;
+     344:	7811      	ldrb	r1, [r2, #0]
+     346:	237f      	movs	r3, #127	; 0x7f
+     348:	400b      	ands	r3, r1
+     34a:	7013      	strb	r3, [r2, #0]
+	USB->DEVICE.CTRLA.bit.RUNSTDBY = true;
+     34c:	7813      	ldrb	r3, [r2, #0]
+     34e:	2104      	movs	r1, #4
+     350:	430b      	orrs	r3, r1
+     352:	7013      	strb	r3, [r2, #0]
+	USB->DEVICE.DESCADD.reg = (uint32_t)(&usb_endpoint_table[0]);
+     354:	4b14      	ldr	r3, [pc, #80]	; (3a8 <AT91F_InitUSB+0xec>)
+     356:	6253      	str	r3, [r2, #36]	; 0x24
+	USB->DEVICE.CTRLB.bit.SPDCONF = USB_DEVICE_CTRLB_SPDCONF_FS_Val;
+     358:	8911      	ldrh	r1, [r2, #8]
+     35a:	200c      	movs	r0, #12
+     35c:	4381      	bics	r1, r0
+     35e:	8111      	strh	r1, [r2, #8]
+	USB->DEVICE.CTRLB.reg &= ~USB_DEVICE_CTRLB_DETACH;
+     360:	8911      	ldrh	r1, [r2, #8]
+     362:	380b      	subs	r0, #11
+     364:	4381      	bics	r1, r0
+     366:	8111      	strh	r1, [r2, #8]
+	for(uint32_t u32_index=0; u32_index < sizeof(usb_endpoint_table); u32_index++)
+     368:	2200      	movs	r2, #0
+     36a:	e009      	b.n	380 <AT91F_InitUSB+0xc4>
+		pad_transn = 5;
+     36c:	3b1a      	subs	r3, #26
+     36e:	e7c4      	b.n	2fa <AT91F_InitUSB+0x3e>
+		pad_transp = 29;
+     370:	3a02      	subs	r2, #2
+     372:	e7d1      	b.n	318 <AT91F_InitUSB+0x5c>
+		pad_trim = 3;
+     374:	3b04      	subs	r3, #4
+     376:	e7dd      	b.n	334 <AT91F_InitUSB+0x78>
+		*pdata++ = 0;
+     378:	2100      	movs	r1, #0
+     37a:	7019      	strb	r1, [r3, #0]
+	for(uint32_t u32_index=0; u32_index < sizeof(usb_endpoint_table); u32_index++)
+     37c:	3201      	adds	r2, #1
+		*pdata++ = 0;
+     37e:	3301      	adds	r3, #1
+	for(uint32_t u32_index=0; u32_index < sizeof(usb_endpoint_table); u32_index++)
+     380:	2a7f      	cmp	r2, #127	; 0x7f
+     382:	d9f9      	bls.n	378 <AT91F_InitUSB+0xbc>
+}
+     384:	4770      	bx	lr
+     386:	46c0      	nop			; (mov r8, r8)
+     388:	40000800 	.word	0x40000800
+     38c:	41006000 	.word	0x41006000
+     390:	56030000 	.word	0x56030000
+     394:	d6030100 	.word	0xd6030100
+     398:	d6030200 	.word	0xd6030200
+     39c:	00806018 	.word	0x00806018
+     3a0:	fffff83f 	.word	0xfffff83f
+     3a4:	ffff8fff 	.word	0xffff8fff
+     3a8:	2000016c 	.word	0x2000016c
+
+000003ac <AT91F_CDC_Open>:
+	pCdc->pUsb = pUsb;
+     3ac:	6001      	str	r1, [r0, #0]
+	pCdc->currentConfiguration = 0;
+     3ae:	2300      	movs	r3, #0
+     3b0:	7103      	strb	r3, [r0, #4]
+	pCdc->currentConnection    = 0;
+     3b2:	7143      	strb	r3, [r0, #5]
+	pCdc->IsConfigured = USB_IsConfigured;
+     3b4:	4b05      	ldr	r3, [pc, #20]	; (3cc <AT91F_CDC_Open+0x20>)
+     3b6:	6083      	str	r3, [r0, #8]
+	pCdc->Write        = USB_Write;
+     3b8:	4b05      	ldr	r3, [pc, #20]	; (3d0 <AT91F_CDC_Open+0x24>)
+     3ba:	60c3      	str	r3, [r0, #12]
+	pCdc->Read         = USB_Read;
+     3bc:	4b05      	ldr	r3, [pc, #20]	; (3d4 <AT91F_CDC_Open+0x28>)
+     3be:	6103      	str	r3, [r0, #16]
+	pCdc->pUsb->DEVICE.CTRLA.bit.ENABLE = true;
+     3c0:	780b      	ldrb	r3, [r1, #0]
+     3c2:	2202      	movs	r2, #2
+     3c4:	4313      	orrs	r3, r2
+     3c6:	700b      	strb	r3, [r1, #0]
+}
+     3c8:	4770      	bx	lr
+     3ca:	46c0      	nop			; (mov r8, r8)
+     3cc:	00000809 	.word	0x00000809
+     3d0:	00000205 	.word	0x00000205
+     3d4:	00000175 	.word	0x00000175
+
+000003d8 <USB_Read_blocking>:
+{
+     3d8:	b530      	push	{r4, r5, lr}
+	Usb *pUsb = pCdc->pUsb;
+     3da:	6804      	ldr	r4, [r0, #0]
+	if (read_job) {
+     3dc:	4b16      	ldr	r3, [pc, #88]	; (438 <USB_Read_blocking+0x60>)
+     3de:	781b      	ldrb	r3, [r3, #0]
+     3e0:	2b00      	cmp	r3, #0
+     3e2:	d008      	beq.n	3f6 <USB_Read_blocking+0x1e>
+		pUsb->DEVICE.DeviceEndpoint[USB_EP_OUT].EPSTATUSSET.bit.BK0RDY = true;
+     3e4:	2046      	movs	r0, #70	; 0x46
+     3e6:	30ff      	adds	r0, #255	; 0xff
+     3e8:	5c23      	ldrb	r3, [r4, r0]
+     3ea:	2540      	movs	r5, #64	; 0x40
+     3ec:	432b      	orrs	r3, r5
+     3ee:	5423      	strb	r3, [r4, r0]
+		read_job = false;
+     3f0:	2000      	movs	r0, #0
+     3f2:	4b11      	ldr	r3, [pc, #68]	; (438 <USB_Read_blocking+0x60>)
+     3f4:	7018      	strb	r0, [r3, #0]
+	usb_endpoint_table[USB_EP_OUT].DeviceDescBank[0].ADDR.reg = ((uint32_t)pData);
+     3f6:	4811      	ldr	r0, [pc, #68]	; (43c <USB_Read_blocking+0x64>)
+     3f8:	6401      	str	r1, [r0, #64]	; 0x40
+	usb_endpoint_table[USB_EP_OUT].DeviceDescBank[0].PCKSIZE.bit.BYTE_COUNT = 0;
+     3fa:	6c43      	ldr	r3, [r0, #68]	; 0x44
+     3fc:	0b9b      	lsrs	r3, r3, #14
+     3fe:	0399      	lsls	r1, r3, #14
+     400:	6441      	str	r1, [r0, #68]	; 0x44
+	usb_endpoint_table[USB_EP_OUT].DeviceDescBank[0].PCKSIZE.bit.MULTI_PACKET_SIZE = length;
+     402:	6c41      	ldr	r1, [r0, #68]	; 0x44
+     404:	0493      	lsls	r3, r2, #18
+     406:	091b      	lsrs	r3, r3, #4
+     408:	4d0d      	ldr	r5, [pc, #52]	; (440 <USB_Read_blocking+0x68>)
+     40a:	4029      	ands	r1, r5
+     40c:	430b      	orrs	r3, r1
+     40e:	6443      	str	r3, [r0, #68]	; 0x44
+	pUsb->DEVICE.DeviceEndpoint[USB_EP_OUT].EPSTATUSCLR.bit.BK0RDY = true;
+     410:	21a2      	movs	r1, #162	; 0xa2
+     412:	0049      	lsls	r1, r1, #1
+     414:	5c63      	ldrb	r3, [r4, r1]
+     416:	2040      	movs	r0, #64	; 0x40
+     418:	4303      	orrs	r3, r0
+     41a:	5463      	strb	r3, [r4, r1]
+	while (!( pUsb->DEVICE.DeviceEndpoint[USB_EP_OUT].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRCPT0 ));
+     41c:	2348      	movs	r3, #72	; 0x48
+     41e:	33ff      	adds	r3, #255	; 0xff
+     420:	5ce3      	ldrb	r3, [r4, r3]
+     422:	07db      	lsls	r3, r3, #31
+     424:	d5fa      	bpl.n	41c <USB_Read_blocking+0x44>
+	pUsb->DEVICE.DeviceEndpoint[USB_EP_OUT].EPINTFLAG.reg |= USB_DEVICE_EPINTFLAG_TRCPT0;
+     426:	2148      	movs	r1, #72	; 0x48
+     428:	31ff      	adds	r1, #255	; 0xff
+     42a:	5c63      	ldrb	r3, [r4, r1]
+     42c:	2001      	movs	r0, #1
+     42e:	4303      	orrs	r3, r0
+     430:	b2db      	uxtb	r3, r3
+     432:	5463      	strb	r3, [r4, r1]
+}
+     434:	0010      	movs	r0, r2
+     436:	bd30      	pop	{r4, r5, pc}
+     438:	20000068 	.word	0x20000068
+     43c:	2000016c 	.word	0x2000016c
+     440:	f0003fff 	.word	0xf0003fff
+
+00000444 <AT91F_USB_SendZlp>:
+//* \brief Send zero length packet through the control endpoint
+//*----------------------------------------------------------------------------
+void AT91F_USB_SendZlp(Usb *pUsb)
+{
+	/* Set the byte count as zero */
+	usb_endpoint_table[0].DeviceDescBank[1].PCKSIZE.bit.BYTE_COUNT = 0;
+     444:	4a0c      	ldr	r2, [pc, #48]	; (478 <AT91F_USB_SendZlp+0x34>)
+     446:	6953      	ldr	r3, [r2, #20]
+     448:	0b9b      	lsrs	r3, r3, #14
+     44a:	0399      	lsls	r1, r3, #14
+     44c:	6151      	str	r1, [r2, #20]
+	/* Clear the transfer complete flag  */
+	pUsb->DEVICE.DeviceEndpoint[0].EPINTFLAG.reg |= USB_DEVICE_EPINTFLAG_TRCPT1;
+     44e:	2208      	movs	r2, #8
+     450:	32ff      	adds	r2, #255	; 0xff
+     452:	5c83      	ldrb	r3, [r0, r2]
+     454:	2102      	movs	r1, #2
+     456:	430b      	orrs	r3, r1
+     458:	b2db      	uxtb	r3, r3
+     45a:	5483      	strb	r3, [r0, r2]
+	/* Set the bank as ready */
+	pUsb->DEVICE.DeviceEndpoint[0].EPSTATUSSET.bit.BK1RDY = true;
+     45c:	2206      	movs	r2, #6
+     45e:	32ff      	adds	r2, #255	; 0xff
+     460:	5c81      	ldrb	r1, [r0, r2]
+     462:	2380      	movs	r3, #128	; 0x80
+     464:	425b      	negs	r3, r3
+     466:	430b      	orrs	r3, r1
+     468:	5483      	strb	r3, [r0, r2]
+	/* Wait for transfer to complete */
+	while (!( pUsb->DEVICE.DeviceEndpoint[0].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRCPT1 ));
+     46a:	2308      	movs	r3, #8
+     46c:	33ff      	adds	r3, #255	; 0xff
+     46e:	5cc3      	ldrb	r3, [r0, r3]
+     470:	079b      	lsls	r3, r3, #30
+     472:	d5fa      	bpl.n	46a <AT91F_USB_SendZlp+0x26>
+}
+     474:	4770      	bx	lr
+     476:	46c0      	nop			; (mov r8, r8)
+     478:	2000016c 	.word	0x2000016c
+
+0000047c <AT91F_USB_SendStall>:
+//* \brief Stall the control endpoint
+//*----------------------------------------------------------------------------
+void AT91F_USB_SendStall(Usb *pUsb, bool direction_in)
+{
+	/* Check the direction */
+	if (direction_in) {
+     47c:	2900      	cmp	r1, #0
+     47e:	d104      	bne.n	48a <AT91F_USB_SendStall+0xe>
+		/* Set STALL request on IN direction */
+		pUsb->DEVICE.DeviceEndpoint[0].EPSTATUSSET.reg = USB_DEVICE_EPSTATUSSET_STALLRQ1;
+	} else {
+		/* Set STALL request on OUT direction */
+		pUsb->DEVICE.DeviceEndpoint[0].EPSTATUSSET.reg = USB_DEVICE_EPSTATUSSET_STALLRQ0;
+     480:	2210      	movs	r2, #16
+     482:	2306      	movs	r3, #6
+     484:	33ff      	adds	r3, #255	; 0xff
+     486:	54c2      	strb	r2, [r0, r3]
+	}
+}
+     488:	4770      	bx	lr
+		pUsb->DEVICE.DeviceEndpoint[0].EPSTATUSSET.reg = USB_DEVICE_EPSTATUSSET_STALLRQ1;
+     48a:	2220      	movs	r2, #32
+     48c:	2306      	movs	r3, #6
+     48e:	33ff      	adds	r3, #255	; 0xff
+     490:	54c2      	strb	r2, [r0, r3]
+     492:	e7f9      	b.n	488 <AT91F_USB_SendStall+0xc>
+
+00000494 <AT91F_CDC_Enumerate>:
+//*----------------------------------------------------------------------------
+//* \fn    AT91F_CDC_Enumerate
+//* \brief This function is a callback invoked when a SETUP packet is received
+//*----------------------------------------------------------------------------
+void AT91F_CDC_Enumerate(P_USB_CDC pCdc)
+{
+     494:	b5f0      	push	{r4, r5, r6, r7, lr}
+     496:	46d6      	mov	lr, sl
+     498:	464f      	mov	r7, r9
+     49a:	4646      	mov	r6, r8
+     49c:	b5c0      	push	{r6, r7, lr}
+     49e:	b082      	sub	sp, #8
+	Usb *pUsb = pCdc->pUsb;
+     4a0:	6804      	ldr	r4, [r0, #0]
+	uint8_t bmRequestType, bRequest, dir;
+	uint16_t wValue, wIndex, wLength, wStatus;
+
+	/* Clear the Received Setup flag */
+	pUsb->DEVICE.DeviceEndpoint[0].EPINTFLAG.reg |= USB_DEVICE_EPINTFLAG_RXSTP;
+     4a2:	2208      	movs	r2, #8
+     4a4:	32ff      	adds	r2, #255	; 0xff
+     4a6:	5ca3      	ldrb	r3, [r4, r2]
+     4a8:	2110      	movs	r1, #16
+     4aa:	430b      	orrs	r3, r1
+     4ac:	b2db      	uxtb	r3, r3
+     4ae:	54a3      	strb	r3, [r4, r2]
+
+	/* Read the USB request parameters */
+	bmRequestType = udd_ep_out_cache_buffer[0][0];
+     4b0:	49c5      	ldr	r1, [pc, #788]	; (7c8 <AT91F_CDC_Enumerate+0x334>)
+     4b2:	780e      	ldrb	r6, [r1, #0]
+	bRequest      = udd_ep_out_cache_buffer[0][1];
+     4b4:	784b      	ldrb	r3, [r1, #1]
+	wValue        = (udd_ep_out_cache_buffer[0][2] & 0xFF);
+     4b6:	788d      	ldrb	r5, [r1, #2]
+	wValue       |= (udd_ep_out_cache_buffer[0][3] << 8);
+     4b8:	78ca      	ldrb	r2, [r1, #3]
+     4ba:	0212      	lsls	r2, r2, #8
+     4bc:	4315      	orrs	r5, r2
+     4be:	b22d      	sxth	r5, r5
+     4c0:	b2aa      	uxth	r2, r5
+     4c2:	4694      	mov	ip, r2
+	wIndex        = (udd_ep_out_cache_buffer[0][4] & 0xFF);
+     4c4:	790f      	ldrb	r7, [r1, #4]
+	wIndex       |= (udd_ep_out_cache_buffer[0][5] << 8);
+     4c6:	794a      	ldrb	r2, [r1, #5]
+     4c8:	0212      	lsls	r2, r2, #8
+     4ca:	4317      	orrs	r7, r2
+     4cc:	b23f      	sxth	r7, r7
+     4ce:	b2ba      	uxth	r2, r7
+     4d0:	4690      	mov	r8, r2
+	wLength       = (udd_ep_out_cache_buffer[0][6] & 0xFF);
+     4d2:	798a      	ldrb	r2, [r1, #6]
+     4d4:	4691      	mov	r9, r2
+	wLength      |= (udd_ep_out_cache_buffer[0][7] << 8);
+     4d6:	79ca      	ldrb	r2, [r1, #7]
+     4d8:	0212      	lsls	r2, r2, #8
+     4da:	4649      	mov	r1, r9
+     4dc:	430a      	orrs	r2, r1
+     4de:	4692      	mov	sl, r2
+
+	/* Clear the Bank 0 ready flag on Control OUT */
+	pUsb->DEVICE.DeviceEndpoint[0].EPSTATUSCLR.reg = USB_DEVICE_EPSTATUSCLR_BK0RDY;
+     4e0:	2140      	movs	r1, #64	; 0x40
+     4e2:	4689      	mov	r9, r1
+     4e4:	31c4      	adds	r1, #196	; 0xc4
+     4e6:	464a      	mov	r2, r9
+     4e8:	5462      	strb	r2, [r4, r1]
+
+	/* Handle supported standard device request Cf Table 9-3 in USB specification Rev 1.1 */
+	switch ((bRequest << 8) | bmRequestType) {
+     4ea:	021b      	lsls	r3, r3, #8
+     4ec:	4333      	orrs	r3, r6
+     4ee:	49b7      	ldr	r1, [pc, #732]	; (7cc <AT91F_CDC_Enumerate+0x338>)
+     4f0:	428b      	cmp	r3, r1
+     4f2:	d100      	bne.n	4f6 <AT91F_CDC_Enumerate+0x62>
+     4f4:	e0ff      	b.n	6f6 <AT91F_CDC_Enumerate+0x262>
+     4f6:	dd16      	ble.n	526 <AT91F_CDC_Enumerate+0x92>
+     4f8:	2188      	movs	r1, #136	; 0x88
+     4fa:	0109      	lsls	r1, r1, #4
+     4fc:	428b      	cmp	r3, r1
+     4fe:	d100      	bne.n	502 <AT91F_CDC_Enumerate+0x6e>
+     500:	e0ba      	b.n	678 <AT91F_CDC_Enumerate+0x1e4>
+     502:	dd34      	ble.n	56e <AT91F_CDC_Enumerate+0xda>
+     504:	49b2      	ldr	r1, [pc, #712]	; (7d0 <AT91F_CDC_Enumerate+0x33c>)
+     506:	428b      	cmp	r3, r1
+     508:	d100      	bne.n	50c <AT91F_CDC_Enumerate+0x78>
+     50a:	e150      	b.n	7ae <AT91F_CDC_Enumerate+0x31a>
+     50c:	dd53      	ble.n	5b6 <AT91F_CDC_Enumerate+0x122>
+     50e:	49b1      	ldr	r1, [pc, #708]	; (7d4 <AT91F_CDC_Enumerate+0x340>)
+     510:	428b      	cmp	r3, r1
+     512:	d100      	bne.n	516 <AT91F_CDC_Enumerate+0x82>
+     514:	e14f      	b.n	7b6 <AT91F_CDC_Enumerate+0x322>
+     516:	4ab0      	ldr	r2, [pc, #704]	; (7d8 <AT91F_CDC_Enumerate+0x344>)
+     518:	4293      	cmp	r3, r2
+     51a:	d113      	bne.n	544 <AT91F_CDC_Enumerate+0xb0>
+		/* Send current line coding */
+		AT91F_USB_SendData(pCdc, (char *) &line_coding, MIN(sizeof(usb_cdc_line_coding_t), wLength));
+		break;
+	case SET_CONTROL_LINE_STATE:
+		/* Store the current connection */
+		pCdc->currentConnection = wValue;
+     51c:	7145      	strb	r5, [r0, #5]
+		/* Send ZLP */
+		AT91F_USB_SendZlp(pUsb);
+     51e:	0020      	movs	r0, r4
+     520:	4bae      	ldr	r3, [pc, #696]	; (7dc <AT91F_CDC_Enumerate+0x348>)
+     522:	4798      	blx	r3
+		break;
+     524:	e0a2      	b.n	66c <AT91F_CDC_Enumerate+0x1d8>
+	switch ((bRequest << 8) | bmRequestType) {
+     526:	2280      	movs	r2, #128	; 0x80
+     528:	0052      	lsls	r2, r2, #1
+     52a:	4293      	cmp	r3, r2
+     52c:	d100      	bne.n	530 <AT91F_CDC_Enumerate+0x9c>
+     52e:	e0f1      	b.n	714 <AT91F_CDC_Enumerate+0x280>
+     530:	dc0d      	bgt.n	54e <AT91F_CDC_Enumerate+0xba>
+     532:	2b81      	cmp	r3, #129	; 0x81
+     534:	d100      	bne.n	538 <AT91F_CDC_Enumerate+0xa4>
+     536:	e0ac      	b.n	692 <AT91F_CDC_Enumerate+0x1fe>
+     538:	2b82      	cmp	r3, #130	; 0x82
+     53a:	d100      	bne.n	53e <AT91F_CDC_Enumerate+0xaa>
+     53c:	e0b1      	b.n	6a2 <AT91F_CDC_Enumerate+0x20e>
+     53e:	2b80      	cmp	r3, #128	; 0x80
+     540:	d100      	bne.n	544 <AT91F_CDC_Enumerate+0xb0>
+     542:	e09e      	b.n	682 <AT91F_CDC_Enumerate+0x1ee>
+	default:
+		/* Stall the request */
+		AT91F_USB_SendStall(pUsb, true);
+     544:	2101      	movs	r1, #1
+     546:	0020      	movs	r0, r4
+     548:	4ba5      	ldr	r3, [pc, #660]	; (7e0 <AT91F_CDC_Enumerate+0x34c>)
+     54a:	4798      	blx	r3
+		break;
+	}
+}
+     54c:	e08e      	b.n	66c <AT91F_CDC_Enumerate+0x1d8>
+	switch ((bRequest << 8) | bmRequestType) {
+     54e:	2281      	movs	r2, #129	; 0x81
+     550:	0052      	lsls	r2, r2, #1
+     552:	4293      	cmp	r3, r2
+     554:	d100      	bne.n	558 <AT91F_CDC_Enumerate+0xc4>
+     556:	e0e6      	b.n	726 <AT91F_CDC_Enumerate+0x292>
+     558:	da00      	bge.n	55c <AT91F_CDC_Enumerate+0xc8>
+     55a:	e0e0      	b.n	71e <AT91F_CDC_Enumerate+0x28a>
+     55c:	32ff      	adds	r2, #255	; 0xff
+     55e:	32ff      	adds	r2, #255	; 0xff
+     560:	4293      	cmp	r3, r2
+     562:	d1ef      	bne.n	544 <AT91F_CDC_Enumerate+0xb0>
+		AT91F_USB_SendStall(pUsb, true);
+     564:	2101      	movs	r1, #1
+     566:	0020      	movs	r0, r4
+     568:	4b9d      	ldr	r3, [pc, #628]	; (7e0 <AT91F_CDC_Enumerate+0x34c>)
+     56a:	4798      	blx	r3
+		break;
+     56c:	e07e      	b.n	66c <AT91F_CDC_Enumerate+0x1d8>
+	switch ((bRequest << 8) | bmRequestType) {
+     56e:	21a0      	movs	r1, #160	; 0xa0
+     570:	00c9      	lsls	r1, r1, #3
+     572:	428b      	cmp	r3, r1
+     574:	d072      	beq.n	65c <AT91F_CDC_Enumerate+0x1c8>
+     576:	3181      	adds	r1, #129	; 0x81
+     578:	31ff      	adds	r1, #255	; 0xff
+     57a:	428b      	cmp	r3, r1
+     57c:	d04d      	beq.n	61a <AT91F_CDC_Enumerate+0x186>
+     57e:	4a99      	ldr	r2, [pc, #612]	; (7e4 <AT91F_CDC_Enumerate+0x350>)
+     580:	4293      	cmp	r3, r2
+     582:	d1df      	bne.n	544 <AT91F_CDC_Enumerate+0xb0>
+		wIndex &= 0x0F;
+     584:	230f      	movs	r3, #15
+     586:	4642      	mov	r2, r8
+     588:	4013      	ands	r3, r2
+		if ((wValue == 0) && wIndex && (wIndex <= 3)) {
+     58a:	4662      	mov	r2, ip
+     58c:	2a00      	cmp	r2, #0
+     58e:	d000      	beq.n	592 <AT91F_CDC_Enumerate+0xfe>
+     590:	e0bb      	b.n	70a <AT91F_CDC_Enumerate+0x276>
+     592:	2b00      	cmp	r3, #0
+     594:	d100      	bne.n	598 <AT91F_CDC_Enumerate+0x104>
+     596:	e0b8      	b.n	70a <AT91F_CDC_Enumerate+0x276>
+     598:	2b03      	cmp	r3, #3
+     59a:	d900      	bls.n	59e <AT91F_CDC_Enumerate+0x10a>
+     59c:	e0b5      	b.n	70a <AT91F_CDC_Enumerate+0x276>
+			if (dir) {
+     59e:	063a      	lsls	r2, r7, #24
+     5a0:	d500      	bpl.n	5a4 <AT91F_CDC_Enumerate+0x110>
+     5a2:	e0ac      	b.n	6fe <AT91F_CDC_Enumerate+0x26a>
+				pUsb->DEVICE.DeviceEndpoint[wIndex].EPSTATUSSET.reg = USB_DEVICE_EPSTATUSSET_STALLRQ0;
+     5a4:	3308      	adds	r3, #8
+     5a6:	015b      	lsls	r3, r3, #5
+     5a8:	18e3      	adds	r3, r4, r3
+     5aa:	2210      	movs	r2, #16
+     5ac:	715a      	strb	r2, [r3, #5]
+			AT91F_USB_SendZlp(pUsb);
+     5ae:	0020      	movs	r0, r4
+     5b0:	4b8a      	ldr	r3, [pc, #552]	; (7dc <AT91F_CDC_Enumerate+0x348>)
+     5b2:	4798      	blx	r3
+     5b4:	e05a      	b.n	66c <AT91F_CDC_Enumerate+0x1d8>
+	switch ((bRequest << 8) | bmRequestType) {
+     5b6:	2290      	movs	r2, #144	; 0x90
+     5b8:	0112      	lsls	r2, r2, #4
+     5ba:	4293      	cmp	r3, r2
+     5bc:	d1c2      	bne.n	544 <AT91F_CDC_Enumerate+0xb0>
+		pCdc->currentConfiguration = (uint8_t)wValue;
+     5be:	7105      	strb	r5, [r0, #4]
+		AT91F_USB_SendZlp(pUsb);
+     5c0:	0020      	movs	r0, r4
+     5c2:	4b86      	ldr	r3, [pc, #536]	; (7dc <AT91F_CDC_Enumerate+0x348>)
+     5c4:	4798      	blx	r3
+		pUsb->DEVICE.DeviceEndpoint[USB_EP_OUT].EPCFG.reg = USB_DEVICE_EPCFG_EPTYPE0(3);
+     5c6:	2203      	movs	r2, #3
+     5c8:	23a0      	movs	r3, #160	; 0xa0
+     5ca:	005b      	lsls	r3, r3, #1
+     5cc:	54e2      	strb	r2, [r4, r3]
+		usb_endpoint_table[USB_EP_OUT].DeviceDescBank[0].PCKSIZE.bit.SIZE = 3;
+     5ce:	4b86      	ldr	r3, [pc, #536]	; (7e8 <AT91F_CDC_Enumerate+0x354>)
+     5d0:	6c58      	ldr	r0, [r3, #68]	; 0x44
+     5d2:	4a86      	ldr	r2, [pc, #536]	; (7ec <AT91F_CDC_Enumerate+0x358>)
+     5d4:	4010      	ands	r0, r2
+     5d6:	21c0      	movs	r1, #192	; 0xc0
+     5d8:	0589      	lsls	r1, r1, #22
+     5da:	4308      	orrs	r0, r1
+     5dc:	6458      	str	r0, [r3, #68]	; 0x44
+		pUsb->DEVICE.DeviceEndpoint[USB_EP_OUT].EPSTATUSSET.reg = USB_DEVICE_EPSTATUSSET_BK0RDY;
+     5de:	2540      	movs	r5, #64	; 0x40
+     5e0:	2046      	movs	r0, #70	; 0x46
+     5e2:	30ff      	adds	r0, #255	; 0xff
+     5e4:	5425      	strb	r5, [r4, r0]
+		usb_endpoint_table[USB_EP_OUT].DeviceDescBank[0].ADDR.reg = (uint32_t)&udd_ep_out_cache_buffer[1];
+     5e6:	4882      	ldr	r0, [pc, #520]	; (7f0 <AT91F_CDC_Enumerate+0x35c>)
+     5e8:	6418      	str	r0, [r3, #64]	; 0x40
+		pUsb->DEVICE.DeviceEndpoint[USB_EP_IN].EPCFG.reg = USB_DEVICE_EPCFG_EPTYPE1(3);
+     5ea:	2630      	movs	r6, #48	; 0x30
+     5ec:	2090      	movs	r0, #144	; 0x90
+     5ee:	0040      	lsls	r0, r0, #1
+     5f0:	5426      	strb	r6, [r4, r0]
+		usb_endpoint_table[USB_EP_IN].DeviceDescBank[1].PCKSIZE.bit.SIZE = 3;
+     5f2:	6b58      	ldr	r0, [r3, #52]	; 0x34
+     5f4:	4010      	ands	r0, r2
+     5f6:	4301      	orrs	r1, r0
+     5f8:	6359      	str	r1, [r3, #52]	; 0x34
+		pUsb->DEVICE.DeviceEndpoint[USB_EP_IN].EPSTATUSCLR.reg = USB_DEVICE_EPSTATUSCLR_BK1RDY;
+     5fa:	2180      	movs	r1, #128	; 0x80
+     5fc:	2092      	movs	r0, #146	; 0x92
+     5fe:	0040      	lsls	r0, r0, #1
+     600:	5421      	strb	r1, [r4, r0]
+		usb_endpoint_table[USB_EP_IN].DeviceDescBank[1].ADDR.reg = (uint32_t)&udd_ep_in_cache_buffer[1];
+     602:	487c      	ldr	r0, [pc, #496]	; (7f4 <AT91F_CDC_Enumerate+0x360>)
+     604:	6318      	str	r0, [r3, #48]	; 0x30
+		pUsb->DEVICE.DeviceEndpoint[USB_EP_COMM].EPCFG.reg = USB_DEVICE_EPCFG_EPTYPE1(4);
+     606:	20b0      	movs	r0, #176	; 0xb0
+     608:	0040      	lsls	r0, r0, #1
+     60a:	5425      	strb	r5, [r4, r0]
+		usb_endpoint_table[USB_EP_COMM].DeviceDescBank[1].PCKSIZE.bit.SIZE = 0;
+     60c:	6f58      	ldr	r0, [r3, #116]	; 0x74
+     60e:	4002      	ands	r2, r0
+     610:	675a      	str	r2, [r3, #116]	; 0x74
+		pUsb->DEVICE.DeviceEndpoint[USB_EP_COMM].EPSTATUSCLR.reg = USB_DEVICE_EPSTATUSCLR_BK1RDY;
+     612:	23b2      	movs	r3, #178	; 0xb2
+     614:	005b      	lsls	r3, r3, #1
+     616:	54e1      	strb	r1, [r4, r3]
+		break;
+     618:	e028      	b.n	66c <AT91F_CDC_Enumerate+0x1d8>
+		if (wValue == 0x100)
+     61a:	2380      	movs	r3, #128	; 0x80
+     61c:	005b      	lsls	r3, r3, #1
+     61e:	459c      	cmp	ip, r3
+     620:	d00b      	beq.n	63a <AT91F_CDC_Enumerate+0x1a6>
+		else if (wValue == 0x200)
+     622:	2380      	movs	r3, #128	; 0x80
+     624:	009b      	lsls	r3, r3, #2
+     626:	459c      	cmp	ip, r3
+     628:	d113      	bne.n	652 <AT91F_CDC_Enumerate+0x1be>
+			AT91F_USB_SendData(pCdc, cfgDescriptor, MIN(sizeof(cfgDescriptor), wLength));
+     62a:	4653      	mov	r3, sl
+     62c:	2b43      	cmp	r3, #67	; 0x43
+     62e:	d80e      	bhi.n	64e <AT91F_CDC_Enumerate+0x1ba>
+     630:	4652      	mov	r2, sl
+     632:	4971      	ldr	r1, [pc, #452]	; (7f8 <AT91F_CDC_Enumerate+0x364>)
+     634:	4b71      	ldr	r3, [pc, #452]	; (7fc <AT91F_CDC_Enumerate+0x368>)
+     636:	4798      	blx	r3
+     638:	e018      	b.n	66c <AT91F_CDC_Enumerate+0x1d8>
+			AT91F_USB_SendData(pCdc, devDescriptor, MIN(sizeof(devDescriptor), wLength));
+     63a:	4653      	mov	r3, sl
+     63c:	2b12      	cmp	r3, #18
+     63e:	d804      	bhi.n	64a <AT91F_CDC_Enumerate+0x1b6>
+     640:	4652      	mov	r2, sl
+     642:	496f      	ldr	r1, [pc, #444]	; (800 <AT91F_CDC_Enumerate+0x36c>)
+     644:	4b6d      	ldr	r3, [pc, #436]	; (7fc <AT91F_CDC_Enumerate+0x368>)
+     646:	4798      	blx	r3
+     648:	e010      	b.n	66c <AT91F_CDC_Enumerate+0x1d8>
+     64a:	2212      	movs	r2, #18
+     64c:	e7f9      	b.n	642 <AT91F_CDC_Enumerate+0x1ae>
+			AT91F_USB_SendData(pCdc, cfgDescriptor, MIN(sizeof(cfgDescriptor), wLength));
+     64e:	2243      	movs	r2, #67	; 0x43
+     650:	e7ef      	b.n	632 <AT91F_CDC_Enumerate+0x19e>
+			AT91F_USB_SendStall(pUsb, true);
+     652:	2101      	movs	r1, #1
+     654:	0020      	movs	r0, r4
+     656:	4b62      	ldr	r3, [pc, #392]	; (7e0 <AT91F_CDC_Enumerate+0x34c>)
+     658:	4798      	blx	r3
+     65a:	e007      	b.n	66c <AT91F_CDC_Enumerate+0x1d8>
+		AT91F_USB_SendZlp(pUsb);
+     65c:	0020      	movs	r0, r4
+     65e:	4b5f      	ldr	r3, [pc, #380]	; (7dc <AT91F_CDC_Enumerate+0x348>)
+     660:	4798      	blx	r3
+		pUsb->DEVICE.DADD.reg = USB_DEVICE_DADD_ADDEN | wValue;
+     662:	2280      	movs	r2, #128	; 0x80
+     664:	4252      	negs	r2, r2
+     666:	432a      	orrs	r2, r5
+     668:	b2d2      	uxtb	r2, r2
+     66a:	72a2      	strb	r2, [r4, #10]
+}
+     66c:	b002      	add	sp, #8
+     66e:	bc1c      	pop	{r2, r3, r4}
+     670:	4690      	mov	r8, r2
+     672:	4699      	mov	r9, r3
+     674:	46a2      	mov	sl, r4
+     676:	bdf0      	pop	{r4, r5, r6, r7, pc}
+		AT91F_USB_SendData(pCdc, (char *) &(pCdc->currentConfiguration), sizeof(pCdc->currentConfiguration));
+     678:	1d01      	adds	r1, r0, #4
+     67a:	2201      	movs	r2, #1
+     67c:	4b5f      	ldr	r3, [pc, #380]	; (7fc <AT91F_CDC_Enumerate+0x368>)
+     67e:	4798      	blx	r3
+		break;
+     680:	e7f4      	b.n	66c <AT91F_CDC_Enumerate+0x1d8>
+		wStatus = 0;
+     682:	466b      	mov	r3, sp
+     684:	1d99      	adds	r1, r3, #6
+     686:	2300      	movs	r3, #0
+     688:	800b      	strh	r3, [r1, #0]
+		AT91F_USB_SendData(pCdc, (char *) &wStatus, sizeof(wStatus));
+     68a:	2202      	movs	r2, #2
+     68c:	4b5b      	ldr	r3, [pc, #364]	; (7fc <AT91F_CDC_Enumerate+0x368>)
+     68e:	4798      	blx	r3
+		break;
+     690:	e7ec      	b.n	66c <AT91F_CDC_Enumerate+0x1d8>
+		wStatus = 0;
+     692:	466b      	mov	r3, sp
+     694:	1d99      	adds	r1, r3, #6
+     696:	2300      	movs	r3, #0
+     698:	800b      	strh	r3, [r1, #0]
+		AT91F_USB_SendData(pCdc, (char *) &wStatus, sizeof(wStatus));
+     69a:	2202      	movs	r2, #2
+     69c:	4b57      	ldr	r3, [pc, #348]	; (7fc <AT91F_CDC_Enumerate+0x368>)
+     69e:	4798      	blx	r3
+		break;
+     6a0:	e7e4      	b.n	66c <AT91F_CDC_Enumerate+0x1d8>
+		wStatus = 0;
+     6a2:	2200      	movs	r2, #0
+     6a4:	466b      	mov	r3, sp
+     6a6:	80da      	strh	r2, [r3, #6]
+		dir = wIndex & 80;
+     6a8:	3250      	adds	r2, #80	; 0x50
+     6aa:	403a      	ands	r2, r7
+		wIndex &= 0x0F;
+     6ac:	230f      	movs	r3, #15
+     6ae:	4641      	mov	r1, r8
+     6b0:	400b      	ands	r3, r1
+		if (wIndex <= 3) {
+     6b2:	2b03      	cmp	r3, #3
+     6b4:	d81a      	bhi.n	6ec <AT91F_CDC_Enumerate+0x258>
+			if (dir) {
+     6b6:	2a00      	cmp	r2, #0
+     6b8:	d00e      	beq.n	6d8 <AT91F_CDC_Enumerate+0x244>
+				wStatus = (pUsb->DEVICE.DeviceEndpoint[wIndex].EPSTATUS.reg & USB_DEVICE_EPSTATUSSET_STALLRQ1) ? 1 : 0;
+     6ba:	3308      	adds	r3, #8
+     6bc:	015b      	lsls	r3, r3, #5
+     6be:	18e4      	adds	r4, r4, r3
+     6c0:	79a2      	ldrb	r2, [r4, #6]
+     6c2:	0952      	lsrs	r2, r2, #5
+     6c4:	2301      	movs	r3, #1
+     6c6:	4013      	ands	r3, r2
+     6c8:	466a      	mov	r2, sp
+     6ca:	80d3      	strh	r3, [r2, #6]
+			AT91F_USB_SendData(pCdc, (char *) &wStatus, sizeof(wStatus));
+     6cc:	2202      	movs	r2, #2
+     6ce:	466b      	mov	r3, sp
+     6d0:	1d99      	adds	r1, r3, #6
+     6d2:	4b4a      	ldr	r3, [pc, #296]	; (7fc <AT91F_CDC_Enumerate+0x368>)
+     6d4:	4798      	blx	r3
+     6d6:	e7c9      	b.n	66c <AT91F_CDC_Enumerate+0x1d8>
+				wStatus = (pUsb->DEVICE.DeviceEndpoint[wIndex].EPSTATUS.reg & USB_DEVICE_EPSTATUSSET_STALLRQ0) ? 1 : 0;
+     6d8:	3308      	adds	r3, #8
+     6da:	015b      	lsls	r3, r3, #5
+     6dc:	18e4      	adds	r4, r4, r3
+     6de:	79a2      	ldrb	r2, [r4, #6]
+     6e0:	0912      	lsrs	r2, r2, #4
+     6e2:	2301      	movs	r3, #1
+     6e4:	4013      	ands	r3, r2
+     6e6:	466a      	mov	r2, sp
+     6e8:	80d3      	strh	r3, [r2, #6]
+     6ea:	e7ef      	b.n	6cc <AT91F_CDC_Enumerate+0x238>
+			AT91F_USB_SendStall(pUsb, true);
+     6ec:	2101      	movs	r1, #1
+     6ee:	0020      	movs	r0, r4
+     6f0:	4b3b      	ldr	r3, [pc, #236]	; (7e0 <AT91F_CDC_Enumerate+0x34c>)
+     6f2:	4798      	blx	r3
+     6f4:	e7ba      	b.n	66c <AT91F_CDC_Enumerate+0x1d8>
+		AT91F_USB_SendZlp(pUsb);
+     6f6:	0020      	movs	r0, r4
+     6f8:	4b38      	ldr	r3, [pc, #224]	; (7dc <AT91F_CDC_Enumerate+0x348>)
+     6fa:	4798      	blx	r3
+		break;
+     6fc:	e7b6      	b.n	66c <AT91F_CDC_Enumerate+0x1d8>
+				pUsb->DEVICE.DeviceEndpoint[wIndex].EPSTATUSSET.reg = USB_DEVICE_EPSTATUSSET_STALLRQ1;
+     6fe:	3308      	adds	r3, #8
+     700:	015b      	lsls	r3, r3, #5
+     702:	18e3      	adds	r3, r4, r3
+     704:	2220      	movs	r2, #32
+     706:	715a      	strb	r2, [r3, #5]
+     708:	e751      	b.n	5ae <AT91F_CDC_Enumerate+0x11a>
+			AT91F_USB_SendStall(pUsb, true);
+     70a:	2101      	movs	r1, #1
+     70c:	0020      	movs	r0, r4
+     70e:	4b34      	ldr	r3, [pc, #208]	; (7e0 <AT91F_CDC_Enumerate+0x34c>)
+     710:	4798      	blx	r3
+     712:	e7ab      	b.n	66c <AT91F_CDC_Enumerate+0x1d8>
+		AT91F_USB_SendStall(pUsb, true);
+     714:	2101      	movs	r1, #1
+     716:	0020      	movs	r0, r4
+     718:	4b31      	ldr	r3, [pc, #196]	; (7e0 <AT91F_CDC_Enumerate+0x34c>)
+     71a:	4798      	blx	r3
+		break;
+     71c:	e7a6      	b.n	66c <AT91F_CDC_Enumerate+0x1d8>
+		AT91F_USB_SendZlp(pUsb);
+     71e:	0020      	movs	r0, r4
+     720:	4b2e      	ldr	r3, [pc, #184]	; (7dc <AT91F_CDC_Enumerate+0x348>)
+     722:	4798      	blx	r3
+		break;
+     724:	e7a2      	b.n	66c <AT91F_CDC_Enumerate+0x1d8>
+		wIndex &= 0x0F;
+     726:	230f      	movs	r3, #15
+     728:	4642      	mov	r2, r8
+     72a:	4013      	ands	r3, r2
+		if ((wValue == 0) && wIndex && (wIndex <= 3)) {
+     72c:	4662      	mov	r2, ip
+     72e:	2a00      	cmp	r2, #0
+     730:	d138      	bne.n	7a4 <AT91F_CDC_Enumerate+0x310>
+     732:	2b00      	cmp	r3, #0
+     734:	d036      	beq.n	7a4 <AT91F_CDC_Enumerate+0x310>
+     736:	2b03      	cmp	r3, #3
+     738:	d834      	bhi.n	7a4 <AT91F_CDC_Enumerate+0x310>
+			if (dir) {
+     73a:	063a      	lsls	r2, r7, #24
+     73c:	d41a      	bmi.n	774 <AT91F_CDC_Enumerate+0x2e0>
+				if (pUsb->DEVICE.DeviceEndpoint[wIndex].EPSTATUS.reg & USB_DEVICE_EPSTATUSSET_STALLRQ0) {
+     73e:	001a      	movs	r2, r3
+     740:	3208      	adds	r2, #8
+     742:	0152      	lsls	r2, r2, #5
+     744:	18a2      	adds	r2, r4, r2
+     746:	7992      	ldrb	r2, [r2, #6]
+     748:	06d2      	lsls	r2, r2, #27
+     74a:	d50f      	bpl.n	76c <AT91F_CDC_Enumerate+0x2d8>
+					pUsb->DEVICE.DeviceEndpoint[wIndex].EPSTATUSCLR.reg = USB_DEVICE_EPSTATUSCLR_STALLRQ0;
+     74c:	001a      	movs	r2, r3
+     74e:	3208      	adds	r2, #8
+     750:	0152      	lsls	r2, r2, #5
+     752:	18a2      	adds	r2, r4, r2
+     754:	2110      	movs	r1, #16
+     756:	7111      	strb	r1, [r2, #4]
+					if (pUsb->DEVICE.DeviceEndpoint[wIndex].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_STALL0) {
+     758:	79d2      	ldrb	r2, [r2, #7]
+     75a:	0692      	lsls	r2, r2, #26
+     75c:	d506      	bpl.n	76c <AT91F_CDC_Enumerate+0x2d8>
+						pUsb->DEVICE.DeviceEndpoint[wIndex].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_STALL0;
+     75e:	3308      	adds	r3, #8
+     760:	015b      	lsls	r3, r3, #5
+     762:	18e3      	adds	r3, r4, r3
+     764:	2220      	movs	r2, #32
+     766:	71da      	strb	r2, [r3, #7]
+						pUsb->DEVICE.DeviceEndpoint[wIndex].EPSTATUSCLR.reg = USB_DEVICE_EPSTATUSSET_DTGLOUT;
+     768:	3a1f      	subs	r2, #31
+     76a:	711a      	strb	r2, [r3, #4]
+			AT91F_USB_SendZlp(pUsb);
+     76c:	0020      	movs	r0, r4
+     76e:	4b1b      	ldr	r3, [pc, #108]	; (7dc <AT91F_CDC_Enumerate+0x348>)
+     770:	4798      	blx	r3
+     772:	e77b      	b.n	66c <AT91F_CDC_Enumerate+0x1d8>
+				if (pUsb->DEVICE.DeviceEndpoint[wIndex].EPSTATUS.reg & USB_DEVICE_EPSTATUSSET_STALLRQ1) {
+     774:	001a      	movs	r2, r3
+     776:	3208      	adds	r2, #8
+     778:	0152      	lsls	r2, r2, #5
+     77a:	18a2      	adds	r2, r4, r2
+     77c:	7992      	ldrb	r2, [r2, #6]
+     77e:	0692      	lsls	r2, r2, #26
+     780:	d5f4      	bpl.n	76c <AT91F_CDC_Enumerate+0x2d8>
+					pUsb->DEVICE.DeviceEndpoint[wIndex].EPSTATUSCLR.reg = USB_DEVICE_EPSTATUSCLR_STALLRQ1;
+     782:	001a      	movs	r2, r3
+     784:	3208      	adds	r2, #8
+     786:	0152      	lsls	r2, r2, #5
+     788:	18a2      	adds	r2, r4, r2
+     78a:	2120      	movs	r1, #32
+     78c:	7111      	strb	r1, [r2, #4]
+					if (pUsb->DEVICE.DeviceEndpoint[wIndex].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_STALL1) {
+     78e:	79d2      	ldrb	r2, [r2, #7]
+     790:	0652      	lsls	r2, r2, #25
+     792:	d5eb      	bpl.n	76c <AT91F_CDC_Enumerate+0x2d8>
+						pUsb->DEVICE.DeviceEndpoint[wIndex].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_STALL1;
+     794:	3308      	adds	r3, #8
+     796:	015b      	lsls	r3, r3, #5
+     798:	18e3      	adds	r3, r4, r3
+     79a:	2240      	movs	r2, #64	; 0x40
+     79c:	71da      	strb	r2, [r3, #7]
+						pUsb->DEVICE.DeviceEndpoint[wIndex].EPSTATUSCLR.reg = USB_DEVICE_EPSTATUSSET_DTGLIN;
+     79e:	3a3e      	subs	r2, #62	; 0x3e
+     7a0:	711a      	strb	r2, [r3, #4]
+     7a2:	e7e3      	b.n	76c <AT91F_CDC_Enumerate+0x2d8>
+			AT91F_USB_SendStall(pUsb, true);
+     7a4:	2101      	movs	r1, #1
+     7a6:	0020      	movs	r0, r4
+     7a8:	4b0d      	ldr	r3, [pc, #52]	; (7e0 <AT91F_CDC_Enumerate+0x34c>)
+     7aa:	4798      	blx	r3
+     7ac:	e75e      	b.n	66c <AT91F_CDC_Enumerate+0x1d8>
+		AT91F_USB_SendZlp(pUsb);
+     7ae:	0020      	movs	r0, r4
+     7b0:	4b0a      	ldr	r3, [pc, #40]	; (7dc <AT91F_CDC_Enumerate+0x348>)
+     7b2:	4798      	blx	r3
+		break;
+     7b4:	e75a      	b.n	66c <AT91F_CDC_Enumerate+0x1d8>
+		AT91F_USB_SendData(pCdc, (char *) &line_coding, MIN(sizeof(usb_cdc_line_coding_t), wLength));
+     7b6:	4653      	mov	r3, sl
+     7b8:	2b08      	cmp	r3, #8
+     7ba:	d823      	bhi.n	804 <AT91F_CDC_Enumerate+0x370>
+     7bc:	4652      	mov	r2, sl
+     7be:	490e      	ldr	r1, [pc, #56]	; (7f8 <AT91F_CDC_Enumerate+0x364>)
+     7c0:	3144      	adds	r1, #68	; 0x44
+     7c2:	4b0e      	ldr	r3, [pc, #56]	; (7fc <AT91F_CDC_Enumerate+0x368>)
+     7c4:	4798      	blx	r3
+		break;
+     7c6:	e751      	b.n	66c <AT91F_CDC_Enumerate+0x1d8>
+     7c8:	2000006c 	.word	0x2000006c
+     7cc:	00000301 	.word	0x00000301
+     7d0:	00002021 	.word	0x00002021
+     7d4:	000021a1 	.word	0x000021a1
+     7d8:	00002221 	.word	0x00002221
+     7dc:	00000445 	.word	0x00000445
+     7e0:	0000047d 	.word	0x0000047d
+     7e4:	00000302 	.word	0x00000302
+     7e8:	2000016c 	.word	0x2000016c
+     7ec:	8fffffff 	.word	0x8fffffff
+     7f0:	200000ac 	.word	0x200000ac
+     7f4:	2000012c 	.word	0x2000012c
+     7f8:	20000000 	.word	0x20000000
+     7fc:	000002ad 	.word	0x000002ad
+     800:	000012c8 	.word	0x000012c8
+		AT91F_USB_SendData(pCdc, (char *) &line_coding, MIN(sizeof(usb_cdc_line_coding_t), wLength));
+     804:	2208      	movs	r2, #8
+     806:	e7da      	b.n	7be <AT91F_CDC_Enumerate+0x32a>
+
+00000808 <USB_IsConfigured>:
+{
+     808:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+     80a:	0004      	movs	r4, r0
+	Usb *pUsb = pCdc->pUsb;
+     80c:	6803      	ldr	r3, [r0, #0]
+	if (pUsb->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_EORST) {
+     80e:	8b9a      	ldrh	r2, [r3, #28]
+     810:	0712      	lsls	r2, r2, #28
+     812:	d407      	bmi.n	824 <USB_IsConfigured+0x1c>
+	} else if (pUsb->DEVICE.DeviceEndpoint[0].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_RXSTP) {
+     814:	2208      	movs	r2, #8
+     816:	32ff      	adds	r2, #255	; 0xff
+     818:	5c9b      	ldrb	r3, [r3, r2]
+     81a:	06db      	lsls	r3, r3, #27
+     81c:	d535      	bpl.n	88a <USB_IsConfigured+0x82>
+		AT91F_CDC_Enumerate(pCdc);
+     81e:	4b1c      	ldr	r3, [pc, #112]	; (890 <USB_IsConfigured+0x88>)
+     820:	4798      	blx	r3
+     822:	e032      	b.n	88a <USB_IsConfigured+0x82>
+		pUsb->DEVICE.INTFLAG.reg |= USB_DEVICE_INTFLAG_EORST;
+     824:	8b9a      	ldrh	r2, [r3, #28]
+     826:	2108      	movs	r1, #8
+     828:	430a      	orrs	r2, r1
+     82a:	b292      	uxth	r2, r2
+     82c:	839a      	strh	r2, [r3, #28]
+		pUsb->DEVICE.DADD.reg = USB_DEVICE_DADD_ADDEN | 0;
+     82e:	2280      	movs	r2, #128	; 0x80
+     830:	729a      	strb	r2, [r3, #10]
+		pUsb->DEVICE.DeviceEndpoint[0].EPCFG.reg = USB_DEVICE_EPCFG_EPTYPE0(1) | USB_DEVICE_EPCFG_EPTYPE1(1);
+     832:	2011      	movs	r0, #17
+     834:	2180      	movs	r1, #128	; 0x80
+     836:	0049      	lsls	r1, r1, #1
+     838:	5458      	strb	r0, [r3, r1]
+		pUsb->DEVICE.DeviceEndpoint[0].EPSTATUSSET.reg = USB_DEVICE_EPSTATUSSET_BK0RDY;
+     83a:	2640      	movs	r6, #64	; 0x40
+     83c:	2106      	movs	r1, #6
+     83e:	31ff      	adds	r1, #255	; 0xff
+     840:	545e      	strb	r6, [r3, r1]
+		pUsb->DEVICE.DeviceEndpoint[0].EPSTATUSCLR.reg = USB_DEVICE_EPSTATUSCLR_BK1RDY;
+     842:	2582      	movs	r5, #130	; 0x82
+     844:	006d      	lsls	r5, r5, #1
+     846:	555a      	strb	r2, [r3, r5]
+		usb_endpoint_table[0].DeviceDescBank[0].PCKSIZE.bit.SIZE = 3;
+     848:	4a12      	ldr	r2, [pc, #72]	; (894 <USB_IsConfigured+0x8c>)
+     84a:	6857      	ldr	r7, [r2, #4]
+     84c:	4912      	ldr	r1, [pc, #72]	; (898 <USB_IsConfigured+0x90>)
+     84e:	468c      	mov	ip, r1
+     850:	400f      	ands	r7, r1
+     852:	21c0      	movs	r1, #192	; 0xc0
+     854:	0589      	lsls	r1, r1, #22
+     856:	0038      	movs	r0, r7
+     858:	4308      	orrs	r0, r1
+     85a:	6050      	str	r0, [r2, #4]
+		usb_endpoint_table[0].DeviceDescBank[1].PCKSIZE.bit.SIZE = 3;
+     85c:	6950      	ldr	r0, [r2, #20]
+     85e:	4667      	mov	r7, ip
+     860:	4038      	ands	r0, r7
+     862:	4301      	orrs	r1, r0
+     864:	6151      	str	r1, [r2, #20]
+		usb_endpoint_table[0].DeviceDescBank[0].ADDR.reg = (uint32_t)&udd_ep_out_cache_buffer[0];
+     866:	490d      	ldr	r1, [pc, #52]	; (89c <USB_IsConfigured+0x94>)
+     868:	6011      	str	r1, [r2, #0]
+		usb_endpoint_table[0].DeviceDescBank[1].ADDR.reg = (uint32_t)&udd_ep_in_cache_buffer[0];
+     86a:	490d      	ldr	r1, [pc, #52]	; (8a0 <USB_IsConfigured+0x98>)
+     86c:	6111      	str	r1, [r2, #16]
+		usb_endpoint_table[0].DeviceDescBank[0].PCKSIZE.bit.MULTI_PACKET_SIZE = 8;
+     86e:	6850      	ldr	r0, [r2, #4]
+     870:	490c      	ldr	r1, [pc, #48]	; (8a4 <USB_IsConfigured+0x9c>)
+     872:	4008      	ands	r0, r1
+     874:	2180      	movs	r1, #128	; 0x80
+     876:	0289      	lsls	r1, r1, #10
+     878:	4301      	orrs	r1, r0
+     87a:	6051      	str	r1, [r2, #4]
+		usb_endpoint_table[0].DeviceDescBank[0].PCKSIZE.bit.BYTE_COUNT = 0;
+     87c:	6851      	ldr	r1, [r2, #4]
+     87e:	0b89      	lsrs	r1, r1, #14
+     880:	0388      	lsls	r0, r1, #14
+     882:	6050      	str	r0, [r2, #4]
+		pUsb->DEVICE.DeviceEndpoint[0].EPSTATUSCLR.reg = USB_DEVICE_EPSTATUSCLR_BK0RDY;
+     884:	555e      	strb	r6, [r3, r5]
+		pCdc->currentConfiguration = 0;
+     886:	2300      	movs	r3, #0
+     888:	7123      	strb	r3, [r4, #4]
+	return pCdc->currentConfiguration;
+     88a:	7920      	ldrb	r0, [r4, #4]
+}
+     88c:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+     88e:	46c0      	nop			; (mov r8, r8)
+     890:	00000495 	.word	0x00000495
+     894:	2000016c 	.word	0x2000016c
+     898:	8fffffff 	.word	0x8fffffff
+     89c:	2000006c 	.word	0x2000006c
+     8a0:	200000ec 	.word	0x200000ec
+     8a4:	f0003fff 	.word	0xf0003fff
+
+000008a8 <uart_basic_init>:
+
+	uart_basic_init(BOOT_USART_MODULE, USART_BAUD_REG_VAL_FOR_SAMBA, BOOT_USART_MUX_SETTINGS);
+}
+
+void uart_basic_init(Sercom *sercom, uint16_t baud_val, uint32_t pad_conf)
+{
+     8a8:	b510      	push	{r4, lr}
+}
+
+static inline void wait_for_usart_enable_sync(Sercom* sercom)
+{
+	while(sercom->USART.SYNCBUSY.bit.ENABLE);
+     8aa:	69c3      	ldr	r3, [r0, #28]
+     8ac:	079b      	lsls	r3, r3, #30
+     8ae:	d4fc      	bmi.n	8aa <uart_basic_init+0x2>
+	/* Wait for synchronization */
+	wait_for_usart_enable_sync(sercom);
+	/* Disable the SERCOM UART module */
+	sercom->USART.CTRLA.bit.ENABLE = 0;
+     8b0:	6804      	ldr	r4, [r0, #0]
+     8b2:	2302      	movs	r3, #2
+     8b4:	439c      	bics	r4, r3
+     8b6:	6004      	str	r4, [r0, #0]
+}
+
+static inline void wait_for_usart_swrst_sync(Sercom* sercom)
+{
+	while(sercom->USART.SYNCBUSY.bit.SWRST);
+     8b8:	69c3      	ldr	r3, [r0, #28]
+     8ba:	07db      	lsls	r3, r3, #31
+     8bc:	d4fc      	bmi.n	8b8 <uart_basic_init+0x10>
+	/* Wait for synchronization */
+	wait_for_usart_swrst_sync(sercom);
+	/* Perform a software reset */
+	sercom->USART.CTRLA.bit.SWRST = 1;
+     8be:	6804      	ldr	r4, [r0, #0]
+     8c0:	2301      	movs	r3, #1
+     8c2:	4323      	orrs	r3, r4
+     8c4:	6003      	str	r3, [r0, #0]
+     8c6:	69c3      	ldr	r3, [r0, #28]
+     8c8:	07db      	lsls	r3, r3, #31
+     8ca:	d4fc      	bmi.n	8c6 <uart_basic_init+0x1e>
+}
+
+static inline void wait_for_usart_swrst_enable_sync(Sercom* sercom)
+{
+	while(sercom->USART.SYNCBUSY.bit.SWRST || sercom->USART.SYNCBUSY.bit.ENABLE);
+     8cc:	69c3      	ldr	r3, [r0, #28]
+     8ce:	07db      	lsls	r3, r3, #31
+     8d0:	d4fc      	bmi.n	8cc <uart_basic_init+0x24>
+     8d2:	69c3      	ldr	r3, [r0, #28]
+     8d4:	079b      	lsls	r3, r3, #30
+     8d6:	d4f9      	bmi.n	8cc <uart_basic_init+0x24>
+	/* Wait for synchronization */
+	wait_for_usart_swrst_sync(sercom);
+	/* Wait for synchronization */
+	wait_for_usart_swrst_enable_sync(sercom);
+	/* Update the UART pad settings, mode and data order settings */
+	sercom->USART.CTRLA.reg = pad_conf | SERCOM_USART_CTRLA_MODE(1) | SERCOM_USART_CTRLA_DORD | SERCOM_USART_CTRLA_RUNSTDBY;
+     8d8:	4b08      	ldr	r3, [pc, #32]	; (8fc <uart_basic_init+0x54>)
+     8da:	431a      	orrs	r2, r3
+     8dc:	6002      	str	r2, [r0, #0]
+}
+static inline void wait_for_usart_ctrlb_sync(Sercom* sercom)
+{
+	while(sercom->USART.SYNCBUSY.bit.CTRLB);
+     8de:	69c3      	ldr	r3, [r0, #28]
+     8e0:	075b      	lsls	r3, r3, #29
+     8e2:	d4fc      	bmi.n	8de <uart_basic_init+0x36>
+	/* Wait for synchronization */
+	wait_for_usart_ctrlb_sync(sercom);
+	/* Enable transmit and receive and set data size to 8 bits */
+	sercom->USART.CTRLB.reg = SERCOM_USART_CTRLB_RXEN | SERCOM_USART_CTRLB_TXEN | SERCOM_USART_CTRLB_CHSIZE(0);
+     8e4:	23c0      	movs	r3, #192	; 0xc0
+     8e6:	029b      	lsls	r3, r3, #10
+     8e8:	6043      	str	r3, [r0, #4]
+	/* Load the baud value */
+	sercom->USART.BAUD.reg = baud_val;
+     8ea:	8181      	strh	r1, [r0, #12]
+	while(sercom->USART.SYNCBUSY.bit.ENABLE);
+     8ec:	69c3      	ldr	r3, [r0, #28]
+     8ee:	079b      	lsls	r3, r3, #30
+     8f0:	d4fc      	bmi.n	8ec <uart_basic_init+0x44>
+	/* Wait for synchronization */
+	wait_for_usart_enable_sync(sercom);
+	/* Enable SERCOM UART */
+	sercom->USART.CTRLA.bit.ENABLE = 1;
+     8f2:	6802      	ldr	r2, [r0, #0]
+     8f4:	2302      	movs	r3, #2
+     8f6:	4313      	orrs	r3, r2
+     8f8:	6003      	str	r3, [r0, #0]
+}
+     8fa:	bd10      	pop	{r4, pc}
+     8fc:	40000084 	.word	0x40000084
+
+00000900 <usart_open>:
+{
+     900:	b510      	push	{r4, lr}
+     902:	b086      	sub	sp, #24
+	port->WRCONFIG.reg = ((pin_mask & 0xFFFF) << PORT_WRCONFIG_PINMASK_Pos) |
+     904:	4a1f      	ldr	r2, [pc, #124]	; (984 <usart_open+0x84>)
+     906:	2394      	movs	r3, #148	; 0x94
+     908:	005b      	lsls	r3, r3, #1
+     90a:	491f      	ldr	r1, [pc, #124]	; (988 <usart_open+0x88>)
+     90c:	50d1      	str	r1, [r2, r3]
+	port->WRCONFIG.reg = ((pin_mask >> 16) << PORT_WRCONFIG_PINMASK_Pos) |
+     90e:	481f      	ldr	r0, [pc, #124]	; (98c <usart_open+0x8c>)
+     910:	50d0      	str	r0, [r2, r3]
+	port->WRCONFIG.reg = ((pin_mask & 0xFFFF) << PORT_WRCONFIG_PINMASK_Pos) |
+     912:	50d1      	str	r1, [r2, r3]
+	port->WRCONFIG.reg = ((pin_mask >> 16) << PORT_WRCONFIG_PINMASK_Pos) |
+     914:	491e      	ldr	r1, [pc, #120]	; (990 <usart_open+0x90>)
+     916:	50d1      	str	r1, [r2, r3]
+	Sercom *sercom_instances[SERCOM_INST_NUM] = SERCOM_INSTS;
+     918:	481e      	ldr	r0, [pc, #120]	; (994 <usart_open+0x94>)
+     91a:	466b      	mov	r3, sp
+     91c:	0002      	movs	r2, r0
+     91e:	ca13      	ldmia	r2!, {r0, r1, r4}
+     920:	c313      	stmia	r3!, {r0, r1, r4}
+     922:	ca13      	ldmia	r2!, {r0, r1, r4}
+     924:	c313      	stmia	r3!, {r0, r1, r4}
+	for (uint32_t i = 0; i < SERCOM_INST_NUM; i++) {
+     926:	2300      	movs	r3, #0
+     928:	2b05      	cmp	r3, #5
+     92a:	d809      	bhi.n	940 <usart_open+0x40>
+		if (BOOT_USART_MODULE == sercom_instances[i]) {
+     92c:	009a      	lsls	r2, r3, #2
+     92e:	4669      	mov	r1, sp
+     930:	5851      	ldr	r1, [r2, r1]
+     932:	4a19      	ldr	r2, [pc, #100]	; (998 <usart_open+0x98>)
+     934:	4291      	cmp	r1, r2
+     936:	d001      	beq.n	93c <usart_open+0x3c>
+	for (uint32_t i = 0; i < SERCOM_INST_NUM; i++) {
+     938:	3301      	adds	r3, #1
+     93a:	e7f5      	b.n	928 <usart_open+0x28>
+			inst = i;
+     93c:	b2db      	uxtb	r3, r3
+     93e:	e000      	b.n	942 <usart_open+0x42>
+	uint8_t inst = 0;
+     940:	2300      	movs	r3, #0
+	MCLK->APBCMASK.reg |= (1u << (inst + MCLK_APBCMASK_SERCOM0_Pos));
+     942:	4816      	ldr	r0, [pc, #88]	; (99c <usart_open+0x9c>)
+     944:	69c2      	ldr	r2, [r0, #28]
+     946:	1c5c      	adds	r4, r3, #1
+     948:	2101      	movs	r1, #1
+     94a:	40a1      	lsls	r1, r4
+     94c:	430a      	orrs	r2, r1
+     94e:	61c2      	str	r2, [r0, #28]
+	GCLK->PCHCTRL[inst+SERCOM0_GCLK_ID_CORE].reg = GCLK_PCHCTRL_GEN(GCLK_PCHCTRL_GEN_GCLK0_Val);
+     950:	0019      	movs	r1, r3
+     952:	3110      	adds	r1, #16
+     954:	4a12      	ldr	r2, [pc, #72]	; (9a0 <usart_open+0xa0>)
+     956:	3330      	adds	r3, #48	; 0x30
+     958:	009b      	lsls	r3, r3, #2
+     95a:	2000      	movs	r0, #0
+     95c:	5098      	str	r0, [r3, r2]
+	GCLK->PCHCTRL[inst+SERCOM0_GCLK_ID_CORE].reg |= GCLK_PCHCTRL_CHEN;
+     95e:	5898      	ldr	r0, [r3, r2]
+     960:	2440      	movs	r4, #64	; 0x40
+     962:	4320      	orrs	r0, r4
+     964:	5098      	str	r0, [r3, r2]
+	while (!(GCLK->PCHCTRL[inst+SERCOM0_GCLK_ID_CORE].reg & GCLK_PCHCTRL_CHEN));
+     966:	000b      	movs	r3, r1
+     968:	3320      	adds	r3, #32
+     96a:	009b      	lsls	r3, r3, #2
+     96c:	4a0c      	ldr	r2, [pc, #48]	; (9a0 <usart_open+0xa0>)
+     96e:	589b      	ldr	r3, [r3, r2]
+     970:	065b      	lsls	r3, r3, #25
+     972:	d5f8      	bpl.n	966 <usart_open+0x66>
+	uart_basic_init(BOOT_USART_MODULE, USART_BAUD_REG_VAL_FOR_SAMBA, BOOT_USART_MUX_SETTINGS);
+     974:	22c4      	movs	r2, #196	; 0xc4
+     976:	0392      	lsls	r2, r2, #14
+     978:	490a      	ldr	r1, [pc, #40]	; (9a4 <usart_open+0xa4>)
+     97a:	4807      	ldr	r0, [pc, #28]	; (998 <usart_open+0x98>)
+     97c:	4b0a      	ldr	r3, [pc, #40]	; (9a8 <usart_open+0xa8>)
+     97e:	4798      	blx	r3
+}
+     980:	b006      	add	sp, #24
+     982:	bd10      	pop	{r4, pc}
+     984:	41006000 	.word	0x41006000
+     988:	53030000 	.word	0x53030000
+     98c:	d3030100 	.word	0xd3030100
+     990:	d3030200 	.word	0xd3030200
+     994:	000012dc 	.word	0x000012dc
+     998:	42001400 	.word	0x42001400
+     99c:	40000800 	.word	0x40000800
+     9a0:	40001c00 	.word	0x40001c00
+     9a4:	0000c504 	.word	0x0000c504
+     9a8:	000008a9 	.word	0x000008a9
+
+000009ac <uart_write_byte>:
+}
+static inline void wait_for_uart_syncbusy_clear(Sercom* sercom)
+{
+	while(sercom->USART.SYNCBUSY.reg);
+     9ac:	69c3      	ldr	r3, [r0, #28]
+     9ae:	2b00      	cmp	r3, #0
+     9b0:	d1fc      	bne.n	9ac <uart_write_byte>
+void uart_write_byte(Sercom *sercom, uint8_t data)
+{
+	wait_for_uart_syncbusy_clear(sercom);
+	
+	/* Write the data to DATA register */
+	sercom->USART.DATA.reg = (uint16_t)data;
+     9b2:	b289      	uxth	r1, r1
+     9b4:	8501      	strh	r1, [r0, #40]	; 0x28
+
+	while (!(sercom->USART.INTFLAG.reg & SERCOM_USART_INTFLAG_TXC));
+     9b6:	7e03      	ldrb	r3, [r0, #24]
+     9b8:	079b      	lsls	r3, r3, #30
+     9ba:	d5fc      	bpl.n	9b6 <uart_write_byte+0xa>
+}
+     9bc:	4770      	bx	lr
+
+000009be <uart_read_byte>:
+     9be:	69c3      	ldr	r3, [r0, #28]
+     9c0:	2b00      	cmp	r3, #0
+     9c2:	d1fc      	bne.n	9be <uart_read_byte>
+}
+static inline void uart_read_clear_errors(Sercom* sercom)
+{
+	/* Check for errors */
+	if((uint8_t)(sercom->USART.STATUS.reg & SERCOM_USART_STATUS_MASK))
+     9c4:	8b43      	ldrh	r3, [r0, #26]
+     9c6:	b2db      	uxtb	r3, r3
+     9c8:	2b00      	cmp	r3, #0
+     9ca:	d003      	beq.n	9d4 <uart_read_byte+0x16>
+	{
+		sercom->USART.STATUS.reg &= 0xFFF8;
+     9cc:	8b43      	ldrh	r3, [r0, #26]
+     9ce:	2207      	movs	r2, #7
+     9d0:	4393      	bics	r3, r2
+     9d2:	8343      	strh	r3, [r0, #26]
+{
+	wait_for_uart_syncbusy_clear(sercom);
+	uart_read_clear_errors(sercom);
+	
+	/* Return the read data */
+	return((uint8_t)sercom->USART.DATA.reg);
+     9d4:	8d00      	ldrh	r0, [r0, #40]	; 0x28
+     9d6:	b2c0      	uxtb	r0, r0
+}
+     9d8:	4770      	bx	lr
+	...
+
+000009dc <usart_is_rx_ready>:
+		*ptr++ = (uint8_t)sercom->USART.DATA.reg;
+	} while (length--);
+}
+
+bool usart_is_rx_ready(void) {
+	return (BOOT_USART_MODULE->USART.INTFLAG.reg & SERCOM_USART_INTFLAG_RXC);
+     9dc:	4b02      	ldr	r3, [pc, #8]	; (9e8 <usart_is_rx_ready+0xc>)
+     9de:	7e1b      	ldrb	r3, [r3, #24]
+     9e0:	089b      	lsrs	r3, r3, #2
+     9e2:	2001      	movs	r0, #1
+     9e4:	4018      	ands	r0, r3
+}
+     9e6:	4770      	bx	lr
+     9e8:	42001400 	.word	0x42001400
+
+000009ec <check_start_application>:
+/**
+ * \brief Check the application startup condition
+ *
+ */
+static void check_start_application(void)
+{
+     9ec:	b510      	push	{r4, lr}
+     9ee:	b082      	sub	sp, #8
+	uint32_t app_start_address;
+
+	/* Load the Reset Handler address of the application */
+	app_start_address = *(uint32_t *)(APP_START_ADDRESS + 4);
+     9f0:	4b0e      	ldr	r3, [pc, #56]	; (a2c <check_start_application+0x40>)
+     9f2:	6818      	ldr	r0, [r3, #0]
+	/**
+	 * Test reset vector of application @APP_START_ADDRESS+4
+	 * Stay in SAM-BA if *(APP_START+0x4) == 0xFFFFFFFF
+	 * Application erased condition
+	 */
+	if (app_start_address == 0xFFFFFFFF) {
+     9f4:	1c43      	adds	r3, r0, #1
+     9f6:	d017      	beq.n	a28 <check_start_application+0x3c>
+	boot_port->DIRCLR.reg = BOOT_PIN_MASK;
+     9f8:	4a0d      	ldr	r2, [pc, #52]	; (a30 <check_start_application+0x44>)
+     9fa:	2302      	movs	r3, #2
+     9fc:	6053      	str	r3, [r2, #4]
+	boot_port->PINCFG[BOOT_LOAD_PIN & 0x1F].reg = PORT_PINCFG_INEN | PORT_PINCFG_PULLEN;
+     9fe:	2406      	movs	r4, #6
+     a00:	2141      	movs	r1, #65	; 0x41
+     a02:	5454      	strb	r4, [r2, r1]
+	boot_port->OUTSET.reg = BOOT_PIN_MASK;
+     a04:	6193      	str	r3, [r2, #24]
+	boot_en = (boot_port->IN.reg) & BOOT_PIN_MASK;
+     a06:	6a11      	ldr	r1, [r2, #32]
+     a08:	4019      	ands	r1, r3
+     a0a:	9101      	str	r1, [sp, #4]
+	boot_en = (boot_port->IN.reg) & BOOT_PIN_MASK;
+     a0c:	6a12      	ldr	r2, [r2, #32]
+     a0e:	4013      	ands	r3, r2
+     a10:	9301      	str	r3, [sp, #4]
+	return(boot_en == 0);
+     a12:	9b01      	ldr	r3, [sp, #4]
+		/* Stay in Bootloader */
+		return;
+	}
+
+	if(b_is_bootloader_condition_enabled())
+     a14:	2b00      	cmp	r3, #0
+     a16:	d007      	beq.n	a28 <check_start_application+0x3c>
+		return;
+	}
+	else
+	{
+		/* Re-base the Stack Pointer */
+		__set_MSP(*(uint32_t *) APP_START_ADDRESS);
+     a18:	2380      	movs	r3, #128	; 0x80
+     a1a:	019b      	lsls	r3, r3, #6
+     a1c:	681a      	ldr	r2, [r3, #0]
+  \details Assigns the given value to the Main Stack Pointer (MSP).
+  \param [in]    topOfMainStack  Main Stack Pointer value to set
+ */
+__attribute__((always_inline)) __STATIC_INLINE void __set_MSP(uint32_t topOfMainStack)
+{
+  __ASM volatile ("MSR msp, %0" : : "r" (topOfMainStack) : );
+     a1e:	f382 8808 	msr	MSP, r2
+
+		/* Re-base the vector table base address */
+		SCB->VTOR = ((uint32_t) APP_START_ADDRESS & SCB_VTOR_TBLOFF_Msk);
+     a22:	4a04      	ldr	r2, [pc, #16]	; (a34 <check_start_application+0x48>)
+     a24:	6093      	str	r3, [r2, #8]
+
+		/* Jump to application Reset Handler in the application */
+		asm("bx %0"::"r"(app_start_address));
+     a26:	4700      	bx	r0
+	}
+}
+     a28:	b002      	add	sp, #8
+     a2a:	bd10      	pop	{r4, pc}
+     a2c:	00002004 	.word	0x00002004
+     a30:	41006100 	.word	0x41006100
+     a34:	e000ed00 	.word	0xe000ed00
+
+00000a38 <main>:
+{
+     a38:	b510      	push	{r4, lr}
+	check_start_application();
+     a3a:	4b10      	ldr	r3, [pc, #64]	; (a7c <main+0x44>)
+     a3c:	4798      	blx	r3
+	NVMCTRL->CTRLB.bit.RWS = FLASH_WAIT_STATES;
+     a3e:	4910      	ldr	r1, [pc, #64]	; (a80 <main+0x48>)
+     a40:	684b      	ldr	r3, [r1, #4]
+     a42:	221e      	movs	r2, #30
+     a44:	4393      	bics	r3, r2
+     a46:	3a1c      	subs	r2, #28
+     a48:	4313      	orrs	r3, r2
+     a4a:	604b      	str	r3, [r1, #4]
+	OSCCTRL->OSC16MCTRL.bit.FSEL = 1;
+     a4c:	490d      	ldr	r1, [pc, #52]	; (a84 <main+0x4c>)
+     a4e:	7d0b      	ldrb	r3, [r1, #20]
+     a50:	200c      	movs	r0, #12
+     a52:	4383      	bics	r3, r0
+     a54:	2004      	movs	r0, #4
+     a56:	4303      	orrs	r3, r0
+     a58:	750b      	strb	r3, [r1, #20]
+	PM->INTFLAG.reg = PM_INTFLAG_PLRDY;
+     a5a:	4b0b      	ldr	r3, [pc, #44]	; (a88 <main+0x50>)
+     a5c:	2101      	movs	r1, #1
+     a5e:	7199      	strb	r1, [r3, #6]
+	PM->PLCFG.reg = PM_PLCFG_PLSEL_PL2;
+     a60:	709a      	strb	r2, [r3, #2]
+	while (!PM->INTFLAG.reg) {
+     a62:	4b09      	ldr	r3, [pc, #36]	; (a88 <main+0x50>)
+     a64:	799b      	ldrb	r3, [r3, #6]
+     a66:	2b00      	cmp	r3, #0
+     a68:	d0fb      	beq.n	a62 <main+0x2a>
+  \details Ensures the apparent order of the explicit memory operations before
+           and after the instruction, without ensuring their completion.
+ */
+__attribute__((always_inline)) __STATIC_INLINE void __DMB(void)
+{
+  __ASM volatile ("dmb 0xF":::"memory");
+     a6a:	f3bf 8f5f 	dmb	sy
+  __ASM volatile ("cpsie i" : : : "memory");
+     a6e:	b662      	cpsie	i
+	init_sam_ba_monitor_interface();
+     a70:	4b06      	ldr	r3, [pc, #24]	; (a8c <main+0x54>)
+     a72:	4798      	blx	r3
+		process_sam_ba_monitor();
+     a74:	4b06      	ldr	r3, [pc, #24]	; (a90 <main+0x58>)
+     a76:	4798      	blx	r3
+     a78:	e7fc      	b.n	a74 <main+0x3c>
+     a7a:	46c0      	nop			; (mov r8, r8)
+     a7c:	000009ed 	.word	0x000009ed
+     a80:	41004000 	.word	0x41004000
+     a84:	40001000 	.word	0x40001000
+     a88:	40000400 	.word	0x40000400
+     a8c:	00000aad 	.word	0x00000aad
+     a90:	00000e21 	.word	0x00000e21
+
+00000a94 <print_new_line>:
+volatile bool b_terminal_mode = false;
+volatile uint32_t sp;
+
+
+static void print_new_line(void)
+{
+     a94:	b510      	push	{r4, lr}
+	ptr_monitor_if->putdata("\n\r", 2);
+     a96:	4b03      	ldr	r3, [pc, #12]	; (aa4 <print_new_line+0x10>)
+     a98:	681b      	ldr	r3, [r3, #0]
+     a9a:	68db      	ldr	r3, [r3, #12]
+     a9c:	2102      	movs	r1, #2
+     a9e:	4802      	ldr	r0, [pc, #8]	; (aa8 <print_new_line+0x14>)
+     aa0:	4798      	blx	r3
+}
+     aa2:	bd10      	pop	{r4, pc}
+     aa4:	20000200 	.word	0x20000200
+     aa8:	00001348 	.word	0x00001348
+
+00000aac <init_sam_ba_monitor_interface>:
+
+void init_sam_ba_monitor_interface(void)
+{
+     aac:	b510      	push	{r4, lr}
+	#if SAM_BA_UART_INTERFACE_ENABLED
+		usart_open();
+     aae:	4b28      	ldr	r3, [pc, #160]	; (b50 <init_sam_ba_monitor_interface+0xa4>)
+     ab0:	4798      	blx	r3
+	OSC32KCTRL->XOSC32K.reg = OSC32KCTRL_XOSC32K_STARTUP(4) | OSC32KCTRL_XOSC32K_RUNSTDBY | OSC32KCTRL_XOSC32K_EN32K | OSC32KCTRL_XOSC32K_XTALEN | OSC32KCTRL_XOSC32K_ENABLE;
+     ab2:	4a28      	ldr	r2, [pc, #160]	; (b54 <init_sam_ba_monitor_interface+0xa8>)
+     ab4:	4b28      	ldr	r3, [pc, #160]	; (b58 <init_sam_ba_monitor_interface+0xac>)
+     ab6:	829a      	strh	r2, [r3, #20]
+	while(!(OSC32KCTRL->STATUS.reg & OSC32KCTRL_STATUS_XOSC32KRDY));
+     ab8:	4b27      	ldr	r3, [pc, #156]	; (b58 <init_sam_ba_monitor_interface+0xac>)
+     aba:	68db      	ldr	r3, [r3, #12]
+     abc:	07db      	lsls	r3, r3, #31
+     abe:	d5fb      	bpl.n	ab8 <init_sam_ba_monitor_interface+0xc>
+	GCLK->GENCTRL[GCLK_PCHCTRL_GEN_GCLK1_Val].reg = GCLK_GENCTRL_SRC(GCLK_GENCTRL_SRC_OSC32K_Val) | GCLK_GENCTRL_GENEN;
+     ac0:	2282      	movs	r2, #130	; 0x82
+     ac2:	0052      	lsls	r2, r2, #1
+     ac4:	4b25      	ldr	r3, [pc, #148]	; (b5c <init_sam_ba_monitor_interface+0xb0>)
+     ac6:	625a      	str	r2, [r3, #36]	; 0x24
+	while(GCLK->SYNCBUSY.reg & GCLK_SYNCBUSY_GENCTRL(GCLK_PCHCTRL_GEN_GCLK1_Val));
+     ac8:	4b24      	ldr	r3, [pc, #144]	; (b5c <init_sam_ba_monitor_interface+0xb0>)
+     aca:	685b      	ldr	r3, [r3, #4]
+     acc:	075b      	lsls	r3, r3, #29
+     ace:	d4fb      	bmi.n	ac8 <init_sam_ba_monitor_interface+0x1c>
+	GCLK->PCHCTRL[OSCCTRL_GCLK_ID_DFLL48].reg = GCLK_PCHCTRL_GEN(GCLK_PCHCTRL_GEN_GCLK1_Val) | GCLK_PCHCTRL_CHEN;
+     ad0:	2141      	movs	r1, #65	; 0x41
+     ad2:	2380      	movs	r3, #128	; 0x80
+     ad4:	4a21      	ldr	r2, [pc, #132]	; (b5c <init_sam_ba_monitor_interface+0xb0>)
+     ad6:	50d1      	str	r1, [r2, r3]
+	while (!(GCLK->PCHCTRL[OSCCTRL_GCLK_ID_DFLL48].reg & GCLK_PCHCTRL_CHEN));
+     ad8:	2380      	movs	r3, #128	; 0x80
+     ada:	4a20      	ldr	r2, [pc, #128]	; (b5c <init_sam_ba_monitor_interface+0xb0>)
+     adc:	58d3      	ldr	r3, [r2, r3]
+     ade:	065b      	lsls	r3, r3, #25
+     ae0:	d5fa      	bpl.n	ad8 <init_sam_ba_monitor_interface+0x2c>
+	uint32_t coarse =( *((uint32_t *)(NVMCTRL_OTP5) + (NVM_SW_CALIB_DFLL48M_COARSE_POS / 32))
+     ae2:	4b1f      	ldr	r3, [pc, #124]	; (b60 <init_sam_ba_monitor_interface+0xb4>)
+     ae4:	681a      	ldr	r2, [r3, #0]
+     ae6:	0e92      	lsrs	r2, r2, #26
+	if (coarse == 0x3f) {
+     ae8:	2a3f      	cmp	r2, #63	; 0x3f
+     aea:	d02f      	beq.n	b4c <init_sam_ba_monitor_interface+0xa0>
+	OSCCTRL->DFLLCTRL.bit.ONDEMAND = false;
+     aec:	491d      	ldr	r1, [pc, #116]	; (b64 <init_sam_ba_monitor_interface+0xb8>)
+     aee:	8b0b      	ldrh	r3, [r1, #24]
+     af0:	2080      	movs	r0, #128	; 0x80
+     af2:	4383      	bics	r3, r0
+     af4:	830b      	strh	r3, [r1, #24]
+	while (!(OSCCTRL->STATUS.reg & OSCCTRL_STATUS_DFLLRDY));
+     af6:	4b1b      	ldr	r3, [pc, #108]	; (b64 <init_sam_ba_monitor_interface+0xb8>)
+     af8:	68db      	ldr	r3, [r3, #12]
+     afa:	05db      	lsls	r3, r3, #23
+     afc:	d5fb      	bpl.n	af6 <init_sam_ba_monitor_interface+0x4a>
+	OSCCTRL->DFLLMUL.reg = OSCCTRL_DFLLMUL_MUL(48000000/32768) | OSCCTRL_DFLLMUL_FSTEP(0xFF/8) | OSCCTRL_DFLLMUL_CSTEP(0x1F/8);
+     afe:	4919      	ldr	r1, [pc, #100]	; (b64 <init_sam_ba_monitor_interface+0xb8>)
+     b00:	4b19      	ldr	r3, [pc, #100]	; (b68 <init_sam_ba_monitor_interface+0xbc>)
+     b02:	620b      	str	r3, [r1, #32]
+	OSCCTRL->DFLLVAL.reg = OSCCTRL_DFLLVAL_FINE(512) | OSCCTRL_DFLLVAL_COARSE(coarse);
+     b04:	0292      	lsls	r2, r2, #10
+     b06:	2380      	movs	r3, #128	; 0x80
+     b08:	009b      	lsls	r3, r3, #2
+     b0a:	431a      	orrs	r2, r3
+     b0c:	61ca      	str	r2, [r1, #28]
+	while (!(OSCCTRL->STATUS.reg & OSCCTRL_STATUS_DFLLRDY));
+     b0e:	4b15      	ldr	r3, [pc, #84]	; (b64 <init_sam_ba_monitor_interface+0xb8>)
+     b10:	68db      	ldr	r3, [r3, #12]
+     b12:	05db      	lsls	r3, r3, #23
+     b14:	d5fb      	bpl.n	b0e <init_sam_ba_monitor_interface+0x62>
+	OSCCTRL->DFLLCTRL.reg = OSCCTRL_DFLLCTRL_MODE | OSCCTRL_DFLLCTRL_ENABLE;
+     b16:	2206      	movs	r2, #6
+     b18:	4b12      	ldr	r3, [pc, #72]	; (b64 <init_sam_ba_monitor_interface+0xb8>)
+     b1a:	831a      	strh	r2, [r3, #24]
+	while (!(OSCCTRL->STATUS.reg & OSCCTRL_STATUS_DFLLRDY));
+     b1c:	4b11      	ldr	r3, [pc, #68]	; (b64 <init_sam_ba_monitor_interface+0xb8>)
+     b1e:	68db      	ldr	r3, [r3, #12]
+     b20:	05db      	lsls	r3, r3, #23
+     b22:	d5fb      	bpl.n	b1c <init_sam_ba_monitor_interface+0x70>
+	GCLK->GENCTRL[GCLK_PCHCTRL_GEN_GCLK3_Val].reg = GCLK_GENCTRL_SRC(GCLK_GENCTRL_SRC_OSC16M_Val) | GCLK_GENCTRL_GENEN;
+     b24:	2283      	movs	r2, #131	; 0x83
+     b26:	0052      	lsls	r2, r2, #1
+     b28:	4b0c      	ldr	r3, [pc, #48]	; (b5c <init_sam_ba_monitor_interface+0xb0>)
+     b2a:	62da      	str	r2, [r3, #44]	; 0x2c
+	while(GCLK->SYNCBUSY.reg & GCLK_SYNCBUSY_GENCTRL(GCLK_PCHCTRL_GEN_GCLK3_Val));
+     b2c:	4b0b      	ldr	r3, [pc, #44]	; (b5c <init_sam_ba_monitor_interface+0xb0>)
+     b2e:	685b      	ldr	r3, [r3, #4]
+     b30:	220c      	movs	r2, #12
+     b32:	421a      	tst	r2, r3
+     b34:	d1fa      	bne.n	b2c <init_sam_ba_monitor_interface+0x80>
+	GCLK->PCHCTRL[USB_GCLK_ID].reg = GCLK_PCHCTRL_GEN(GCLK_PCHCTRL_GEN_GCLK3_Val) | GCLK_PCHCTRL_CHEN;
+     b36:	2143      	movs	r1, #67	; 0x43
+     b38:	2398      	movs	r3, #152	; 0x98
+     b3a:	4a08      	ldr	r2, [pc, #32]	; (b5c <init_sam_ba_monitor_interface+0xb0>)
+     b3c:	50d1      	str	r1, [r2, r3]
+	while(GCLK->SYNCBUSY.reg & GCLK_SYNCBUSY_GENCTRL(GCLK_PCHCTRL_GEN_GCLK1_Val));
+     b3e:	4b07      	ldr	r3, [pc, #28]	; (b5c <init_sam_ba_monitor_interface+0xb0>)
+     b40:	685b      	ldr	r3, [r3, #4]
+     b42:	075b      	lsls	r3, r3, #29
+     b44:	d4fb      	bmi.n	b3e <init_sam_ba_monitor_interface+0x92>
+	#endif
+	
+	#if SAM_BA_USB_INTERFACE_ENABLED
+		clock_configuration_for_usb();
+		usb_init();
+     b46:	4b09      	ldr	r3, [pc, #36]	; (b6c <init_sam_ba_monitor_interface+0xc0>)
+     b48:	4798      	blx	r3
+	#endif	
+}
+     b4a:	bd10      	pop	{r4, pc}
+		coarse = 0x1f;
+     b4c:	3a20      	subs	r2, #32
+     b4e:	e7cd      	b.n	aec <init_sam_ba_monitor_interface+0x40>
+     b50:	00000901 	.word	0x00000901
+     b54:	0000044e 	.word	0x0000044e
+     b58:	40001400 	.word	0x40001400
+     b5c:	40001c00 	.word	0x40001c00
+     b60:	00806020 	.word	0x00806020
+     b64:	40001000 	.word	0x40001000
+     b68:	0c1f05b8 	.word	0x0c1f05b8
+     b6c:	0000117d 	.word	0x0000117d
+
+00000b70 <sam_ba_putdata_term>:
+ *
+ * \param *data  Data pointer
+ * \param length Length of the data
+ */
+void sam_ba_putdata_term(uint8_t* data, uint32_t length)
+{
+     b70:	b570      	push	{r4, r5, r6, lr}
+     b72:	b084      	sub	sp, #16
+	uint8_t temp, buf[12], *data_ascii;
+	uint32_t i, int_value;
+
+	if (b_terminal_mode)
+     b74:	4b1e      	ldr	r3, [pc, #120]	; (bf0 <sam_ba_putdata_term+0x80>)
+     b76:	781b      	ldrb	r3, [r3, #0]
+     b78:	2b00      	cmp	r3, #0
+     b7a:	d033      	beq.n	be4 <sam_ba_putdata_term+0x74>
+	{
+		if (length == 4)
+     b7c:	2904      	cmp	r1, #4
+     b7e:	d00a      	beq.n	b96 <sam_ba_putdata_term+0x26>
+			int_value = *(uint32_t *) data;
+		else if (length == 2)
+     b80:	2902      	cmp	r1, #2
+     b82:	d00a      	beq.n	b9a <sam_ba_putdata_term+0x2a>
+			int_value = *(uint16_t *) data;
+		else
+			int_value = *(uint8_t *) data;
+     b84:	7804      	ldrb	r4, [r0, #0]
+
+		data_ascii = buf + 2;
+		data_ascii += length * 2 - 1;
+     b86:	004d      	lsls	r5, r1, #1
+     b88:	1e6a      	subs	r2, r5, #1
+     b8a:	2306      	movs	r3, #6
+     b8c:	446b      	add	r3, sp
+     b8e:	469c      	mov	ip, r3
+     b90:	4462      	add	r2, ip
+
+		for (i = 0; i < length * 2; i++)
+     b92:	2000      	movs	r0, #0
+     b94:	e008      	b.n	ba8 <sam_ba_putdata_term+0x38>
+			int_value = *(uint32_t *) data;
+     b96:	6804      	ldr	r4, [r0, #0]
+     b98:	e7f5      	b.n	b86 <sam_ba_putdata_term+0x16>
+			int_value = *(uint16_t *) data;
+     b9a:	8804      	ldrh	r4, [r0, #0]
+     b9c:	e7f3      	b.n	b86 <sam_ba_putdata_term+0x16>
+			temp = (uint8_t) (int_value & 0xf);
+
+			if (temp <= 0x9)
+				*data_ascii = temp | 0x30;
+			else
+				*data_ascii = temp + 0x37;
+     b9e:	3337      	adds	r3, #55	; 0x37
+     ba0:	7013      	strb	r3, [r2, #0]
+
+			int_value >>= 4;
+     ba2:	0924      	lsrs	r4, r4, #4
+			data_ascii--;
+     ba4:	3a01      	subs	r2, #1
+		for (i = 0; i < length * 2; i++)
+     ba6:	3001      	adds	r0, #1
+     ba8:	42a8      	cmp	r0, r5
+     baa:	d207      	bcs.n	bbc <sam_ba_putdata_term+0x4c>
+			temp = (uint8_t) (int_value & 0xf);
+     bac:	230f      	movs	r3, #15
+     bae:	4023      	ands	r3, r4
+			if (temp <= 0x9)
+     bb0:	2b09      	cmp	r3, #9
+     bb2:	d8f4      	bhi.n	b9e <sam_ba_putdata_term+0x2e>
+				*data_ascii = temp | 0x30;
+     bb4:	2630      	movs	r6, #48	; 0x30
+     bb6:	4333      	orrs	r3, r6
+     bb8:	7013      	strb	r3, [r2, #0]
+     bba:	e7f2      	b.n	ba2 <sam_ba_putdata_term+0x32>
+		}
+		buf[0] = '0';
+     bbc:	a801      	add	r0, sp, #4
+     bbe:	2330      	movs	r3, #48	; 0x30
+     bc0:	7003      	strb	r3, [r0, #0]
+		buf[1] = 'x';
+     bc2:	3348      	adds	r3, #72	; 0x48
+     bc4:	7043      	strb	r3, [r0, #1]
+		buf[length * 2 + 2] = '\n';
+     bc6:	1c4b      	adds	r3, r1, #1
+     bc8:	005b      	lsls	r3, r3, #1
+     bca:	220a      	movs	r2, #10
+     bcc:	54c2      	strb	r2, [r0, r3]
+		buf[length * 2 + 3] = '\r';
+     bce:	3503      	adds	r5, #3
+     bd0:	230d      	movs	r3, #13
+     bd2:	5543      	strb	r3, [r0, r5]
+		ptr_monitor_if->putdata(buf, length * 2 + 4);
+     bd4:	4b07      	ldr	r3, [pc, #28]	; (bf4 <sam_ba_putdata_term+0x84>)
+     bd6:	681b      	ldr	r3, [r3, #0]
+     bd8:	68db      	ldr	r3, [r3, #12]
+     bda:	3102      	adds	r1, #2
+     bdc:	0049      	lsls	r1, r1, #1
+     bde:	4798      	blx	r3
+	}
+	else
+		ptr_monitor_if->putdata(data, length);
+	return;
+}
+     be0:	b004      	add	sp, #16
+     be2:	bd70      	pop	{r4, r5, r6, pc}
+		ptr_monitor_if->putdata(data, length);
+     be4:	4b03      	ldr	r3, [pc, #12]	; (bf4 <sam_ba_putdata_term+0x84>)
+     be6:	681b      	ldr	r3, [r3, #0]
+     be8:	68db      	ldr	r3, [r3, #12]
+     bea:	4798      	blx	r3
+	return;
+     bec:	e7f8      	b.n	be0 <sam_ba_putdata_term+0x70>
+     bee:	46c0      	nop			; (mov r8, r8)
+     bf0:	20000069 	.word	0x20000069
+     bf4:	20000200 	.word	0x20000200
+
+00000bf8 <call_applet>:
+  __ASM volatile ("cpsid i" : : : "memory");
+     bf8:	b672      	cpsid	i
+  __ASM volatile ("dmb 0xF":::"memory");
+     bfa:	f3bf 8f5f 	dmb	sy
+  __ASM volatile ("MRS %0, msp" : "=r" (result) );
+     bfe:	f3ef 8308 	mrs	r3, MSP
+{
+	uint32_t app_start_address;
+
+	cpu_irq_disable();
+
+	sp = __get_MSP();
+     c02:	4a06      	ldr	r2, [pc, #24]	; (c1c <call_applet+0x24>)
+     c04:	6013      	str	r3, [r2, #0]
+
+	/* Rebase the Stack Pointer */
+	__set_MSP(*(uint32_t *) address);
+     c06:	6803      	ldr	r3, [r0, #0]
+  __ASM volatile ("MSR msp, %0" : : "r" (topOfMainStack) : );
+     c08:	f383 8808 	msr	MSP, r3
+
+	/* Rebase the vector table base address */
+	SCB->VTOR = ((uint32_t) address & SCB_VTOR_TBLOFF_Msk);
+     c0c:	23ff      	movs	r3, #255	; 0xff
+     c0e:	0002      	movs	r2, r0
+     c10:	439a      	bics	r2, r3
+     c12:	4b03      	ldr	r3, [pc, #12]	; (c20 <call_applet+0x28>)
+     c14:	609a      	str	r2, [r3, #8]
+
+	/* Load the Reset Handler address of the application */
+	app_start_address = *(uint32_t *)(address + 4);
+     c16:	6843      	ldr	r3, [r0, #4]
+
+	/* Jump to application Reset Handler in the application */
+	asm("bx %0"::"r"(app_start_address));
+     c18:	4718      	bx	r3
+}
+     c1a:	4770      	bx	lr
+     c1c:	20000204 	.word	0x20000204
+     c20:	e000ed00 	.word	0xe000ed00
+
+00000c24 <sam_ba_monitor_run>:
+
+/**
+ * \brief This function starts the SAM-BA monitor.
+ */
+void sam_ba_monitor_run(void)
+{
+     c24:	b5f0      	push	{r4, r5, r6, r7, lr}
+     c26:	46c6      	mov	lr, r8
+     c28:	b500      	push	{lr}
+     c2a:	b092      	sub	sp, #72	; 0x48
+	uint32_t length;
+	uint32_t j, u8tmp, current_number, command;
+	uint8_t *ptr_data, *ptr, data[SIZEBUFMAX];
+
+	ptr_data = 0;
+     c2c:	2600      	movs	r6, #0
+	command = 'z';
+     c2e:	237a      	movs	r3, #122	; 0x7a
+     c30:	4698      	mov	r8, r3
+	j=0;
+	
+	// Start waiting some cmd
+	while (1)
+	{
+		length = ptr_monitor_if->getdata(data, SIZEBUFMAX);
+     c32:	4b73      	ldr	r3, [pc, #460]	; (e00 <sam_ba_monitor_run+0x1dc>)
+     c34:	681b      	ldr	r3, [r3, #0]
+     c36:	691b      	ldr	r3, [r3, #16]
+     c38:	2140      	movs	r1, #64	; 0x40
+     c3a:	a801      	add	r0, sp, #4
+     c3c:	4798      	blx	r3
+     c3e:	0007      	movs	r7, r0
+		ptr = data;
+		for (uint32_t i = 0; i < length; i++)
+     c40:	2500      	movs	r5, #0
+		ptr = data;
+     c42:	ac01      	add	r4, sp, #4
+		for (uint32_t i = 0; i < length; i++)
+     c44:	e054      	b.n	cf0 <sam_ba_monitor_run+0xcc>
+		{
+			if (*ptr != 0xff)
+			{
+				if (*ptr == '#')
+				{
+					if (b_terminal_mode)
+     c46:	4b6f      	ldr	r3, [pc, #444]	; (e04 <sam_ba_monitor_run+0x1e0>)
+     c48:	781b      	ldrb	r3, [r3, #0]
+     c4a:	2b00      	cmp	r3, #0
+     c4c:	d12c      	bne.n	ca8 <sam_ba_monitor_run+0x84>
+					{
+						print_new_line();
+					}
+					if (command == 'S')
+     c4e:	4643      	mov	r3, r8
+     c50:	2b53      	cmp	r3, #83	; 0x53
+     c52:	d02c      	beq.n	cae <sam_ba_monitor_run+0x8a>
+						if(j<current_number)
+							ptr_monitor_if->getdata_xmd(ptr_data, current_number-j);
+						
+						__asm("nop");
+					}
+					else if (command == 'R')
+     c54:	4643      	mov	r3, r8
+     c56:	2b52      	cmp	r3, #82	; 0x52
+     c58:	d063      	beq.n	d22 <sam_ba_monitor_run+0xfe>
+					{
+						ptr_monitor_if->putdata_xmd(ptr_data, current_number);
+					}
+					else if (command == 'O')
+     c5a:	4643      	mov	r3, r8
+     c5c:	2b4f      	cmp	r3, #79	; 0x4f
+     c5e:	d067      	beq.n	d30 <sam_ba_monitor_run+0x10c>
+					{
+						*ptr_data = (char) current_number;
+					}
+					else if (command == 'H')
+     c60:	4643      	mov	r3, r8
+     c62:	2b48      	cmp	r3, #72	; 0x48
+     c64:	d06a      	beq.n	d3c <sam_ba_monitor_run+0x118>
+					{
+						*((uint16_t *) ptr_data) = (uint16_t) current_number;
+					}
+					else if (command == 'W')
+     c66:	4643      	mov	r3, r8
+     c68:	2b57      	cmp	r3, #87	; 0x57
+     c6a:	d06d      	beq.n	d48 <sam_ba_monitor_run+0x124>
+					{
+						*((int *) ptr_data) = current_number;
+					}
+					else if (command == 'o')
+     c6c:	4643      	mov	r3, r8
+     c6e:	2b6f      	cmp	r3, #111	; 0x6f
+     c70:	d06d      	beq.n	d4e <sam_ba_monitor_run+0x12a>
+					{
+						sam_ba_putdata_term(ptr_data, 1);
+					}
+					else if (command == 'h')
+     c72:	4643      	mov	r3, r8
+     c74:	2b68      	cmp	r3, #104	; 0x68
+     c76:	d06f      	beq.n	d58 <sam_ba_monitor_run+0x134>
+					{
+						current_number = *((uint16_t *) ptr_data);
+						sam_ba_putdata_term((uint8_t*) &current_number, 2);
+					}
+					else if (command == 'w')
+     c78:	4643      	mov	r3, r8
+     c7a:	2b77      	cmp	r3, #119	; 0x77
+     c7c:	d073      	beq.n	d66 <sam_ba_monitor_run+0x142>
+					{
+						current_number = *((uint32_t *) ptr_data);
+						sam_ba_putdata_term((uint8_t*) &current_number, 4);
+					}
+					else if (command == 'G')
+     c7e:	4643      	mov	r3, r8
+     c80:	2b47      	cmp	r3, #71	; 0x47
+     c82:	d077      	beq.n	d74 <sam_ba_monitor_run+0x150>
+						//ptr_monitor_if->put_c(0x6);
+						/* Rebase the Stack Pointer */
+						__set_MSP(sp);
+						cpu_irq_enable();
+					}
+					else if (command == 'T')
+     c84:	4643      	mov	r3, r8
+     c86:	2b54      	cmp	r3, #84	; 0x54
+     c88:	d100      	bne.n	c8c <sam_ba_monitor_run+0x68>
+     c8a:	e07e      	b.n	d8a <sam_ba_monitor_run+0x166>
+					{
+						b_terminal_mode = 1;
+						print_new_line();
+					}
+					else if (command == 'N')
+     c8c:	4643      	mov	r3, r8
+     c8e:	2b4e      	cmp	r3, #78	; 0x4e
+     c90:	d100      	bne.n	c94 <sam_ba_monitor_run+0x70>
+     c92:	e080      	b.n	d96 <sam_ba_monitor_run+0x172>
+						{
+							print_new_line();
+						}
+						b_terminal_mode = 0;
+					}
+					else if (command == 'V')
+     c94:	4643      	mov	r3, r8
+     c96:	2b56      	cmp	r3, #86	; 0x56
+     c98:	d120      	bne.n	cdc <sam_ba_monitor_run+0xb8>
+					{
+						ptr_monitor_if->putdata((uint8_t *) RomBOOT_Version, strlen(RomBOOT_Version));
+     c9a:	4b59      	ldr	r3, [pc, #356]	; (e00 <sam_ba_monitor_run+0x1dc>)
+     c9c:	681b      	ldr	r3, [r3, #0]
+     c9e:	68db      	ldr	r3, [r3, #12]
+     ca0:	211b      	movs	r1, #27
+     ca2:	4859      	ldr	r0, [pc, #356]	; (e08 <sam_ba_monitor_run+0x1e4>)
+     ca4:	4798      	blx	r3
+     ca6:	e019      	b.n	cdc <sam_ba_monitor_run+0xb8>
+						print_new_line();
+     ca8:	4b58      	ldr	r3, [pc, #352]	; (e0c <sam_ba_monitor_run+0x1e8>)
+     caa:	4798      	blx	r3
+     cac:	e7cf      	b.n	c4e <sam_ba_monitor_run+0x2a>
+							ptr++;
+     cae:	3401      	adds	r4, #1
+							i++;
+     cb0:	3501      	adds	r5, #1
+							u8tmp=MIN((length-i),current_number);
+     cb2:	9a11      	ldr	r2, [sp, #68]	; 0x44
+     cb4:	1b78      	subs	r0, r7, r5
+     cb6:	4290      	cmp	r0, r2
+     cb8:	d900      	bls.n	cbc <sam_ba_monitor_run+0x98>
+     cba:	0010      	movs	r0, r2
+							for(j=0;j<u8tmp; j++)
+     cbc:	2100      	movs	r1, #0
+     cbe:	e005      	b.n	ccc <sam_ba_monitor_run+0xa8>
+								*ptr_data = *ptr;
+     cc0:	7822      	ldrb	r2, [r4, #0]
+     cc2:	7032      	strb	r2, [r6, #0]
+								ptr_data++;
+     cc4:	3601      	adds	r6, #1
+								ptr++;
+     cc6:	3401      	adds	r4, #1
+								i++;
+     cc8:	3501      	adds	r5, #1
+							for(j=0;j<u8tmp; j++)
+     cca:	3101      	adds	r1, #1
+     ccc:	4281      	cmp	r1, r0
+     cce:	d3f7      	bcc.n	cc0 <sam_ba_monitor_run+0x9c>
+						i--;
+     cd0:	3d01      	subs	r5, #1
+						ptr--;
+     cd2:	3c01      	subs	r4, #1
+						if(j<current_number)
+     cd4:	9b11      	ldr	r3, [sp, #68]	; 0x44
+     cd6:	4299      	cmp	r1, r3
+     cd8:	d31c      	bcc.n	d14 <sam_ba_monitor_run+0xf0>
+						__asm("nop");
+     cda:	46c0      	nop			; (mov r8, r8)
+					}
+
+					command = 'z';
+					current_number = 0;
+     cdc:	2300      	movs	r3, #0
+     cde:	9311      	str	r3, [sp, #68]	; 0x44
+
+					if (b_terminal_mode)
+     ce0:	4b48      	ldr	r3, [pc, #288]	; (e04 <sam_ba_monitor_run+0x1e0>)
+     ce2:	781b      	ldrb	r3, [r3, #0]
+     ce4:	2b00      	cmp	r3, #0
+     ce6:	d161      	bne.n	dac <sam_ba_monitor_run+0x188>
+					command = 'z';
+     ce8:	237a      	movs	r3, #122	; 0x7a
+     cea:	4698      	mov	r8, r3
+					{
+						command = *ptr;
+						current_number = 0;
+					}
+				}
+				ptr++;
+     cec:	3401      	adds	r4, #1
+		for (uint32_t i = 0; i < length; i++)
+     cee:	3501      	adds	r5, #1
+     cf0:	42bd      	cmp	r5, r7
+     cf2:	d29e      	bcs.n	c32 <sam_ba_monitor_run+0xe>
+			if (*ptr != 0xff)
+     cf4:	7823      	ldrb	r3, [r4, #0]
+     cf6:	2bff      	cmp	r3, #255	; 0xff
+     cf8:	d0f9      	beq.n	cee <sam_ba_monitor_run+0xca>
+				if (*ptr == '#')
+     cfa:	2b23      	cmp	r3, #35	; 0x23
+     cfc:	d0a3      	beq.n	c46 <sam_ba_monitor_run+0x22>
+					if (('0' <= *ptr) && (*ptr <= '9'))
+     cfe:	001a      	movs	r2, r3
+     d00:	3a30      	subs	r2, #48	; 0x30
+     d02:	b2d2      	uxtb	r2, r2
+     d04:	2a09      	cmp	r2, #9
+     d06:	d85a      	bhi.n	dbe <sam_ba_monitor_run+0x19a>
+						current_number = (current_number << 4) | (*ptr - '0');
+     d08:	9a11      	ldr	r2, [sp, #68]	; 0x44
+     d0a:	0112      	lsls	r2, r2, #4
+     d0c:	3b30      	subs	r3, #48	; 0x30
+     d0e:	4313      	orrs	r3, r2
+     d10:	9311      	str	r3, [sp, #68]	; 0x44
+     d12:	e7eb      	b.n	cec <sam_ba_monitor_run+0xc8>
+							ptr_monitor_if->getdata_xmd(ptr_data, current_number-j);
+     d14:	4a3a      	ldr	r2, [pc, #232]	; (e00 <sam_ba_monitor_run+0x1dc>)
+     d16:	6812      	ldr	r2, [r2, #0]
+     d18:	6992      	ldr	r2, [r2, #24]
+     d1a:	1a59      	subs	r1, r3, r1
+     d1c:	0030      	movs	r0, r6
+     d1e:	4790      	blx	r2
+     d20:	e7db      	b.n	cda <sam_ba_monitor_run+0xb6>
+						ptr_monitor_if->putdata_xmd(ptr_data, current_number);
+     d22:	4b37      	ldr	r3, [pc, #220]	; (e00 <sam_ba_monitor_run+0x1dc>)
+     d24:	681b      	ldr	r3, [r3, #0]
+     d26:	695b      	ldr	r3, [r3, #20]
+     d28:	9911      	ldr	r1, [sp, #68]	; 0x44
+     d2a:	0030      	movs	r0, r6
+     d2c:	4798      	blx	r3
+     d2e:	e7d5      	b.n	cdc <sam_ba_monitor_run+0xb8>
+						*ptr_data = (char) current_number;
+     d30:	466b      	mov	r3, sp
+     d32:	2244      	movs	r2, #68	; 0x44
+     d34:	189b      	adds	r3, r3, r2
+     d36:	781b      	ldrb	r3, [r3, #0]
+     d38:	7033      	strb	r3, [r6, #0]
+     d3a:	e7cf      	b.n	cdc <sam_ba_monitor_run+0xb8>
+						*((uint16_t *) ptr_data) = (uint16_t) current_number;
+     d3c:	466b      	mov	r3, sp
+     d3e:	2244      	movs	r2, #68	; 0x44
+     d40:	189b      	adds	r3, r3, r2
+     d42:	881b      	ldrh	r3, [r3, #0]
+     d44:	8033      	strh	r3, [r6, #0]
+     d46:	e7c9      	b.n	cdc <sam_ba_monitor_run+0xb8>
+						*((int *) ptr_data) = current_number;
+     d48:	9b11      	ldr	r3, [sp, #68]	; 0x44
+     d4a:	6033      	str	r3, [r6, #0]
+     d4c:	e7c6      	b.n	cdc <sam_ba_monitor_run+0xb8>
+						sam_ba_putdata_term(ptr_data, 1);
+     d4e:	2101      	movs	r1, #1
+     d50:	0030      	movs	r0, r6
+     d52:	4b2f      	ldr	r3, [pc, #188]	; (e10 <sam_ba_monitor_run+0x1ec>)
+     d54:	4798      	blx	r3
+     d56:	e7c1      	b.n	cdc <sam_ba_monitor_run+0xb8>
+						current_number = *((uint16_t *) ptr_data);
+     d58:	8833      	ldrh	r3, [r6, #0]
+     d5a:	9311      	str	r3, [sp, #68]	; 0x44
+						sam_ba_putdata_term((uint8_t*) &current_number, 2);
+     d5c:	2102      	movs	r1, #2
+     d5e:	a811      	add	r0, sp, #68	; 0x44
+     d60:	4b2b      	ldr	r3, [pc, #172]	; (e10 <sam_ba_monitor_run+0x1ec>)
+     d62:	4798      	blx	r3
+     d64:	e7ba      	b.n	cdc <sam_ba_monitor_run+0xb8>
+						current_number = *((uint32_t *) ptr_data);
+     d66:	6833      	ldr	r3, [r6, #0]
+     d68:	9311      	str	r3, [sp, #68]	; 0x44
+						sam_ba_putdata_term((uint8_t*) &current_number, 4);
+     d6a:	2104      	movs	r1, #4
+     d6c:	a811      	add	r0, sp, #68	; 0x44
+     d6e:	4b28      	ldr	r3, [pc, #160]	; (e10 <sam_ba_monitor_run+0x1ec>)
+     d70:	4798      	blx	r3
+     d72:	e7b3      	b.n	cdc <sam_ba_monitor_run+0xb8>
+						call_applet(current_number);
+     d74:	9811      	ldr	r0, [sp, #68]	; 0x44
+     d76:	4b27      	ldr	r3, [pc, #156]	; (e14 <sam_ba_monitor_run+0x1f0>)
+     d78:	4798      	blx	r3
+						__set_MSP(sp);
+     d7a:	4b27      	ldr	r3, [pc, #156]	; (e18 <sam_ba_monitor_run+0x1f4>)
+     d7c:	681b      	ldr	r3, [r3, #0]
+     d7e:	f383 8808 	msr	MSP, r3
+  __ASM volatile ("dmb 0xF":::"memory");
+     d82:	f3bf 8f5f 	dmb	sy
+  __ASM volatile ("cpsie i" : : : "memory");
+     d86:	b662      	cpsie	i
+     d88:	e7a8      	b.n	cdc <sam_ba_monitor_run+0xb8>
+						b_terminal_mode = 1;
+     d8a:	2201      	movs	r2, #1
+     d8c:	4b1d      	ldr	r3, [pc, #116]	; (e04 <sam_ba_monitor_run+0x1e0>)
+     d8e:	701a      	strb	r2, [r3, #0]
+						print_new_line();
+     d90:	4b1e      	ldr	r3, [pc, #120]	; (e0c <sam_ba_monitor_run+0x1e8>)
+     d92:	4798      	blx	r3
+     d94:	e7a2      	b.n	cdc <sam_ba_monitor_run+0xb8>
+						if (b_terminal_mode == 0)
+     d96:	4b1b      	ldr	r3, [pc, #108]	; (e04 <sam_ba_monitor_run+0x1e0>)
+     d98:	781b      	ldrb	r3, [r3, #0]
+     d9a:	2b00      	cmp	r3, #0
+     d9c:	d003      	beq.n	da6 <sam_ba_monitor_run+0x182>
+						b_terminal_mode = 0;
+     d9e:	2200      	movs	r2, #0
+     da0:	4b18      	ldr	r3, [pc, #96]	; (e04 <sam_ba_monitor_run+0x1e0>)
+     da2:	701a      	strb	r2, [r3, #0]
+     da4:	e79a      	b.n	cdc <sam_ba_monitor_run+0xb8>
+							print_new_line();
+     da6:	4b19      	ldr	r3, [pc, #100]	; (e0c <sam_ba_monitor_run+0x1e8>)
+     da8:	4798      	blx	r3
+     daa:	e7f8      	b.n	d9e <sam_ba_monitor_run+0x17a>
+						ptr_monitor_if->putdata(">", 1);
+     dac:	4b14      	ldr	r3, [pc, #80]	; (e00 <sam_ba_monitor_run+0x1dc>)
+     dae:	681b      	ldr	r3, [r3, #0]
+     db0:	68db      	ldr	r3, [r3, #12]
+     db2:	2101      	movs	r1, #1
+     db4:	4819      	ldr	r0, [pc, #100]	; (e1c <sam_ba_monitor_run+0x1f8>)
+     db6:	4798      	blx	r3
+					command = 'z';
+     db8:	237a      	movs	r3, #122	; 0x7a
+     dba:	4698      	mov	r8, r3
+     dbc:	e796      	b.n	cec <sam_ba_monitor_run+0xc8>
+					else if (('A' <= *ptr) && (*ptr <= 'F'))
+     dbe:	001a      	movs	r2, r3
+     dc0:	3a41      	subs	r2, #65	; 0x41
+     dc2:	b2d2      	uxtb	r2, r2
+     dc4:	2a05      	cmp	r2, #5
+     dc6:	d805      	bhi.n	dd4 <sam_ba_monitor_run+0x1b0>
+						current_number = (current_number << 4) | (*ptr - 'A' + 0xa);
+     dc8:	9a11      	ldr	r2, [sp, #68]	; 0x44
+     dca:	0112      	lsls	r2, r2, #4
+     dcc:	3b37      	subs	r3, #55	; 0x37
+     dce:	4313      	orrs	r3, r2
+     dd0:	9311      	str	r3, [sp, #68]	; 0x44
+     dd2:	e78b      	b.n	cec <sam_ba_monitor_run+0xc8>
+					else if (('a' <= *ptr) && (*ptr <= 'f'))
+     dd4:	001a      	movs	r2, r3
+     dd6:	3a61      	subs	r2, #97	; 0x61
+     dd8:	b2d2      	uxtb	r2, r2
+     dda:	2a05      	cmp	r2, #5
+     ddc:	d805      	bhi.n	dea <sam_ba_monitor_run+0x1c6>
+						current_number = (current_number << 4) | (*ptr - 'a' + 0xa);
+     dde:	9a11      	ldr	r2, [sp, #68]	; 0x44
+     de0:	0112      	lsls	r2, r2, #4
+     de2:	3b57      	subs	r3, #87	; 0x57
+     de4:	4313      	orrs	r3, r2
+     de6:	9311      	str	r3, [sp, #68]	; 0x44
+     de8:	e780      	b.n	cec <sam_ba_monitor_run+0xc8>
+					else if (*ptr == ',')
+     dea:	2b2c      	cmp	r3, #44	; 0x2c
+     dec:	d003      	beq.n	df6 <sam_ba_monitor_run+0x1d2>
+						command = *ptr;
+     dee:	4698      	mov	r8, r3
+						current_number = 0;
+     df0:	2300      	movs	r3, #0
+     df2:	9311      	str	r3, [sp, #68]	; 0x44
+     df4:	e77a      	b.n	cec <sam_ba_monitor_run+0xc8>
+						ptr_data = (uint8_t *) current_number;
+     df6:	9e11      	ldr	r6, [sp, #68]	; 0x44
+						current_number = 0;
+     df8:	2300      	movs	r3, #0
+     dfa:	9311      	str	r3, [sp, #68]	; 0x44
+     dfc:	e776      	b.n	cec <sam_ba_monitor_run+0xc8>
+     dfe:	46c0      	nop			; (mov r8, r8)
+     e00:	20000200 	.word	0x20000200
+     e04:	20000069 	.word	0x20000069
+     e08:	000012f4 	.word	0x000012f4
+     e0c:	00000a95 	.word	0x00000a95
+     e10:	00000b71 	.word	0x00000b71
+     e14:	00000bf9 	.word	0x00000bf9
+     e18:	20000204 	.word	0x20000204
+     e1c:	0000134c 	.word	0x0000134c
+
+00000e20 <process_sam_ba_monitor>:
+{
+     e20:	b510      	push	{r4, lr}
+		if (pCdc.IsConfigured(&pCdc) != 0) {
+     e22:	480d      	ldr	r0, [pc, #52]	; (e58 <process_sam_ba_monitor+0x38>)
+     e24:	6883      	ldr	r3, [r0, #8]
+     e26:	4798      	blx	r3
+     e28:	2800      	cmp	r0, #0
+     e2a:	d104      	bne.n	e36 <process_sam_ba_monitor+0x16>
+		if(uart_if.is_rx_ready() && (SHARP_CHARACTER == uart_if.get_c())) {
+     e2c:	4b0b      	ldr	r3, [pc, #44]	; (e5c <process_sam_ba_monitor+0x3c>)
+     e2e:	4798      	blx	r3
+     e30:	2800      	cmp	r0, #0
+     e32:	d106      	bne.n	e42 <process_sam_ba_monitor+0x22>
+}
+     e34:	bd10      	pop	{r4, pc}
+			ptr_monitor_if = (t_monitor_if*) &usbcdc_if;
+     e36:	4b0a      	ldr	r3, [pc, #40]	; (e60 <process_sam_ba_monitor+0x40>)
+     e38:	331c      	adds	r3, #28
+     e3a:	4a0a      	ldr	r2, [pc, #40]	; (e64 <process_sam_ba_monitor+0x44>)
+     e3c:	6013      	str	r3, [r2, #0]
+			sam_ba_monitor_run();
+     e3e:	4b0a      	ldr	r3, [pc, #40]	; (e68 <process_sam_ba_monitor+0x48>)
+     e40:	4798      	blx	r3
+		if(uart_if.is_rx_ready() && (SHARP_CHARACTER == uart_if.get_c())) {
+     e42:	4b0a      	ldr	r3, [pc, #40]	; (e6c <process_sam_ba_monitor+0x4c>)
+     e44:	4798      	blx	r3
+     e46:	2823      	cmp	r0, #35	; 0x23
+     e48:	d1f4      	bne.n	e34 <process_sam_ba_monitor+0x14>
+			ptr_monitor_if = (t_monitor_if*) &uart_if;
+     e4a:	4b05      	ldr	r3, [pc, #20]	; (e60 <process_sam_ba_monitor+0x40>)
+     e4c:	3338      	adds	r3, #56	; 0x38
+     e4e:	4a05      	ldr	r2, [pc, #20]	; (e64 <process_sam_ba_monitor+0x44>)
+     e50:	6013      	str	r3, [r2, #0]
+			sam_ba_monitor_run();
+     e52:	4b05      	ldr	r3, [pc, #20]	; (e68 <process_sam_ba_monitor+0x48>)
+     e54:	4798      	blx	r3
+     e56:	46c0      	nop			; (mov r8, r8)
+     e58:	200001ec 	.word	0x200001ec
+     e5c:	000009dd 	.word	0x000009dd
+     e60:	000012f4 	.word	0x000012f4
+     e64:	20000200 	.word	0x20000200
+     e68:	00000c25 	.word	0x00000c25
+     e6c:	00000e89 	.word	0x00000e89
+
+00000e70 <usart_putc>:
+ * \param value      Value to put
+ *
+ * \return \c 1 if function was successfully done, otherwise \c 0.
+ */
+int usart_putc(int value)
+{
+     e70:	b510      	push	{r4, lr}
+	uart_write_byte(BOOT_USART_MODULE, (uint8_t)value);
+     e72:	b2c1      	uxtb	r1, r0
+     e74:	4802      	ldr	r0, [pc, #8]	; (e80 <usart_putc+0x10>)
+     e76:	4b03      	ldr	r3, [pc, #12]	; (e84 <usart_putc+0x14>)
+     e78:	4798      	blx	r3
+	return 1;
+}
+     e7a:	2001      	movs	r0, #1
+     e7c:	bd10      	pop	{r4, pc}
+     e7e:	46c0      	nop			; (mov r8, r8)
+     e80:	42001400 	.word	0x42001400
+     e84:	000009ad 	.word	0x000009ad
+
+00000e88 <usart_getc>:
+
+
+
+int usart_getc(void) {
+     e88:	b510      	push	{r4, lr}
+	uint16_t retval;
+	//Wait until input buffer is filled
+	while(!(usart_is_rx_ready()));
+     e8a:	4b04      	ldr	r3, [pc, #16]	; (e9c <usart_getc+0x14>)
+     e8c:	4798      	blx	r3
+     e8e:	2800      	cmp	r0, #0
+     e90:	d0fb      	beq.n	e8a <usart_getc+0x2>
+	retval = (uint16_t)uart_read_byte(BOOT_USART_MODULE);
+     e92:	4803      	ldr	r0, [pc, #12]	; (ea0 <usart_getc+0x18>)
+     e94:	4b03      	ldr	r3, [pc, #12]	; (ea4 <usart_getc+0x1c>)
+     e96:	4798      	blx	r3
+	//usart_read_wait(&usart_sam_ba, &retval);
+	return (int)retval;
+
+}
+     e98:	bd10      	pop	{r4, pc}
+     e9a:	46c0      	nop			; (mov r8, r8)
+     e9c:	000009dd 	.word	0x000009dd
+     ea0:	42001400 	.word	0x42001400
+     ea4:	000009bf 	.word	0x000009bf
+
+00000ea8 <usart_putdata>:
+	}
+	return (false);
+}
+
+//Send given data (polling)
+uint32_t usart_putdata(void const* data, uint32_t length) {
+     ea8:	b570      	push	{r4, r5, r6, lr}
+     eaa:	000e      	movs	r6, r1
+	uint32_t i;
+	uint8_t* ptrdata;
+	ptrdata = (uint8_t*) data;
+     eac:	0005      	movs	r5, r0
+	for (i = 0; i < length; i++) {
+     eae:	2400      	movs	r4, #0
+     eb0:	e004      	b.n	ebc <usart_putdata+0x14>
+		usart_putc(*ptrdata);
+     eb2:	7828      	ldrb	r0, [r5, #0]
+     eb4:	4b03      	ldr	r3, [pc, #12]	; (ec4 <usart_putdata+0x1c>)
+     eb6:	4798      	blx	r3
+		ptrdata++;
+     eb8:	3501      	adds	r5, #1
+	for (i = 0; i < length; i++) {
+     eba:	3401      	adds	r4, #1
+     ebc:	42b4      	cmp	r4, r6
+     ebe:	d3f8      	bcc.n	eb2 <usart_putdata+0xa>
+	}
+	return (i);
+}
+     ec0:	0020      	movs	r0, r4
+     ec2:	bd70      	pop	{r4, r5, r6, pc}
+     ec4:	00000e71 	.word	0x00000e71
+
+00000ec8 <usart_getdata>:
+
+//Get data from comm. device
+uint32_t usart_getdata(void* data, uint32_t length) {
+     ec8:	b510      	push	{r4, lr}
+     eca:	0004      	movs	r4, r0
+	uint8_t* ptrdata;
+	ptrdata = (uint8_t*) data;
+	*ptrdata = usart_getc();
+     ecc:	4b02      	ldr	r3, [pc, #8]	; (ed8 <usart_getdata+0x10>)
+     ece:	4798      	blx	r3
+     ed0:	7020      	strb	r0, [r4, #0]
+	return (1);
+}
+     ed2:	2001      	movs	r0, #1
+     ed4:	bd10      	pop	{r4, pc}
+     ed6:	46c0      	nop			; (mov r8, r8)
+     ed8:	00000e89 	.word	0x00000e89
+
+00000edc <add_crc>:
+//*----------------------------------------------------------------------------
+unsigned short add_crc(char ptr, unsigned short crc) {
+
+	unsigned short cmpt;
+
+	crc = crc ^ (int) ptr << 8;
+     edc:	0200      	lsls	r0, r0, #8
+     ede:	4048      	eors	r0, r1
+
+	for (cmpt = 0; cmpt < 8; cmpt++) {
+     ee0:	2300      	movs	r3, #0
+     ee2:	e005      	b.n	ef0 <add_crc+0x14>
+		if (crc & 0x8000)
+			crc = crc << 1 ^ CRC16POLY;
+     ee4:	0040      	lsls	r0, r0, #1
+     ee6:	4907      	ldr	r1, [pc, #28]	; (f04 <add_crc+0x28>)
+     ee8:	4048      	eors	r0, r1
+     eea:	b280      	uxth	r0, r0
+	for (cmpt = 0; cmpt < 8; cmpt++) {
+     eec:	3301      	adds	r3, #1
+     eee:	b29b      	uxth	r3, r3
+     ef0:	2b07      	cmp	r3, #7
+     ef2:	d805      	bhi.n	f00 <add_crc+0x24>
+		if (crc & 0x8000)
+     ef4:	b202      	sxth	r2, r0
+     ef6:	2a00      	cmp	r2, #0
+     ef8:	dbf4      	blt.n	ee4 <add_crc+0x8>
+		else
+			crc = crc << 1;
+     efa:	0040      	lsls	r0, r0, #1
+     efc:	b280      	uxth	r0, r0
+     efe:	e7f5      	b.n	eec <add_crc+0x10>
+	}
+
+	return (crc & 0xFFFF);
+}
+     f00:	4770      	bx	lr
+     f02:	46c0      	nop			; (mov r8, r8)
+     f04:	00001021 	.word	0x00001021
+
+00000f08 <getbytes>:
+
+//*----------------------------------------------------------------------------
+//* \fn    getbytes
+//* \brief
+//*----------------------------------------------------------------------------
+static uint16_t getbytes(uint8_t *ptr_data, uint16_t length) {
+     f08:	b5f0      	push	{r4, r5, r6, r7, lr}
+     f0a:	b083      	sub	sp, #12
+     f0c:	0007      	movs	r7, r0
+     f0e:	000e      	movs	r6, r1
+	uint16_t crc = 0;
+	uint16_t cpt;
+	uint8_t c;
+
+	for (cpt = 0; cpt < length; ++cpt) {
+     f10:	2400      	movs	r4, #0
+	uint16_t crc = 0;
+     f12:	2300      	movs	r3, #0
+     f14:	9301      	str	r3, [sp, #4]
+	for (cpt = 0; cpt < length; ++cpt) {
+     f16:	e006      	b.n	f26 <getbytes+0x1e>
+		c = usart_getc();
+		crc = add_crc(c, crc);
+		//crc = (crc << 8) ^ xcrc16tab[(crc>>8) ^ c];
+		if (size_of_data || mode_of_transfer) {
+			*ptr_data++ = c;
+     f18:	1c7b      	adds	r3, r7, #1
+     f1a:	703d      	strb	r5, [r7, #0]
+			if (length == PKTLEN_128)
+     f1c:	2e80      	cmp	r6, #128	; 0x80
+     f1e:	d015      	beq.n	f4c <getbytes+0x44>
+			*ptr_data++ = c;
+     f20:	001f      	movs	r7, r3
+	for (cpt = 0; cpt < length; ++cpt) {
+     f22:	3401      	adds	r4, #1
+     f24:	b2a4      	uxth	r4, r4
+     f26:	42b4      	cmp	r4, r6
+     f28:	d216      	bcs.n	f58 <getbytes+0x50>
+		c = usart_getc();
+     f2a:	4b0d      	ldr	r3, [pc, #52]	; (f60 <getbytes+0x58>)
+     f2c:	4798      	blx	r3
+     f2e:	b2c5      	uxtb	r5, r0
+		crc = add_crc(c, crc);
+     f30:	9901      	ldr	r1, [sp, #4]
+     f32:	0028      	movs	r0, r5
+     f34:	4b0b      	ldr	r3, [pc, #44]	; (f64 <getbytes+0x5c>)
+     f36:	4798      	blx	r3
+     f38:	9001      	str	r0, [sp, #4]
+		if (size_of_data || mode_of_transfer) {
+     f3a:	4b0b      	ldr	r3, [pc, #44]	; (f68 <getbytes+0x60>)
+     f3c:	881b      	ldrh	r3, [r3, #0]
+     f3e:	2b00      	cmp	r3, #0
+     f40:	d1ea      	bne.n	f18 <getbytes+0x10>
+     f42:	4b0a      	ldr	r3, [pc, #40]	; (f6c <getbytes+0x64>)
+     f44:	781b      	ldrb	r3, [r3, #0]
+     f46:	2b00      	cmp	r3, #0
+     f48:	d0eb      	beq.n	f22 <getbytes+0x1a>
+     f4a:	e7e5      	b.n	f18 <getbytes+0x10>
+				size_of_data--;
+     f4c:	4906      	ldr	r1, [pc, #24]	; (f68 <getbytes+0x60>)
+     f4e:	880a      	ldrh	r2, [r1, #0]
+     f50:	3a01      	subs	r2, #1
+     f52:	800a      	strh	r2, [r1, #0]
+			*ptr_data++ = c;
+     f54:	001f      	movs	r7, r3
+     f56:	e7e4      	b.n	f22 <getbytes+0x1a>
+		}
+	}
+
+	return crc;
+}
+     f58:	9801      	ldr	r0, [sp, #4]
+     f5a:	b003      	add	sp, #12
+     f5c:	bdf0      	pop	{r4, r5, r6, r7, pc}
+     f5e:	46c0      	nop			; (mov r8, r8)
+     f60:	00000e89 	.word	0x00000e89
+     f64:	00000edd 	.word	0x00000edd
+     f68:	20000208 	.word	0x20000208
+     f6c:	2000020a 	.word	0x2000020a
+
+00000f70 <putPacket>:
+
+//*----------------------------------------------------------------------------
+//* \fn    putPacket
+//* \brief Used by Xup to send packets.
+//*----------------------------------------------------------------------------
+static int putPacket(uint8_t *tmppkt, uint8_t sno) {
+     f70:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+     f72:	0007      	movs	r7, r0
+     f74:	000c      	movs	r4, r1
+	uint16_t chksm;
+	uint8_t data;
+
+	chksm = 0;
+
+	usart_putc(SOH);
+     f76:	2001      	movs	r0, #1
+     f78:	4d15      	ldr	r5, [pc, #84]	; (fd0 <putPacket+0x60>)
+     f7a:	47a8      	blx	r5
+
+	usart_putc(sno);
+     f7c:	0020      	movs	r0, r4
+     f7e:	47a8      	blx	r5
+	usart_putc((uint8_t) ~(sno));
+     f80:	43e0      	mvns	r0, r4
+     f82:	b2c0      	uxtb	r0, r0
+     f84:	47a8      	blx	r5
+	chksm = 0;
+     f86:	2400      	movs	r4, #0
+
+	for (i = 0; i < PKTLEN_128; i++) {
+     f88:	2600      	movs	r6, #0
+     f8a:	e00d      	b.n	fa8 <putPacket+0x38>
+		if (size_of_data || mode_of_transfer) {
+			data = *tmppkt++;
+     f8c:	783d      	ldrb	r5, [r7, #0]
+			size_of_data--;
+     f8e:	3b01      	subs	r3, #1
+     f90:	4a10      	ldr	r2, [pc, #64]	; (fd4 <putPacket+0x64>)
+     f92:	8013      	strh	r3, [r2, #0]
+			data = *tmppkt++;
+     f94:	3701      	adds	r7, #1
+		} else
+			data = 0x00;
+
+		usart_putc(data);
+     f96:	0028      	movs	r0, r5
+     f98:	4b0d      	ldr	r3, [pc, #52]	; (fd0 <putPacket+0x60>)
+     f9a:	4798      	blx	r3
+
+		//chksm = (chksm<<8) ^ xcrc16tab[(chksm>>8)^data];
+		chksm = add_crc(data, chksm);
+     f9c:	0021      	movs	r1, r4
+     f9e:	0028      	movs	r0, r5
+     fa0:	4b0d      	ldr	r3, [pc, #52]	; (fd8 <putPacket+0x68>)
+     fa2:	4798      	blx	r3
+     fa4:	0004      	movs	r4, r0
+	for (i = 0; i < PKTLEN_128; i++) {
+     fa6:	3601      	adds	r6, #1
+     fa8:	2e7f      	cmp	r6, #127	; 0x7f
+     faa:	d808      	bhi.n	fbe <putPacket+0x4e>
+		if (size_of_data || mode_of_transfer) {
+     fac:	4b09      	ldr	r3, [pc, #36]	; (fd4 <putPacket+0x64>)
+     fae:	881b      	ldrh	r3, [r3, #0]
+     fb0:	2b00      	cmp	r3, #0
+     fb2:	d1eb      	bne.n	f8c <putPacket+0x1c>
+     fb4:	4a09      	ldr	r2, [pc, #36]	; (fdc <putPacket+0x6c>)
+     fb6:	7815      	ldrb	r5, [r2, #0]
+     fb8:	2d00      	cmp	r5, #0
+     fba:	d0ec      	beq.n	f96 <putPacket+0x26>
+     fbc:	e7e6      	b.n	f8c <putPacket+0x1c>
+	}
+
+	/* An "endian independent way to extract the CRC bytes. */
+	usart_putc((uint8_t) (chksm >> 8));
+     fbe:	0a20      	lsrs	r0, r4, #8
+     fc0:	b2c0      	uxtb	r0, r0
+     fc2:	4d03      	ldr	r5, [pc, #12]	; (fd0 <putPacket+0x60>)
+     fc4:	47a8      	blx	r5
+	usart_putc((uint8_t) chksm);
+     fc6:	b2e0      	uxtb	r0, r4
+     fc8:	47a8      	blx	r5
+
+	return (usart_getc()); /* Wait for ack */
+     fca:	4b05      	ldr	r3, [pc, #20]	; (fe0 <putPacket+0x70>)
+     fcc:	4798      	blx	r3
+}
+     fce:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+     fd0:	00000e71 	.word	0x00000e71
+     fd4:	20000208 	.word	0x20000208
+     fd8:	00000edd 	.word	0x00000edd
+     fdc:	2000020a 	.word	0x2000020a
+     fe0:	00000e89 	.word	0x00000e89
+
+00000fe4 <getPacket>:
+
+//*----------------------------------------------------------------------------
+//* \fn    getPacket
+//* \brief Used by Xdown to retrieve packets.
+//*----------------------------------------------------------------------------
+uint8_t getPacket(uint8_t *ptr_data, uint8_t sno) {
+     fe4:	b5f0      	push	{r4, r5, r6, r7, lr}
+     fe6:	b083      	sub	sp, #12
+     fe8:	0006      	movs	r6, r0
+     fea:	000d      	movs	r5, r1
+	uint8_t seq[2];
+	uint16_t crc, xcrc;
+
+	getbytes(seq, 2);
+     fec:	2102      	movs	r1, #2
+     fee:	a801      	add	r0, sp, #4
+     ff0:	4c12      	ldr	r4, [pc, #72]	; (103c <getPacket+0x58>)
+     ff2:	47a0      	blx	r4
+	xcrc = getbytes(ptr_data, PKTLEN_128);
+     ff4:	2180      	movs	r1, #128	; 0x80
+     ff6:	0030      	movs	r0, r6
+     ff8:	47a0      	blx	r4
+     ffa:	0006      	movs	r6, r0
+
+	/* An "endian independent way to combine the CRC bytes. */
+	crc = (uint16_t) usart_getc() << 8;
+     ffc:	4f10      	ldr	r7, [pc, #64]	; (1040 <getPacket+0x5c>)
+     ffe:	47b8      	blx	r7
+    1000:	b280      	uxth	r0, r0
+    1002:	0200      	lsls	r0, r0, #8
+    1004:	b284      	uxth	r4, r0
+	crc += (uint16_t) usart_getc();
+    1006:	47b8      	blx	r7
+    1008:	b280      	uxth	r0, r0
+    100a:	1824      	adds	r4, r4, r0
+    100c:	b2a4      	uxth	r4, r4
+
+	if ((crc != xcrc) || (seq[0] != sno) || (seq[1] != (uint8_t) (~sno))) {
+    100e:	42a6      	cmp	r6, r4
+    1010:	d103      	bne.n	101a <getPacket+0x36>
+    1012:	ab01      	add	r3, sp, #4
+    1014:	781b      	ldrb	r3, [r3, #0]
+    1016:	42ab      	cmp	r3, r5
+    1018:	d005      	beq.n	1026 <getPacket+0x42>
+		usart_putc(CAN);
+    101a:	2018      	movs	r0, #24
+    101c:	4b09      	ldr	r3, [pc, #36]	; (1044 <getPacket+0x60>)
+    101e:	4798      	blx	r3
+		return (false);
+    1020:	2000      	movs	r0, #0
+	}
+
+	usart_putc(ACK);
+	return (true);
+}
+    1022:	b003      	add	sp, #12
+    1024:	bdf0      	pop	{r4, r5, r6, r7, pc}
+	if ((crc != xcrc) || (seq[0] != sno) || (seq[1] != (uint8_t) (~sno))) {
+    1026:	ab01      	add	r3, sp, #4
+    1028:	785b      	ldrb	r3, [r3, #1]
+    102a:	43ed      	mvns	r5, r5
+    102c:	b2ed      	uxtb	r5, r5
+    102e:	42ab      	cmp	r3, r5
+    1030:	d1f3      	bne.n	101a <getPacket+0x36>
+	usart_putc(ACK);
+    1032:	2006      	movs	r0, #6
+    1034:	4b03      	ldr	r3, [pc, #12]	; (1044 <getPacket+0x60>)
+    1036:	4798      	blx	r3
+	return (true);
+    1038:	2001      	movs	r0, #1
+    103a:	e7f2      	b.n	1022 <getPacket+0x3e>
+    103c:	00000f09 	.word	0x00000f09
+    1040:	00000e89 	.word	0x00000e89
+    1044:	00000e71 	.word	0x00000e71
+
+00001048 <usart_putdata_xmd>:
+//* \brief Called when a transfer from target to host is being made (considered
+//*        an upload).
+//*----------------------------------------------------------------------------
+//static void Xup(char *ptr_data, uint16_t length)
+//Send given data (polling) using xmodem (if necessary)
+uint32_t usart_putdata_xmd(void const* data, uint32_t length) {
+    1048:	b570      	push	{r4, r5, r6, lr}
+    104a:	0005      	movs	r5, r0
+    104c:	1e0e      	subs	r6, r1, #0
+	uint8_t c, sno = 1;
+	uint8_t done;
+	uint8_t * ptr_data = (uint8_t *) data;
+
+	if (!length)
+    104e:	d109      	bne.n	1064 <usart_putdata_xmd+0x1c>
+		mode_of_transfer = 1;
+    1050:	2201      	movs	r2, #1
+    1052:	4b1c      	ldr	r3, [pc, #112]	; (10c4 <usart_putdata_xmd+0x7c>)
+    1054:	701a      	strb	r2, [r3, #0]
+	else {
+		size_of_data = length;
+		mode_of_transfer = 0;
+	}
+
+	if (length & (PKTLEN_128 - 1)) {
+    1056:	0673      	lsls	r3, r6, #25
+    1058:	d002      	beq.n	1060 <usart_putdata_xmd+0x18>
+		length += PKTLEN_128;
+    105a:	3680      	adds	r6, #128	; 0x80
+		length &= ~(PKTLEN_128 - 1);
+    105c:	237f      	movs	r3, #127	; 0x7f
+    105e:	439e      	bics	r6, r3
+	}
+
+	/* Startup synchronization... */
+	/* Wait to receive a NAK or 'C' from receiver. */
+	done = 0;
+    1060:	2400      	movs	r4, #0
+	while (!done) {
+    1062:	e006      	b.n	1072 <usart_putdata_xmd+0x2a>
+		size_of_data = length;
+    1064:	4b18      	ldr	r3, [pc, #96]	; (10c8 <usart_putdata_xmd+0x80>)
+    1066:	8019      	strh	r1, [r3, #0]
+		mode_of_transfer = 0;
+    1068:	2200      	movs	r2, #0
+    106a:	4b16      	ldr	r3, [pc, #88]	; (10c4 <usart_putdata_xmd+0x7c>)
+    106c:	701a      	strb	r2, [r3, #0]
+    106e:	e7f2      	b.n	1056 <usart_putdata_xmd+0xe>
+		c = (uint8_t) usart_getc();
+
+		switch (c) {
+			case NAK:
+				done = 1;
+    1070:	2401      	movs	r4, #1
+	while (!done) {
+    1072:	2c00      	cmp	r4, #0
+    1074:	d110      	bne.n	1098 <usart_putdata_xmd+0x50>
+		c = (uint8_t) usart_getc();
+    1076:	4b15      	ldr	r3, [pc, #84]	; (10cc <usart_putdata_xmd+0x84>)
+    1078:	4798      	blx	r3
+		switch (c) {
+    107a:	23ff      	movs	r3, #255	; 0xff
+    107c:	4018      	ands	r0, r3
+    107e:	2843      	cmp	r0, #67	; 0x43
+    1080:	d0f6      	beq.n	1070 <usart_putdata_xmd+0x28>
+    1082:	2871      	cmp	r0, #113	; 0x71
+    1084:	d01b      	beq.n	10be <usart_putdata_xmd+0x76>
+    1086:	2815      	cmp	r0, #21
+    1088:	d1f3      	bne.n	1072 <usart_putdata_xmd+0x2a>
+    108a:	e7f1      	b.n	1070 <usart_putdata_xmd+0x28>
+	while (!done) {
+		c = (uint8_t) putPacket((uint8_t *) ptr_data, sno);
+
+		switch (c) {
+			case ACK:
+				++sno;
+    108c:	3401      	adds	r4, #1
+    108e:	b2e4      	uxtb	r4, r4
+				length -= PKTLEN_128;
+    1090:	3e80      	subs	r6, #128	; 0x80
+				ptr_data += PKTLEN_128;
+    1092:	3580      	adds	r5, #128	; 0x80
+			case EOT:
+			default:
+				done = 0;
+				break;
+		}
+		if (!length) {
+    1094:	2e00      	cmp	r6, #0
+    1096:	d008      	beq.n	10aa <usart_putdata_xmd+0x62>
+		c = (uint8_t) putPacket((uint8_t *) ptr_data, sno);
+    1098:	0021      	movs	r1, r4
+    109a:	0028      	movs	r0, r5
+    109c:	4b0c      	ldr	r3, [pc, #48]	; (10d0 <usart_putdata_xmd+0x88>)
+    109e:	4798      	blx	r3
+		switch (c) {
+    10a0:	23ff      	movs	r3, #255	; 0xff
+    10a2:	4018      	ands	r0, r3
+    10a4:	2806      	cmp	r0, #6
+    10a6:	d0f1      	beq.n	108c <usart_putdata_xmd+0x44>
+    10a8:	e7f4      	b.n	1094 <usart_putdata_xmd+0x4c>
+			usart_putc(EOT);
+    10aa:	2004      	movs	r0, #4
+    10ac:	4b09      	ldr	r3, [pc, #36]	; (10d4 <usart_putdata_xmd+0x8c>)
+    10ae:	4798      	blx	r3
+			usart_getc(); /* Flush the ACK */
+    10b0:	4b06      	ldr	r3, [pc, #24]	; (10cc <usart_putdata_xmd+0x84>)
+    10b2:	4798      	blx	r3
+			break;
+		}
+		// ("!");
+	}
+
+	mode_of_transfer = 0;
+    10b4:	2200      	movs	r2, #0
+    10b6:	4b03      	ldr	r3, [pc, #12]	; (10c4 <usart_putdata_xmd+0x7c>)
+    10b8:	701a      	strb	r2, [r3, #0]
+	// ("Xup_done.");
+	return (1);
+    10ba:	2001      	movs	r0, #1
+    10bc:	e000      	b.n	10c0 <usart_putdata_xmd+0x78>
+				return (0);
+    10be:	2000      	movs	r0, #0
+	//    return(0);
+}
+    10c0:	bd70      	pop	{r4, r5, r6, pc}
+    10c2:	46c0      	nop			; (mov r8, r8)
+    10c4:	2000020a 	.word	0x2000020a
+    10c8:	20000208 	.word	0x20000208
+    10cc:	00000e89 	.word	0x00000e89
+    10d0:	00000f71 	.word	0x00000f71
+    10d4:	00000e71 	.word	0x00000e71
+
+000010d8 <usart_getdata_xmd>:
+//* \brief Called when a transfer from host to target is being made (considered
+//*        an download).
+//*----------------------------------------------------------------------------
+//static void Xdown(char *ptr_data, uint16_t length)
+//Get data from comm. device using xmodem (if necessary)
+uint32_t usart_getdata_xmd(void* data, uint32_t length) {
+    10d8:	b570      	push	{r4, r5, r6, lr}
+    10da:	0005      	movs	r5, r0
+	uint32_t data_transfered = 0;
+
+	//Copied from legacy source code ... might need some tweaking
+	uint32_t loops_per_second = CPU_FREQUENCY/10; /* system_clock_source_get_hz(BOOT_USART_GCLK_GEN_SOURCE) / 10; */
+
+	if (length == 0)
+    10dc:	2900      	cmp	r1, #0
+    10de:	d104      	bne.n	10ea <usart_getdata_xmd+0x12>
+		mode_of_transfer = 1;
+    10e0:	2201      	movs	r2, #1
+    10e2:	4b1f      	ldr	r3, [pc, #124]	; (1160 <usart_getdata_xmd+0x88>)
+    10e4:	701a      	strb	r2, [r3, #0]
+uint32_t usart_getdata_xmd(void* data, uint32_t length) {
+    10e6:	2664      	movs	r6, #100	; 0x64
+    10e8:	e011      	b.n	110e <usart_getdata_xmd+0x36>
+	else {
+		size_of_data = length;
+    10ea:	4b1e      	ldr	r3, [pc, #120]	; (1164 <usart_getdata_xmd+0x8c>)
+    10ec:	8019      	strh	r1, [r3, #0]
+		mode_of_transfer = 0;
+    10ee:	2200      	movs	r2, #0
+    10f0:	4b1b      	ldr	r3, [pc, #108]	; (1160 <usart_getdata_xmd+0x88>)
+    10f2:	701a      	strb	r2, [r3, #0]
+    10f4:	e7f7      	b.n	10e6 <usart_getdata_xmd+0xe>
+	// ("Xdown");
+	while (1) {
+		usart_putc('C');
+		timeout = loops_per_second;
+		while (!(usart_is_rx_ready()) && timeout)
+			timeout--;
+    10f6:	3c01      	subs	r4, #1
+		while (!(usart_is_rx_ready()) && timeout)
+    10f8:	4b1b      	ldr	r3, [pc, #108]	; (1168 <usart_getdata_xmd+0x90>)
+    10fa:	4798      	blx	r3
+    10fc:	2800      	cmp	r0, #0
+    10fe:	d101      	bne.n	1104 <usart_getdata_xmd+0x2c>
+    1100:	2c00      	cmp	r4, #0
+    1102:	d1f8      	bne.n	10f6 <usart_getdata_xmd+0x1e>
+		if (timeout)
+    1104:	2c00      	cmp	r4, #0
+    1106:	d122      	bne.n	114e <usart_getdata_xmd+0x76>
+			break;
+
+		if (!(--nbr_of_timeout))
+    1108:	3e01      	subs	r6, #1
+    110a:	2e00      	cmp	r6, #0
+    110c:	d025      	beq.n	115a <usart_getdata_xmd+0x82>
+		usart_putc('C');
+    110e:	2043      	movs	r0, #67	; 0x43
+    1110:	4b16      	ldr	r3, [pc, #88]	; (116c <usart_getdata_xmd+0x94>)
+    1112:	4798      	blx	r3
+		timeout = loops_per_second;
+    1114:	4c16      	ldr	r4, [pc, #88]	; (1170 <usart_getdata_xmd+0x98>)
+		while (!(usart_is_rx_ready()) && timeout)
+    1116:	e7ef      	b.n	10f8 <usart_getdata_xmd+0x20>
+		c = (char) usart_getc();
+
+		switch (c) {
+			case SOH: /* 128-byte incoming packet */
+				// ("O");
+				b_run = getPacket(ptr_data, sno);
+    1118:	0021      	movs	r1, r4
+    111a:	0028      	movs	r0, r5
+    111c:	4b15      	ldr	r3, [pc, #84]	; (1174 <usart_getdata_xmd+0x9c>)
+    111e:	4798      	blx	r3
+    1120:	0002      	movs	r2, r0
+				if (b_run == true) {
+    1122:	2801      	cmp	r0, #1
+    1124:	d00f      	beq.n	1146 <usart_getdata_xmd+0x6e>
+	while (b_run != false) {
+    1126:	2a00      	cmp	r2, #0
+    1128:	d014      	beq.n	1154 <usart_getdata_xmd+0x7c>
+		c = (char) usart_getc();
+    112a:	4b13      	ldr	r3, [pc, #76]	; (1178 <usart_getdata_xmd+0xa0>)
+    112c:	4798      	blx	r3
+				b_run = false;
+				break;
+			case CAN: // ("C");
+			case ESC: /* "X" User-invoked abort */
+			default:
+				b_run = false;
+    112e:	2200      	movs	r2, #0
+		switch (c) {
+    1130:	23ff      	movs	r3, #255	; 0xff
+    1132:	4018      	ands	r0, r3
+    1134:	2801      	cmp	r0, #1
+    1136:	d0ef      	beq.n	1118 <usart_getdata_xmd+0x40>
+    1138:	2804      	cmp	r0, #4
+    113a:	d1f4      	bne.n	1126 <usart_getdata_xmd+0x4e>
+				usart_putc(ACK);
+    113c:	2006      	movs	r0, #6
+    113e:	4b0b      	ldr	r3, [pc, #44]	; (116c <usart_getdata_xmd+0x94>)
+    1140:	4798      	blx	r3
+				b_run = false;
+    1142:	2200      	movs	r2, #0
+				break;
+    1144:	e7ef      	b.n	1126 <usart_getdata_xmd+0x4e>
+					++sno;
+    1146:	3401      	adds	r4, #1
+    1148:	b2e4      	uxtb	r4, r4
+					ptr_data += PKTLEN_128;
+    114a:	3580      	adds	r5, #128	; 0x80
+    114c:	e7eb      	b.n	1126 <usart_getdata_xmd+0x4e>
+    114e:	2401      	movs	r4, #1
+    1150:	2201      	movs	r2, #1
+    1152:	e7e8      	b.n	1126 <usart_getdata_xmd+0x4e>
+				break;
+		}
+		// ("!");
+	}
+	mode_of_transfer = 0;
+    1154:	4b02      	ldr	r3, [pc, #8]	; (1160 <usart_getdata_xmd+0x88>)
+    1156:	701a      	strb	r2, [r3, #0]
+	return (true);
+    1158:	2601      	movs	r6, #1
+//    return(b_run);
+}
+    115a:	0030      	movs	r0, r6
+    115c:	bd70      	pop	{r4, r5, r6, pc}
+    115e:	46c0      	nop			; (mov r8, r8)
+    1160:	2000020a 	.word	0x2000020a
+    1164:	20000208 	.word	0x20000208
+    1168:	000009dd 	.word	0x000009dd
+    116c:	00000e71 	.word	0x00000e71
+    1170:	000c3500 	.word	0x000c3500
+    1174:	00000fe5 	.word	0x00000fe5
+    1178:	00000e89 	.word	0x00000e89
+
+0000117c <usb_init>:
+#if SAM_BA_USB_INTERFACE_ENABLED
+
+extern USB_CDC pCdc;
+
+void usb_init(void)
+{
+    117c:	b510      	push	{r4, lr}
+	pCdc.pUsb = USB;
+    117e:	4c05      	ldr	r4, [pc, #20]	; (1194 <usb_init+0x18>)
+    1180:	2382      	movs	r3, #130	; 0x82
+    1182:	05db      	lsls	r3, r3, #23
+    1184:	6023      	str	r3, [r4, #0]
+	/* Initialize USB */
+	AT91F_InitUSB();
+    1186:	4b04      	ldr	r3, [pc, #16]	; (1198 <usb_init+0x1c>)
+    1188:	4798      	blx	r3
+	/* Get the default CDC structure settings */
+	AT91F_CDC_Open((P_USB_CDC)&pCdc, pCdc.pUsb);
+    118a:	6821      	ldr	r1, [r4, #0]
+    118c:	0020      	movs	r0, r4
+    118e:	4b03      	ldr	r3, [pc, #12]	; (119c <usb_init+0x20>)
+    1190:	4798      	blx	r3
+}
+    1192:	bd10      	pop	{r4, pc}
+    1194:	200001ec 	.word	0x200001ec
+    1198:	000002bd 	.word	0x000002bd
+    119c:	000003ad 	.word	0x000003ad
+
+000011a0 <cdc_putc>:
+
+int cdc_putc(int value)
+{
+    11a0:	b510      	push	{r4, lr}
+    11a2:	b082      	sub	sp, #8
+    11a4:	9001      	str	r0, [sp, #4]
+	/* Send single byte on USB CDC */
+	USB_Write(&pCdc, (const char *)&value, 1, USB_EP_IN);
+    11a6:	2301      	movs	r3, #1
+    11a8:	2201      	movs	r2, #1
+    11aa:	a901      	add	r1, sp, #4
+    11ac:	4802      	ldr	r0, [pc, #8]	; (11b8 <cdc_putc+0x18>)
+    11ae:	4c03      	ldr	r4, [pc, #12]	; (11bc <cdc_putc+0x1c>)
+    11b0:	47a0      	blx	r4
+	return 1;
+}
+    11b2:	2001      	movs	r0, #1
+    11b4:	b002      	add	sp, #8
+    11b6:	bd10      	pop	{r4, pc}
+    11b8:	200001ec 	.word	0x200001ec
+    11bc:	00000205 	.word	0x00000205
+
+000011c0 <cdc_getc>:
+
+int cdc_getc(void)
+{
+    11c0:	b510      	push	{r4, lr}
+    11c2:	b082      	sub	sp, #8
+	uint8_t rx_char;
+	/* Read singly byte on USB CDC */
+	USB_Read(&pCdc, (char *)&rx_char, 1);
+    11c4:	466b      	mov	r3, sp
+    11c6:	1ddc      	adds	r4, r3, #7
+    11c8:	2201      	movs	r2, #1
+    11ca:	0021      	movs	r1, r4
+    11cc:	4802      	ldr	r0, [pc, #8]	; (11d8 <cdc_getc+0x18>)
+    11ce:	4b03      	ldr	r3, [pc, #12]	; (11dc <cdc_getc+0x1c>)
+    11d0:	4798      	blx	r3
+	return (int)rx_char;
+    11d2:	7820      	ldrb	r0, [r4, #0]
+}
+    11d4:	b002      	add	sp, #8
+    11d6:	bd10      	pop	{r4, pc}
+    11d8:	200001ec 	.word	0x200001ec
+    11dc:	00000175 	.word	0x00000175
+
+000011e0 <cdc_is_rx_ready>:
+
+bool cdc_is_rx_ready(void)
+{
+    11e0:	b510      	push	{r4, lr}
+	/* Check whether the device is configured */
+	if ( !USB_IsConfigured(&pCdc))
+    11e2:	4808      	ldr	r0, [pc, #32]	; (1204 <cdc_is_rx_ready+0x24>)
+    11e4:	4b08      	ldr	r3, [pc, #32]	; (1208 <cdc_is_rx_ready+0x28>)
+    11e6:	4798      	blx	r3
+    11e8:	2800      	cmp	r0, #0
+    11ea:	d008      	beq.n	11fe <cdc_is_rx_ready+0x1e>
+		return 0;
+
+	/* Return transfer complete 0 flag status */
+	return (pCdc.pUsb->DEVICE.DeviceEndpoint[USB_EP_OUT].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRCPT0);
+    11ec:	4b05      	ldr	r3, [pc, #20]	; (1204 <cdc_is_rx_ready+0x24>)
+    11ee:	681a      	ldr	r2, [r3, #0]
+    11f0:	2348      	movs	r3, #72	; 0x48
+    11f2:	33ff      	adds	r3, #255	; 0xff
+    11f4:	5cd0      	ldrb	r0, [r2, r3]
+    11f6:	3b47      	subs	r3, #71	; 0x47
+    11f8:	3bff      	subs	r3, #255	; 0xff
+    11fa:	4018      	ands	r0, r3
+}
+    11fc:	bd10      	pop	{r4, pc}
+		return 0;
+    11fe:	2000      	movs	r0, #0
+    1200:	e7fc      	b.n	11fc <cdc_is_rx_ready+0x1c>
+    1202:	46c0      	nop			; (mov r8, r8)
+    1204:	200001ec 	.word	0x200001ec
+    1208:	00000809 	.word	0x00000809
+
+0000120c <cdc_write_buf>:
+
+uint32_t cdc_write_buf(void const* data, uint32_t length)
+{
+    120c:	b570      	push	{r4, r5, r6, lr}
+    120e:	000c      	movs	r4, r1
+	/* Send the specified number of bytes on USB CDC */
+	USB_Write(&pCdc, (const char *)data, length, USB_EP_IN);
+    1210:	2301      	movs	r3, #1
+    1212:	000a      	movs	r2, r1
+    1214:	0001      	movs	r1, r0
+    1216:	4802      	ldr	r0, [pc, #8]	; (1220 <cdc_write_buf+0x14>)
+    1218:	4d02      	ldr	r5, [pc, #8]	; (1224 <cdc_write_buf+0x18>)
+    121a:	47a8      	blx	r5
+	return length;
+}
+    121c:	0020      	movs	r0, r4
+    121e:	bd70      	pop	{r4, r5, r6, pc}
+    1220:	200001ec 	.word	0x200001ec
+    1224:	00000205 	.word	0x00000205
+
+00001228 <cdc_read_buf>:
+
+uint32_t cdc_read_buf(void* data, uint32_t length)
+{
+    1228:	b570      	push	{r4, r5, r6, lr}
+    122a:	0004      	movs	r4, r0
+    122c:	000d      	movs	r5, r1
+	/* Check whether the device is configured */
+	if ( !USB_IsConfigured(&pCdc))
+    122e:	4806      	ldr	r0, [pc, #24]	; (1248 <cdc_read_buf+0x20>)
+    1230:	4b06      	ldr	r3, [pc, #24]	; (124c <cdc_read_buf+0x24>)
+    1232:	4798      	blx	r3
+    1234:	2800      	cmp	r0, #0
+    1236:	d101      	bne.n	123c <cdc_read_buf+0x14>
+		return 0;
+    1238:	2000      	movs	r0, #0
+
+	/* Read from USB CDC */
+	return USB_Read(&pCdc, (char *)data, length);
+}
+    123a:	bd70      	pop	{r4, r5, r6, pc}
+	return USB_Read(&pCdc, (char *)data, length);
+    123c:	002a      	movs	r2, r5
+    123e:	0021      	movs	r1, r4
+    1240:	4801      	ldr	r0, [pc, #4]	; (1248 <cdc_read_buf+0x20>)
+    1242:	4b03      	ldr	r3, [pc, #12]	; (1250 <cdc_read_buf+0x28>)
+    1244:	4798      	blx	r3
+    1246:	e7f8      	b.n	123a <cdc_read_buf+0x12>
+    1248:	200001ec 	.word	0x200001ec
+    124c:	00000809 	.word	0x00000809
+    1250:	00000175 	.word	0x00000175
+
+00001254 <cdc_read_buf_xmd>:
+
+uint32_t cdc_read_buf_xmd(void* data, uint32_t length)
+{
+    1254:	b570      	push	{r4, r5, r6, lr}
+    1256:	0004      	movs	r4, r0
+    1258:	000d      	movs	r5, r1
+	/* Check whether the device is configured */
+	if ( !USB_IsConfigured(&pCdc))
+    125a:	4806      	ldr	r0, [pc, #24]	; (1274 <cdc_read_buf_xmd+0x20>)
+    125c:	4b06      	ldr	r3, [pc, #24]	; (1278 <cdc_read_buf_xmd+0x24>)
+    125e:	4798      	blx	r3
+    1260:	2800      	cmp	r0, #0
+    1262:	d101      	bne.n	1268 <cdc_read_buf_xmd+0x14>
+		return 0;
+    1264:	2000      	movs	r0, #0
+
+	/* Blocking read till specified number of bytes is received */
+	return USB_Read_blocking(&pCdc, (char *)data, length);
+}
+    1266:	bd70      	pop	{r4, r5, r6, pc}
+	return USB_Read_blocking(&pCdc, (char *)data, length);
+    1268:	002a      	movs	r2, r5
+    126a:	0021      	movs	r1, r4
+    126c:	4801      	ldr	r0, [pc, #4]	; (1274 <cdc_read_buf_xmd+0x20>)
+    126e:	4b03      	ldr	r3, [pc, #12]	; (127c <cdc_read_buf_xmd+0x28>)
+    1270:	4798      	blx	r3
+    1272:	e7f8      	b.n	1266 <cdc_read_buf_xmd+0x12>
+    1274:	200001ec 	.word	0x200001ec
+    1278:	00000809 	.word	0x00000809
+    127c:	000003d9 	.word	0x000003d9
+
+00001280 <__libc_init_array>:
+    1280:	b570      	push	{r4, r5, r6, lr}
+    1282:	2600      	movs	r6, #0
+    1284:	4d0c      	ldr	r5, [pc, #48]	; (12b8 <__libc_init_array+0x38>)
+    1286:	4c0d      	ldr	r4, [pc, #52]	; (12bc <__libc_init_array+0x3c>)
+    1288:	1b64      	subs	r4, r4, r5
+    128a:	10a4      	asrs	r4, r4, #2
+    128c:	42a6      	cmp	r6, r4
+    128e:	d109      	bne.n	12a4 <__libc_init_array+0x24>
+    1290:	2600      	movs	r6, #0
+    1292:	f000 f85d 	bl	1350 <_init>
+    1296:	4d0a      	ldr	r5, [pc, #40]	; (12c0 <__libc_init_array+0x40>)
+    1298:	4c0a      	ldr	r4, [pc, #40]	; (12c4 <__libc_init_array+0x44>)
+    129a:	1b64      	subs	r4, r4, r5
+    129c:	10a4      	asrs	r4, r4, #2
+    129e:	42a6      	cmp	r6, r4
+    12a0:	d105      	bne.n	12ae <__libc_init_array+0x2e>
+    12a2:	bd70      	pop	{r4, r5, r6, pc}
+    12a4:	00b3      	lsls	r3, r6, #2
+    12a6:	58eb      	ldr	r3, [r5, r3]
+    12a8:	4798      	blx	r3
+    12aa:	3601      	adds	r6, #1
+    12ac:	e7ee      	b.n	128c <__libc_init_array+0xc>
+    12ae:	00b3      	lsls	r3, r6, #2
+    12b0:	58eb      	ldr	r3, [r5, r3]
+    12b2:	4798      	blx	r3
+    12b4:	3601      	adds	r6, #1
+    12b6:	e7f2      	b.n	129e <__libc_init_array+0x1e>
+    12b8:	0000135c 	.word	0x0000135c
+    12bc:	0000135c 	.word	0x0000135c
+    12c0:	0000135c 	.word	0x0000135c
+    12c4:	00001360 	.word	0x00001360
+
+000012c8 <devDescriptor>:
+    12c8:	01100112 40000002 612403eb 00000110     .......@..$a....
+    12d8:	00000100 42000400 42000800 42000c00     .......B...B...B
+    12e8:	42001000 42001400 42001800              ...B...B...B
+
+000012f4 <RomBOOT_Version>:
+    12f4:	312e3276 63654438 20393120 37313032     v2.18Dec 19 2017
+    1304:	3a353120 343a3832 000d0a33               15:28:43...
+
+00001310 <usbcdc_if>:
+    1310:	000011a1 000011c1 000011e1 0000120d     ................
+    1320:	00001229 0000120d 00001255              ).......U...
+
+0000132c <uart_if>:
+    132c:	00000e71 00000e89 000009dd 00000ea9     q...............
+    133c:	00000ec9 00001049 000010d9 00000d0a     ....I...........
+    134c:	0000003e                                >...
+
+00001350 <_init>:
+    1350:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+    1352:	46c0      	nop			; (mov r8, r8)
+    1354:	bcf8      	pop	{r3, r4, r5, r6, r7}
+    1356:	bc08      	pop	{r3}
+    1358:	469e      	mov	lr, r3
+    135a:	4770      	bx	lr
+
+0000135c <__init_array_start>:
+    135c:	000000d1 	.word	0x000000d1
+
+00001360 <_fini>:
+    1360:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+    1362:	46c0      	nop			; (mov r8, r8)
+    1364:	bcf8      	pop	{r3, r4, r5, r6, r7}
+    1366:	bc08      	pop	{r3}
+    1368:	469e      	mov	lr, r3
+    136a:	4770      	bx	lr
+
+0000136c <__fini_array_start>:
+    136c:	000000a9 	.word	0x000000a9
